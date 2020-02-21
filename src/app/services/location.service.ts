@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { Location } from '../models/Location';
+import { Data } from '../models/Data';
 
 const httpHeaders = {
 	headers: new HttpHeaders({
@@ -18,7 +18,7 @@ export class LocationService {
 
 	constructor(private http: HttpClient) {}
 
-	getLocations(): Observable<Location> {
-		return this.http.get<Location>(this.locationUrl);
+	getLocations(): Observable<Data> {
+		return this.http.get<Data>(this.locationUrl);
 	}
 }

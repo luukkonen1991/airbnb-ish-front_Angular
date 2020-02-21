@@ -11,14 +11,13 @@ import { Location } from '../../models/Location';
 	]
 })
 export class LocationsComponent implements OnInit {
-	locations: Location;
+	locations: Location[];
 
 	constructor(private locationService: LocationService) {}
 
 	ngOnInit() {
-		this.locationService.getLocations().subscribe((locations) => {
-			this.locations = locations;
-			console.log(locations);
+		this.locationService.getLocations().subscribe((locationArray) => {
+			this.locations = locationArray.data;
 		});
 	}
 }

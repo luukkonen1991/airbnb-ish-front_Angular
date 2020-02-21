@@ -7,4 +7,5 @@ export interface Location {
 	animalTypes: string[];
 	service: string[];
 	photo?: string;
+	createdAt: string;
 }
