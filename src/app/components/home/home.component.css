@@ -1,23 +1,23 @@
 .lp-top {
-  height: 50vh;
-  min-height: 450px;
-  background-image: url("../../../assets/landingPage_1920.jpg");
-  background-position: center top;
-  background-repeat: no-repeat;
+	height: 50vh;
+	min-height: 450px;
+	background-image: url("../../../assets/landingPage_1920.jpg");
+	background-position: center top;
+	background-repeat: no-repeat;
 }
 
 .lp-slog-1 {
-  min-width: 15rem;
-  width: 25%;
-  position: absolute;
-  top: 7rem;
-  right: 10rem;
+	min-width: 15rem;
+	width: 25%;
+	position: absolute;
+	top: 7rem;
+	right: 10rem;
 }
 
 .lp-slog-2 {
-  min-width: 15rem;
-  width: 31%;
-  position: absolute;
-  top: 12rem;
-  right: 1rem;
+	min-width: 15rem;
+	width: 31%;
+	position: absolute;
+	top: 12rem;
+	right: 1rem;
 }
