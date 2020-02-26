@@ -1,8 +1,15 @@
 <div class="lp-top">
-  <!-- <img class="lp-slog-1" src="../../../assets/lp-slog-1.1.png" alt="" />
-  <img class="lp-slog-2" src="../../../assets/lp-slog-2.png" alt="" /> -->
-  <!-- <app-form></app-form> -->
+  <img
+    class="lp-slog-1"
+    src="../../../assets/lp-slog-1.1.png"
+    alt=""
+  />
+  <img
+    class="lp-slog-2"
+    src="../../../assets/lp-slog-2.1.png"
+    alt=""
+  />
+  <app-form (locationsEvent)="newLocations($event)"></app-form>
 </div>
-<div class="lp-mid">
-  <app-locations></app-locations>
-</div>
+
+<app-locations [fromHome]="locations"></app-locations>

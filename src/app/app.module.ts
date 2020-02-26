@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { FormComponent } from './components/form/form.component';
 
 import { LocationService } from './services/location.service';
+import { DataService } from './services/data.service';
 
 @NgModule({
 	declarations: [
@@ -22,10 +24,12 @@ import { LocationService } from './services/location.service';
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
-		HttpClientModule
+		HttpClientModule,
+		FormsModule
 	],
 	providers: [
-		LocationService
+		LocationService,
+		DataService
 	],
 	bootstrap: [
 		AppComponent

@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Data } from '../models/Data';
 
-const httpHeaders = {
-	headers: new HttpHeaders({
-		'Content-type': 'application/json'
-	})
-};
+// const httpHeaders = {
+// 	headers: new HttpHeaders({
+// 		'Content-type': 'application/json'
+// 	})
+// };
 
 @Injectable({
 	providedIn: 'root'
@@ -20,5 +20,10 @@ export class LocationService {
 
 	getLocations(): Observable<Data> {
 		return this.http.get<Data>(this.locationUrl);
+	}
+
+	getLocationsWithParams(minPrice?: any, maxPrice?: any): Observable<Data> {
+		let params = new HttpParams().set('costAmount[lte]', maxPrice).set('costAmount[gte]', minPrice);
+		return this.http.get<Data>(this.locationUrl, { params });
 	}
 }

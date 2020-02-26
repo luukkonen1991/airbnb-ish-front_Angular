@@ -1,8 +1,27 @@
 .resize-img {
-	max-width: 500px;
+	max-width: 33vw;
 	height: auto;
 }
 
 .resize-card {
-	max-width: 500px;
+	max-width: 33vw;
+}
+
+.map-img {
+	max-width: 61vw;
+}
+
+.map-div {
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 2rem;
+}
+
+.results {
+	display: inline-block;
+}
+
+.daddy-div {
+	justify-content: center;
+	text-align: center;
 }

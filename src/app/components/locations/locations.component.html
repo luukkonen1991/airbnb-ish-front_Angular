@@ -1,15 +1,38 @@
-<h2 class="text-center mt-5">Most recent locations</h2>
-<div class="card-group" *ngFor="let item of locations">
-  <div class="card resize-card m-2">
-    <img class="card-img-top resize-img" src="http://localhost:5000/uploads/{{item.photo}}" alt="Card image cap" />
-    <div class="card-body">
-      <h3 class="card-title">{{item.title}}</h3>
-      <p class="card-text">
-        {{ item.description }}
-      </p>
-      <p class="card-text">
-        <small class="text-muted">Posted: {{item.createdAt | date}}</small>
-      </p>
+<div class="daddy-div">
+  <h2 class="text-center mt-5">Most recent locations</h2>
+  <div class="results">
+    <div
+      class="card-group"
+      *ngFor="let item of locations"
+    >
+      <div class="card resize-card m-2">
+        <img
+          class="card-img-top resize-img"
+          src="http://localhost:5000/uploads/{{item.photo}}"
+          alt="Card image cap"
+        />
+        <div class="card-body">
+          <h3 class="card-title">{{item.title}}</h3>
+          <p class="card-text">
+            {{ item.description }}
+          </p>
+          <p class="card-text">
+            <small class="text-muted">Posted: {{item.createdAt | date}}</small>
+            <button
+              type="button"
+              class="btn btn-secondary ml-2"
+              disabled
+            >View location</button>
+          </p>
+        </div>
+      </div>
     </div>
+  </div>
+  <div class="map-div m-2">
+    <img
+      class="map-img"
+      src="../../../assets/coming_soon_map.png"
+      alt=""
+    />
   </div>
 </div>
