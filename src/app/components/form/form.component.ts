@@ -17,7 +17,8 @@ export class FormComponent implements OnInit {
 
 	params: any = {
 		minPrice: null,
-		maxPrice: null
+		maxPrice: null,
+		sortInput: ''
 	};
 	@Output() locationsEvent = new EventEmitter<Location[]>();
 
@@ -30,7 +31,7 @@ export class FormComponent implements OnInit {
 
 	onSubmit() {
 		this.locationService
-			.getLocationsWithParams(this.params.minPrice || 1, this.params.maxPrice || 999)
+			.getLocationsWithParams(this.params.minPrice || 1, this.params.maxPrice || 999, this.params.sortInput || '')
 			.subscribe((locationArray) => {
 				this.locations = locationArray.data;
 				this.locationsEvent.emit(this.locations);

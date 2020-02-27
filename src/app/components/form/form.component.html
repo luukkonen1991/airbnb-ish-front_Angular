@@ -2,10 +2,12 @@
   <h3 class="text-center">Search for locations</h3>
   <form (ngSubmit)="onSubmit()">
     <!-- <div class="form-group">
-      <label>Location:</label>
+      <label>Location: {{params.location}} </label>
       <select
         class="form-control"
-        id="exampleFormControlSelect1"
+        id="sort"
+        name="location"
+        [(ngModel)]="params.location"
       >
         <option>Helsinki</option>
         <option>Espoo</option>
@@ -32,6 +34,20 @@
           name="maxPrice"
         >
       </div>
+    </div>
+    <div class="form-group">
+      <label>Sort by:</label>
+      <select
+        class="form-control w-25"
+        id="sort"
+        name="sort"
+        [(ngModel)]="params.sortInput"
+      >
+        <option value="createdAt">Newest first</option>
+        <option value="-createdAt">Oldest first</option>
+        <option value="costAmount">Cheapest first</option>
+        <option value="-costAmount">Most expensive first</option>
+      </select>
     </div>
     <!--
     <div class="form-group">

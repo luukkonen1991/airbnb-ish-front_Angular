@@ -22,8 +22,11 @@ export class LocationService {
 		return this.http.get<Data>(this.locationUrl);
 	}
 
-	getLocationsWithParams(minPrice?: any, maxPrice?: any): Observable<Data> {
-		let params = new HttpParams().set('costAmount[lte]', maxPrice).set('costAmount[gte]', minPrice);
+	getLocationsWithParams(minPrice?: any, maxPrice?: any, sortInput?: any): Observable<Data> {
+		let params = new HttpParams()
+			.set('costAmount[lte]', maxPrice)
+			.set('costAmount[gte]', minPrice)
+			.set('sort', sortInput);
 		return this.http.get<Data>(this.locationUrl, { params });
 	}
 }
