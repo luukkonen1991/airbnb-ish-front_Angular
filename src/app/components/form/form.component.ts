@@ -14,18 +14,14 @@ import { Location } from '../../models/Location';
 })
 export class FormComponent implements OnInit {
 	locations: Location[];
+	radioStatus: boolean = false;
 
 	params: any = {
 		minPrice: null,
 		maxPrice: null,
 		sortInput: '',
-		animalTypeDogs: ''
-	};
-
-	radioParams: any = {
-		dogs: '',
-		cats: '',
-		other: ''
+		animalTypeDog: '',
+		animalTypes: []
 	};
 
 	@Output() locationsEvent = new EventEmitter<Location[]>();
@@ -34,6 +30,7 @@ export class FormComponent implements OnInit {
 
 	ngOnInit() {
 		this.dataService.currentParams.subscribe((params) => (this.params = params));
+
 		// this.dataService.currentLocations.subscribe((locations) => (this.locations = locations));
 	}
 
@@ -61,5 +58,11 @@ export class FormComponent implements OnInit {
 		(this.params.minPrice = null), (this.params.maxPrice = null), (this.params.sortInput = '');
 	}
 
-	radioState() {}
+	getCheckboxValue(event: Event) {
+		let val = (<HTMLInputElement>event.target).value;
+		console.log(typeof val);
+		console.log(val);
+		this.params.animalTypes.push(val);
+		console.log(this.params.animalTypes);
+	}
 }

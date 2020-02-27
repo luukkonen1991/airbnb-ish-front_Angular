@@ -49,35 +49,69 @@
         <option value="-costAmount">Most expensive first</option>
       </select>
     </div>
-    <div class="form-group">
-      <label>Animal Types: {{ radioParams.dogs }} {{ radioParams.cats }} </label><br>
+
+    <!-- <div class="form-check">
+      <p>infoa {{params.animalTypeDog}} {{params.animalTypeCat}}</p>
+      <input
+      (change)="getCheckboxValue($event)"
+        class="form-check-input"
+        type="checkbox"
+        value="Dogs"
+        name="Dogs"
+        id="Dogs"
+
+      >
+      <label>
+        Dogs
+      </label>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value="Cats"
+        name="Cats"
+        id="Cats"
+        (change)="getCheckboxValue($event)"
+      >
+      <label>
+        Cats
+      </label>
+    </div> -->
+
+    <!-- <div class="form-group">
+      <label>Animal Types: {{ animalType.selected }} </label><br>
       <span class="mr-2">Dogs</span>
       <input
         class="mr-4"
-        type="radio"
+        type="checkbox"
         name="Dogs"
         value="Dogs"
-        [(ngModel)]="radioParams.dogs"
+        [(ngModel)]="animalType.selected"
         #Dogs
+        [checked]="radioState"
       >
       <span class="mr-2">Cats</span>
       <input
         class="mr-4"
-        type="radio"
+        type="checkbox"
         name="Cats"
         value="Cats"
-        [(ngModel)]="radioParams.cats"
+        [(ngModel)]="animalType.selected"
         #Cats
+        [checked]="radioState"
       >
       <span class="mr-2">Other</span>
       <input
         class="mr=4"
-        type="radio"
+        type="checkbox"
         name="Other"
         value="Other"
-        [(ngModel)]="radioParams.other"
+        [(ngModel)]="animalType.selected"
+        #Others
+        [checked]="radioState"
       >
-    </div>
+    </div> -->
     <!--
     <div class="form-group">
       <div class="form-check form-check-inline">
