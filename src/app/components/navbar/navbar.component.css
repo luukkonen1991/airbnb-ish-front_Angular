@@ -1,7 +1,13 @@
-.nav-item h5 {
-    border: 6px;
-};
+.navbarLink {
+    background: -webkit-linear-gradient(45deg, rgb(255, 0, 170), blue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding-right: 50px;
+}
 
-.ml-3 {
-    font-size: 500px;
+.navbarLink:hover{
+    background: -webkit-linear-gradient(45deg, rgb(26, 4, 16), rgb(123, 255, 0));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding-right: 50px;
 }
