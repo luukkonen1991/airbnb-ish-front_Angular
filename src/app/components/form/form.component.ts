@@ -18,8 +18,16 @@ export class FormComponent implements OnInit {
 	params: any = {
 		minPrice: null,
 		maxPrice: null,
-		sortInput: ''
+		sortInput: '',
+		animalTypeDogs: ''
 	};
+
+	radioParams: any = {
+		dogs: '',
+		cats: '',
+		other: ''
+	};
+
 	@Output() locationsEvent = new EventEmitter<Location[]>();
 
 	constructor(private dataService: DataService, private locationService: LocationService) {}
@@ -46,10 +54,12 @@ export class FormComponent implements OnInit {
 		// 	maxPrice: this.params.maxPrice
 		// });
 
-		this.clearState();
+		// this.clearState();
 	}
 
 	clearState() {
-		(this.params.minPrice = null), (this.params.maxPrice = null);
+		(this.params.minPrice = null), (this.params.maxPrice = null), (this.params.sortInput = '');
 	}
+
+	radioState() {}
 }

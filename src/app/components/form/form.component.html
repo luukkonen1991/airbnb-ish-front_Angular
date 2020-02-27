@@ -49,6 +49,35 @@
         <option value="-costAmount">Most expensive first</option>
       </select>
     </div>
+    <div class="form-group">
+      <label>Animal Types: {{ radioParams.dogs }} {{ radioParams.cats }} </label><br>
+      <span class="mr-2">Dogs</span>
+      <input
+        class="mr-4"
+        type="radio"
+        name="Dogs"
+        value="Dogs"
+        [(ngModel)]="radioParams.dogs"
+        #Dogs
+      >
+      <span class="mr-2">Cats</span>
+      <input
+        class="mr-4"
+        type="radio"
+        name="Cats"
+        value="Cats"
+        [(ngModel)]="radioParams.cats"
+        #Cats
+      >
+      <span class="mr-2">Other</span>
+      <input
+        class="mr=4"
+        type="radio"
+        name="Other"
+        value="Other"
+        [(ngModel)]="radioParams.other"
+      >
+    </div>
     <!--
     <div class="form-group">
       <div class="form-check form-check-inline">
@@ -90,4 +119,8 @@
     </div> -->
     <button class="btn btn-block mt-3 btn-primary">Search</button>
   </form>
+  <button
+    class="btn btn-block mt-3 btn-warning"
+    (click)="clearState()"
+  >Reset form</button>
 </div>
