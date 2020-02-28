@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 import { LocationService } from '../../services/location.service';
 import { DataService } from '../../services/data.service';
@@ -14,14 +15,14 @@ import { Location } from '../../models/Location';
 })
 export class FormComponent implements OnInit {
 	locations: Location[];
-	radioStatus: boolean = false;
+
+	formShow: boolean = false;
 
 	params: any = {
 		minPrice: null,
 		maxPrice: null,
 		sortInput: '',
-		animalTypeDog: '',
-		animalTypes: []
+		animalType: undefined
 	};
 
 	@Output() locationsEvent = new EventEmitter<Location[]>();
@@ -30,17 +31,22 @@ export class FormComponent implements OnInit {
 
 	ngOnInit() {
 		this.dataService.currentParams.subscribe((params) => (this.params = params));
-
 		// this.dataService.currentLocations.subscribe((locations) => (this.locations = locations));
 	}
 
 	onSubmit() {
 		this.locationService
-			.getLocationsWithParams(this.params.minPrice || 1, this.params.maxPrice || 999, this.params.sortInput || '')
+			.getLocationsWithParams(
+				this.params.minPrice || 1,
+				this.params.maxPrice || 999,
+				this.params.sortInput || '',
+				this.params.animalType || undefined
+			)
 			.subscribe((locationArray) => {
 				this.locations = locationArray.data;
 				this.locationsEvent.emit(this.locations);
 				console.log(this.locations);
+				console.log(this.params.animalType);
 			});
 		// this.dataService.changeLocations(this.locations);
 		// this.dataService.changeLocations({
@@ -55,14 +61,16 @@ export class FormComponent implements OnInit {
 	}
 
 	clearState() {
-		(this.params.minPrice = null), (this.params.maxPrice = null), (this.params.sortInput = '');
+		(this.params.minPrice = null),
+			(this.params.maxPrice = null),
+			(this.params.sortInput = ''),
+			(this.params.sortInput = ''),
+			(this.params.animalType = undefined);
 	}
 
-	getCheckboxValue(event: Event) {
-		let val = (<HTMLInputElement>event.target).value;
-		console.log(typeof val);
-		console.log(val);
-		this.params.animalTypes.push(val);
-		console.log(this.params.animalTypes);
+	formState() {
+		this.formShow = !this.formShow;
+		console.log(this.formShow);
+		console.log('clicked');
 	}
 }

@@ -3,12 +3,13 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Data } from '../models/Data';
+import { stringify } from '@angular/compiler/src/util';
 
-// const httpHeaders = {
-// 	headers: new HttpHeaders({
-// 		'Content-type': 'application/json'
-// 	})
-// };
+const httpHeaders = {
+	headers: new HttpHeaders({
+		'Content-type': 'application/json'
+	})
+};
 
 @Injectable({
 	providedIn: 'root'
@@ -22,11 +23,14 @@ export class LocationService {
 		return this.http.get<Data>(this.locationUrl);
 	}
 
-	getLocationsWithParams(minPrice?: any, maxPrice?: any, sortInput?: any): Observable<Data> {
+	getLocationsWithParams(minPrice?: any, maxPrice?: any, sortInput?: any, animalType?: any): Observable<Data> {
 		let params = new HttpParams()
 			.set('costAmount[lte]', maxPrice)
 			.set('costAmount[gte]', minPrice)
 			.set('sort', sortInput);
+		if (animalType !== undefined) {
+			params = params.append('animalTypes[in]', animalType);
+		}
 		return this.http.get<Data>(this.locationUrl, { params });
 	}
 }

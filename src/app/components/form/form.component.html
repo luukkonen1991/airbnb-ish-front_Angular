@@ -1,6 +1,12 @@
-<div class="card card-body w-50">
-  <h3 class="text-center">Search for locations</h3>
-  <form (ngSubmit)="onSubmit()">
+<div class="card card-body form">
+  <h3
+    class="text-center"
+    (click)="formState()"
+  >Search for locations</h3>
+  <form
+    *ngIf="this.formShow === true"
+    (ngSubmit)="onSubmit()"
+  >
     <!-- <div class="form-group">
       <label>Location: {{params.location}} </label>
       <select
@@ -17,18 +23,18 @@
 
     <div class="form-group">
       <div>
-        <label for="">Min Price:</label>
+        <label class="label-length">Min Price:</label>
         <input
-          class="w-25"
+          class="input-length"
           [(ngModel)]="params.minPrice"
           type="number"
           name="minPrice"
         >
       </div>
       <div>
-        <label for="">Max Price:</label>
+        <label class="label-length">Max Price:</label>
         <input
-          class="w-25"
+          class="input-length"
           [(ngModel)]="params.maxPrice"
           type="number"
           name="maxPrice"
@@ -36,9 +42,9 @@
       </div>
     </div>
     <div class="form-group">
-      <label>Sort by:</label>
+      <label class="label-length">Sort by:</label>
       <select
-        class="form-control w-25"
+        class="form-control-block input-length"
         id="sort"
         name="sort"
         [(ngModel)]="params.sortInput"
@@ -47,6 +53,19 @@
         <option value="-createdAt">Oldest first</option>
         <option value="costAmount">Cheapest first</option>
         <option value="-costAmount">Most expensive first</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="label-length">Animal Type:</label>
+      <select
+        class="form-control-block input-length"
+        id="sort"
+        name="sort"
+        [(ngModel)]="params.animalType"
+      >
+        <option value="Dogs">Dogs</option>
+        <option value="Cats">Cats</option>
+        <option value="Other">Other</option>
       </select>
     </div>
 
@@ -78,38 +97,35 @@
         Cats
       </label>
     </div> -->
-
-    <!-- <div class="form-group">
-      <label>Animal Types: {{ animalType.selected }} </label><br>
+    <!--
+    <div class="form-group">
+      <label>Animal Types: {{ params.animalType }} </label><br>
       <span class="mr-2">Dogs</span>
       <input
         class="mr-4"
-        type="checkbox"
+        type="radio"
         name="Dogs"
         value="Dogs"
-        [(ngModel)]="animalType.selected"
+        [(ngModel)]="params.animalType"
         #Dogs
-        [checked]="radioState"
       >
       <span class="mr-2">Cats</span>
       <input
         class="mr-4"
-        type="checkbox"
+        type="radio"
         name="Cats"
         value="Cats"
-        [(ngModel)]="animalType.selected"
+        [(ngModel)]="params.animalType"
         #Cats
-        [checked]="radioState"
       >
       <span class="mr-2">Other</span>
       <input
         class="mr=4"
-        type="checkbox"
+        type="radio"
         name="Other"
         value="Other"
-        [(ngModel)]="animalType.selected"
+        [(ngModel)]="params.animalType"
         #Others
-        [checked]="radioState"
       >
     </div> -->
     <!--
@@ -154,6 +170,7 @@
     <button class="btn btn-block mt-3 btn-primary">Search</button>
   </form>
   <button
+    *ngIf="this.formShow === true"
     class="btn btn-block mt-3 btn-warning"
     (click)="clearState()"
   >Reset form</button>
