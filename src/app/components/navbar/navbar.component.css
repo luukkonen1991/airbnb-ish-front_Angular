@@ -10,4 +10,8 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     padding-right: 50px;
+    text-shadow: 2px 2px 5px rgb(69, 212, 81);
+
+    /* Hyvä väri */
+    /* text-shadow: 2px 2px 5px rgb(69, 212, 81); */
 }
