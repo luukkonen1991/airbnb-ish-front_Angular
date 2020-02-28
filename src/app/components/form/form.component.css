@@ -2,9 +2,10 @@
 	width: 5rem;
 }
 
-.label-length {
+.label {
 	width: 7rem;
 	justify-content: start;
+	font-weight: bold;
 }
 
 .form {
