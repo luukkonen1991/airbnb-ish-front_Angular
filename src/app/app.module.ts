@@ -9,6 +9,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LocationsComponent } from './components/locations/locations.component';
 import { HomeComponent } from './components/home/home.component';
 import { FormComponent } from './components/form/form.component';
+import { BecomeHostComponent } from './components/become-host/become-host.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { SignupLoginComponent } from './components/signup-login/signup-login.component';
+import { AboutComponent } from './components/about/about.component';
 
 import { LocationService } from './services/location.service';
 import { DataService } from './services/data.service';
@@ -19,7 +23,11 @@ import { DataService } from './services/data.service';
 		NavbarComponent,
 		LocationsComponent,
 		HomeComponent,
-		FormComponent
+		FormComponent,
+		BecomeHostComponent,
+		ContactComponent,
+		SignupLoginComponent,
+		AboutComponent
 	],
 	imports: [
 		BrowserModule,
