@@ -29,7 +29,7 @@ export class LocationsComponent implements OnInit {
 
 	ngDoCheck() {
 		if (this.fromHome === undefined) {
-			console.log('No search data');
+			return;
 		} else {
 			this.locations = this.fromHome;
 		}
