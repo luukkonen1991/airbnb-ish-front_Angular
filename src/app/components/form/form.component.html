@@ -2,7 +2,7 @@
   <h3
     class="text-center"
     (click)="formState()"
-  >Search for locations</h3>
+  >Search</h3>
   <form
     *ngIf="this.formShow === true"
     (ngSubmit)="onSubmit()"
@@ -22,6 +22,7 @@
     </div> -->
 
     <div class="form-group">
+      <hr>
       <div>
         <label class="label">Min Price:</label>
         <input
