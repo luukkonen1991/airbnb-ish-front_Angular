@@ -13,11 +13,10 @@ import { BecomeHostComponent } from './components/become-host/become-host.compon
 import { ContactComponent } from './components/contact/contact.component';
 import { SignupLoginComponent } from './components/signup-login/signup-login.component';
 import { AboutComponent } from './components/about/about.component';
-
+import { LocationComponent } from './components/location/location.component';
 
 import { LocationService } from './services/location.service';
 import { DataService } from './services/data.service';
-
 
 @NgModule({
 	declarations: [
@@ -26,7 +25,7 @@ import { DataService } from './services/data.service';
 		LocationsComponent,
 		HomeComponent,
 		FormComponent,
-		LocationComponent
+		LocationComponent,
 		BecomeHostComponent,
 		ContactComponent,
 		SignupLoginComponent,

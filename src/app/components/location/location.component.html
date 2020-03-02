@@ -1,9 +1,38 @@
-<p>location works!</p>
-<div *ngIf="location !== undefined">
-  <!-- <p>{{location.data.title}}</p> -->
-  <p>{{location.data.title}}</p>
-  <!-- <p>{{data}}</p> -->
+<div
+  *ngIf="location !== undefined"
+  class="card"
+>
+  <img
+    class="card-img-top resize-img"
+    src="http://localhost:5000/uploads/{{location.data.photo}}"
+    alt="Card image cap"
+  />
+  <div class="card-body">
+    <h3 class="card-title">{{location.data.title}}</h3>
+    <p class="card-text">
+      {{ location.data.description }}
+    </p>
+    <p>
+      price: {{location.data.costAmount}}€ / {{location.data.costType}}
+    </p>
+    <p class="card-text">
+      <small class="text-muted">Posted: {{location.data.createdAt | date}}</small>
+      <!-- <a
+        type="button"
+        class="btn btn-secondary ml-2"
+        routerLink="/location/{{item._id}}"
+      >View locations</a> -->
+    </p>
+  </div>
 </div>
+
+
+
+<!-- <div *ngIf="location !== undefined">
+  <!-- <p>{{location.data.title}}</p> -->
+<!-- <p>{{location.data.title}}</p> -->
+<!-- <p>{{data}}</p>
+</div> -->
 
 <div *ngIf="location === undefined">
   <h4 class="text-center">Loading...</h4>
