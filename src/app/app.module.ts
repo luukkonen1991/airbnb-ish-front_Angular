@@ -9,6 +9,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LocationsComponent } from './components/locations/locations.component';
 import { HomeComponent } from './components/home/home.component';
 import { FormComponent } from './components/form/form.component';
+import { LocationComponent } from './components/location/location.component';
 
 import { LocationService } from './services/location.service';
 import { DataService } from './services/data.service';
@@ -19,7 +20,8 @@ import { DataService } from './services/data.service';
 		NavbarComponent,
 		LocationsComponent,
 		HomeComponent,
-		FormComponent
+		FormComponent,
+		LocationComponent
 	],
 	imports: [
 		BrowserModule,
