@@ -1,4 +1,5 @@
 export interface Location {
+	_id: string;
 	title: string;
 	description: string;
 	address: string;

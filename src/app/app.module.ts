@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +13,7 @@ import { BecomeHostComponent } from './components/become-host/become-host.compon
 import { ContactComponent } from './components/contact/contact.component';
 import { SignupLoginComponent } from './components/signup-login/signup-login.component';
 import { AboutComponent } from './components/about/about.component';
+import { LocationComponent } from './components/location/location.component';
 
 import { LocationService } from './services/location.service';
 import { DataService } from './services/data.service';
@@ -24,6 +25,7 @@ import { DataService } from './services/data.service';
 		LocationsComponent,
 		HomeComponent,
 		FormComponent,
+		LocationComponent,
 		BecomeHostComponent,
 		ContactComponent,
 		SignupLoginComponent,
@@ -33,7 +35,8 @@ import { DataService } from './services/data.service';
 		BrowserModule,
 		AppRoutingModule,
 		HttpClientModule,
-		FormsModule
+		FormsModule,
+		ReactiveFormsModule
 	],
 	providers: [
 		LocationService,

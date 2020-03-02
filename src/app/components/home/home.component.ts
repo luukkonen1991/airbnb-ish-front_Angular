@@ -18,8 +18,4 @@ export class HomeComponent implements OnInit {
 	}
 
 	ngOnInit() {}
-
-	ngDoCheck() {
-		console.log(this.locations + 'homeCOMPONENTTITII');
-	}
 }

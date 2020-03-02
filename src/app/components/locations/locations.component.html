@@ -17,15 +17,15 @@
             {{ item.description }}
           </p>
           <p>
-            price: {{item. costAmount}}€ / {{item.costType}}
+            price: {{item.costAmount}}€ / {{item.costType}}
           </p>
           <p class="card-text">
             <small class="text-muted">Posted: {{item.createdAt | date}}</small>
-            <button
+            <a
               type="button"
               class="btn btn-secondary ml-2"
-              disabled
-            >View location</button>
+              routerLink="/location/{{item._id}}"
+            >View locations</a>
           </p>
         </div>
       </div>
