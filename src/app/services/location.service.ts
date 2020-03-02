@@ -3,7 +3,9 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Data } from '../models/Data';
-import { stringify } from '@angular/compiler/src/util';
+// import { Location } from '../models/Location';
+import { Location } from '../models/Location';
+import { LocationById } from '../models/LocationById';
 
 const httpHeaders = {
 	headers: new HttpHeaders({
@@ -32,5 +34,10 @@ export class LocationService {
 			params = params.append('animalTypes[in]', animalType);
 		}
 		return this.http.get<Data>(this.locationUrl, { params });
+	}
+
+	getLocation(_id: string): Observable<LocationById> {
+		const url = `${this.locationUrl}/${_id}`;
+		return this.http.get<LocationById>(url, httpHeaders);
 	}
 }
