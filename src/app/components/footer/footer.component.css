@@ -1,0 +1,26 @@
+.copyright {
+    margin: 0px;
+    padding: 20px;
+    text-align: center;
+    color: rgb(160, 160, 160);
+    background-color: rgb(70, 70, 70);
+}
+
+.links {
+    color: rgb(160, 160, 160);
+}
+
+a {
+  color: rgb(160, 160, 160);
+  text-decoration: none;
+  transition: all .2s ease-in-out;
+}
+
+a:hover {
+  color: rgb(225, 225, 225);
+}
+
+a:active {
+  transition:  none;
+  text-shadow: 0 0 5px rgb(255, 255, 255);
+}

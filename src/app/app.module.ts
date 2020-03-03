@@ -17,6 +17,7 @@ import { LocationComponent } from './components/location/location.component';
 
 import { LocationService } from './services/location.service';
 import { DataService } from './services/data.service';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
 	declarations: [
@@ -29,7 +30,8 @@ import { DataService } from './services/data.service';
 		BecomeHostComponent,
 		ContactComponent,
 		SignupLoginComponent,
-		AboutComponent
+		AboutComponent,
+		FooterComponent
 	],
 	imports: [
 		BrowserModule,

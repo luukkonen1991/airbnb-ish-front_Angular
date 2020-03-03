@@ -15,3 +15,31 @@
     /* Hyvä väri */
     /* text-shadow: 2px 2px 5px rgb(69, 212, 81); */
 }
+
+/* .navbarLink {
+  position: sticky;
+  display: block;
+  top: 0;
+  margin: 0px;
+  color: rgb(60, 60, 60);
+  display: inline-block;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-decoration: none;
+  font-size: 1.2em;
+  transition: all .2s ease-in-out;
+}
+
+.navbarLink:hover {
+  color: rgb(0, 123, 255);
+}
+
+.navbarLink:active {
+  transition:  none;
+  text-shadow: 0 0 5px rgb(0, 123, 255);
+}
+
+.logo {
+    margin: 0px;
+    padding: 0px;
+} */
