@@ -24,9 +24,9 @@
             <a
               type="button"
               class="btn btn-secondary ml-2"
-              routerLink="/location/{{item._id}}"
-              skipLocationChange="true"
-            >More info</a>
+              routerLink="/location/{{item.slug}}"
+              (click)="passLocationId(item._id)"
+            >View locations</a>
           </p>
         </div>
       </div>

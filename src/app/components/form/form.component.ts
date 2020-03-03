@@ -30,7 +30,7 @@ export class FormComponent implements OnInit {
 	constructor(private dataService: DataService, private locationService: LocationService) {}
 
 	ngOnInit() {
-		this.dataService.currentParams.subscribe((params) => (this.params = params));
+		this.dataService.currentParams.subscribe(params => (this.params = params));
 		// this.dataService.currentLocations.subscribe((locations) => (this.locations = locations));
 	}
 
@@ -42,7 +42,7 @@ export class FormComponent implements OnInit {
 				this.params.sortInput || '',
 				this.params.animalType || undefined
 			)
-			.subscribe((locationArray) => {
+			.subscribe(locationArray => {
 				this.locations = locationArray.data;
 				this.locationsEvent.emit(this.locations);
 				console.log(this.locations);

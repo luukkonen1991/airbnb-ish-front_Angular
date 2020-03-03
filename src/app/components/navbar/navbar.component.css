@@ -1,4 +1,4 @@
-.navbarLink {
+/* .navbarLink {
     background: -webkit-linear-gradient(45deg, rgb(255, 0, 170), blue);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -10,7 +10,7 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     padding-right: 50px;
-    text-shadow: 2px 2px 5px rgb(69, 212, 81);
+    text-shadow: 2px 2px 5px rgb(69, 212, 81); */
 
     /* Hyvä väri */
     /* text-shadow: 2px 2px 5px rgb(69, 212, 81); */
@@ -43,3 +43,38 @@
     margin: 0px;
     padding: 0px;
 } */
+
+.navbarLink {
+    background: -webkit-linear-gradient(45deg, rgb(43, 28, 38), blue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding-right: 25px;
+    padding-left: 25px;
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    position: relative;
+    overflow: hidden;
+  }
+  .navbarLink:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 51%;
+    right: 51%;
+    bottom: 0;
+    background: -webkit-linear-gradient(45deg, rgb(43, 28, 38), blue);
+    height: 2px;
+    -webkit-transition-property: left, right;
+    transition-property: left, right;
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+  }
+  .navbarLink:hover:before, .navbarLink:focus:before, .navbarLink:active:before {
+    left: 0;
+    right: 0;
+  }
