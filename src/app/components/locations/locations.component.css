@@ -1,9 +1,11 @@
 .resize-img {
 	max-width: 33vw;
+	min-width: 100%;
 	height: auto;
 }
 
 .resize-card {
+	min-width: 350px;
 	max-width: 33vw;
 }
 
@@ -29,4 +31,17 @@
 .daddy-div {
 	justify-content: center;
 	text-align: center;
+}
+
+
+/* Dont show map on mobile */
+@media only screen 
+  and (max-device-width : 480px) {
+.map-img {
+	display: none;
+}
+
+.map-div {
+	display: none;
+}
 }
