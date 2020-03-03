@@ -1,35 +1,54 @@
-<div
-  *ngIf="location !== undefined"
-  class="card"
->
-  <img
-    class="card-img-top resize-img"
-    src="http://localhost:5000/uploads/{{location.data.photo}}"
-    alt="Card image cap"
-  />
+<div *ngIf="location !== undefined" class="card">
+  <img class="card-img-top resize-img" src="http://localhost:5000/uploads/{{location.data.photo}}"
+    alt="Card image cap" />
   <div class="card-body">
-    <h3 class="card-title">{{location.data.title}}</h3>
-    <p class="card-text">
+    <h1 class="card-title">{{location.data.title}}</h1>
+    <h5>
       {{ location.data.description }}
-    </p>
+    </h5>
+    <br>
+    <h6>
+      What kind of animals are allowed
+    </h6>
     <p>
-      price: {{location.data.costAmount}}€ / {{location.data.costType}}
+      {{ location.data.animalTypes }}
     </p>
+    <hr>
+    <h6>
+      What's included
+    </h6>
+    <p>
+      {{ location.data.services }}
+    </p>
+    <hr>
+    <h6>
+      Where your pet will stay
+    </h6>
+    <p>
+      {{ location.data.address }}
+    </p>
+    <hr>
+    <h6>
+      How much you'll pay
+    </h6>
+    <p>
+      {{location.data.costAmount}}€ / {{location.data.costType}}
+    </p>
+    <hr>
     <p class="card-text">
       <small class="text-muted">Posted: {{location.data.createdAt | date}}</small>
-      <button
-        type="button"
-        class="btn btn-secondary"
-        routerLink=""
-      >Back</button>
+      <br><br>
+      <button type="button" class="btn btn-secondary mr-1" routerLink="">Back</button>
+      <button type="button" class="btn btn-primary mr-1" routerLink="">Contact Host</button>
+      <button type="button" class="btn btn-primary mr-1" routerLink="">Show Reviews</button>
     </p>
   </div>
 </div>
 
 
 
-<!-- <div *ngIf="location !== undefined">
-  <!-- <p>{{location.data.title}}</p> -->
+<!-- <div *ngIf="location !== undefined"> -->
+<!-- <p>{{location.data.title}}</p> -->
 <!-- <p>{{location.data.title}}</p> -->
 <!-- <p>{{data}}</p>
 </div> -->

@@ -8,10 +8,15 @@
 }
 
 .map-img {
-	max-width: 61vw;
+	max-width: 60vw;
+	border: 1px solid rgb(228, 228, 228);
+	border-radius: 4px;
 }
 
 .map-div {
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
+	top: 10px;
 	display: inline-block;
 	vertical-align: top;
 	margin-left: 2rem;
