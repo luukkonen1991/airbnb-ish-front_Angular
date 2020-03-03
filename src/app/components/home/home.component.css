@@ -22,3 +22,15 @@
 	top: 16rem;
 	right: 1rem;
 }
+
+/* Dont show map on mobile */
+@media only screen 
+  and (max-device-width : 480px) {
+.lp-slog-1 {
+	display: none;
+}
+
+.lp-slog-2 {
+	display: none;
+}
+}
