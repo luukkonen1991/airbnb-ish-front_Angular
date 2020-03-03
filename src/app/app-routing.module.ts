@@ -8,24 +8,31 @@ import { ContactComponent } from './components/contact/contact.component';
 import { SignupLoginComponent } from './components/signup-login/signup-login.component';
 import { AboutComponent } from './components/about/about.component';
 
-const routes: Routes = [ {
-  path: '',
-  component: HomeComponent
-},{
-  path: 'about',
-  component: AboutComponent
-},{
-  path: 'becomehost',
-  component: BecomeHostComponent
-},{
-  path: 'contact',
-  component: ContactComponent
-},{
-  path: 'signuplogin',
-  component: SignupLoginComponent
-},{ 
-  path: 'location/:_id', component: LocationComponent 
-}
+const routes: Routes = [
+	{
+		path: '',
+		component: HomeComponent
+	},
+	{
+		path: 'about',
+		component: AboutComponent
+	},
+	{
+		path: 'becomehost',
+		component: BecomeHostComponent
+	},
+	{
+		path: 'contact',
+		component: ContactComponent
+	},
+	{
+		path: 'signuplogin',
+		component: SignupLoginComponent
+	},
+	{
+		path: 'location/:slug:',
+		component: LocationComponent
+	}
 ];
 
 @NgModule({
