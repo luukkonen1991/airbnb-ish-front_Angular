@@ -24,7 +24,8 @@
             <a
               type="button"
               class="btn btn-secondary ml-2"
-              routerLink="/location/{{item._id}}"
+              routerLink="/location/{{item.slug}}"
+              (click)="passLocationId(item._id)"
             >View locations</a>
           </p>
         </div>
