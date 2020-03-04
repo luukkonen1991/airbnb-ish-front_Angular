@@ -40,7 +40,7 @@ export class AuthService {
 	}
 
 	// current user
-	getMe() {
+	getMe(): Observable<User> {
 		let api = `${this.authUrl}/me`;
 		let token = this.cookieService.get('token');
 		httpHeaders.headers = httpHeaders.headers.append('Authorization', `Bearer ${token}`);
