@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from '../../services/auth.service';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-signup-login',
@@ -11,13 +13,14 @@ import { AuthService } from '../../services/auth.service';
 })
 export class SignupLoginComponent implements OnInit {
 	formShow: boolean = false;
+	// redirect: boolean = false;
 
 	params: any = {
 		email: undefined,
 		password: undefined
 	};
 
-	constructor(private authService: AuthService) {}
+	constructor(private authService: AuthService, private cookieService: CookieService, private router: Router) {}
 
 	ngOnInit() {}
 
@@ -29,5 +32,8 @@ export class SignupLoginComponent implements OnInit {
 
 	onSubmit() {
 		this.authService.loginUser(this.params.email, this.params.password);
+		this.router.navigate([
+			'me'
+		]);
 	}
 }

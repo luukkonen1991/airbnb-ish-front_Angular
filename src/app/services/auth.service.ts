@@ -34,7 +34,6 @@ export class AuthService {
 			email: email,
 			password: password
 		};
-		// httpHeaders.headers = httpHeaders.headers.append('body', `${data}`);
 		return this.http.post<any>(`${this.authUrl}/login`, data, httpHeaders).subscribe((res: any) => {
 			this.cookieService.set('token', res.token);
 		});
@@ -43,13 +42,8 @@ export class AuthService {
 	// current user
 	getMe() {
 		let api = `${this.authUrl}/me`;
-		let token = this.getToken();
+		let token = this.cookieService.get('token');
 		httpHeaders.headers = httpHeaders.headers.append('Authorization', `Bearer ${token}`);
-		return this.http.get<User>(api);
-	}
-
-	// getToken
-	getToken() {
-		return (this.token = this.cookieService.get('token'));
+		return this.http.get<User>(api, httpHeaders);
 	}
 }

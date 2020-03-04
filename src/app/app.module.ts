@@ -20,6 +20,7 @@ import { LocationService } from './services/location.service';
 import { DataService } from './services/data.service';
 import { AuthService } from './services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
+import { CurrentUserComponent } from './components/current-user/current-user.component';
 
 @NgModule({
 	declarations: [
@@ -33,7 +34,8 @@ import { CookieService } from 'ngx-cookie-service';
 		ContactComponent,
 		SignupLoginComponent,
 		AboutComponent,
-		FooterComponent
+		FooterComponent,
+		CurrentUserComponent
 	],
 	imports: [
 		BrowserModule,
