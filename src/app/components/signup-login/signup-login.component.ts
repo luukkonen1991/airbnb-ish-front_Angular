@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AuthService } from '../../services/auth.service';
+
 @Component({
 	selector: 'app-signup-login',
 	templateUrl: './signup-login.component.html',
@@ -11,12 +13,11 @@ export class SignupLoginComponent implements OnInit {
 	formShow: boolean = false;
 
 	params: any = {
-		name: '',
-		email: '',
-		password: ''
+		email: undefined,
+		password: undefined
 	};
 
-	constructor() {}
+	constructor(private authService: AuthService) {}
 
 	ngOnInit() {}
 
@@ -24,5 +25,9 @@ export class SignupLoginComponent implements OnInit {
 		this.formShow = !this.formShow;
 		console.log(this.formShow);
 		console.log('clicked');
+	}
+
+	onSubmit() {
+		this.authService.loginUser(this.params.email, this.params.password);
 	}
 }

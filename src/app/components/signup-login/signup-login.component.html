@@ -11,8 +11,8 @@
         <label class="label">Email</label>
         <input
           class="input-length"
-          [(ngModel)]="params.minPrice"
-          type="text"
+          [(ngModel)]="params.email"
+          type="email"
           name="email"
         >
 
@@ -22,8 +22,8 @@
         <label class="label">Password</label>
         <input
           class="input-length"
-          [(ngModel)]="params.maxPrice"
-          type="text"
+          [(ngModel)]="params.password"
+          type="password"
           name="password"
         >
 
@@ -31,10 +31,10 @@
       <br>
     </div>
     <button class="btn btn-block mt-3 btn-primary">Login</button>
-    <button
+    <!-- <button
       class="btn btn-block mt-3 btn-warning"
       (click)="formState()"
-    > Not a user? Sign up here!</button>
+    > Not a user? Sign up here!</button> -->
   </form>
 
   <form
