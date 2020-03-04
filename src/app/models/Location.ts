@@ -7,7 +7,7 @@ export interface Location {
 	costType: string;
 	costAmount: number;
 	animalTypes: string[];
-	service: string[];
+	services: string[];
 	photo?: string;
 	createdAt: string;
 }
