@@ -64,37 +64,37 @@
 
   <!-- Navbar brand -->
   <a routerLink='' routerLinkActive="link-active">
-    <img class="logo" src="../../../assets/logo1.png" alt="logo1">
+    <img class="navbar-brand logo" src="../../../assets/logo1.png" alt="Pet Hotel Logo">
   </a>
 
   <!-- Collapse button -->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigationCollapse"
+  <button id="buttonCollapse" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigationCollapse"
     aria-controls="navigationCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <!-- Collapsible content -->
-  <div class="collapse navbar-collapse" id="navigationCollapse">
+  <div class="collapse navbar-collapse justify-content-end" id="navigationCollapse">
 
     <!-- Links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-      <a class="nav-link" routerLink='/about' routerLinkActive="link-active">
+      <a class="nav-link" routerLink='/about' routerLinkActive="link-active" (click)="navState()">
         About
       </a>
       </li>
       <li class="nav-item">
-      <a class="nav-link" routerLink='/becomehost' routerLinkActive="link-active">
+      <a class="nav-link" routerLink='/becomehost' routerLinkActive="link-active" (click)="navState()">
         Become a Host
       </a>
       </li>
       <li class="nav-item">
-      <a class="nav-link" routerLink='/contact' routerLinkActive="link-active">
+      <a class="nav-link" routerLink='/contact' routerLinkActive="link-active" (click)="navState()">
         Contact
       </a>
       </li>
       <li class="nav-item">
-      <a class="nav-link" routerLink='/signuplogin' routerLinkActive="link-active">
+      <a class="nav-link" routerLink='/signuplogin' routerLinkActive="link-active" (click)="navState()">
         SignUp/LogIn
       </a>
       </li>

@@ -1,3 +1,14 @@
+.navbar {
+  background-color: rgb(245, 245, 245);
+  text-align: center;
+}
+
+.logo {
+    height: 50px;
+    margin: 0px;
+    padding: 0px;
+}
+
 /* .navbarLink {
     background: -webkit-linear-gradient(45deg, rgb(255, 0, 170), blue);
     -webkit-background-clip: text;
@@ -38,12 +49,6 @@
   transition:  none;
   text-shadow: 0 0 4px rgb(0, 0, 0);
 } */
-
-.logo {
-    height: 50px;
-    margin: 0px;
-    padding: 0px;
-}
 
 /* .navbarLink {
     background: -webkit-linear-gradient(45deg, rgb(43, 28, 38), blue);
