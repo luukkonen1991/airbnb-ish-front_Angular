@@ -7,6 +7,16 @@
     height: 50px;
     margin: 0px;
     padding: 0px;
+        transition: all .1s ease-in-out;
+}
+
+
+
+@media only screen 
+  and (min-device-width : 480px) {
+   .logo:hover {
+  transform: scale(1.1);
+} 
 }
 
 /* .navbarLink {
