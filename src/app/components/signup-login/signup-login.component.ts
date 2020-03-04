@@ -33,7 +33,7 @@ export class SignupLoginComponent implements OnInit {
 	onSubmit() {
 		this.authService.loginUser(this.params.email, this.params.password);
 		this.router.navigate([
-			'me'
+			''
 		]);
 	}
 }

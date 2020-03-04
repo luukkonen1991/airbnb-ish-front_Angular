@@ -22,8 +22,4 @@ export class CurrentUserComponent implements OnInit {
 			console.log(1);
 		});
 	}
-
-	ngOnDestroy() {
-		this.userData = undefined;
-	}
 }
