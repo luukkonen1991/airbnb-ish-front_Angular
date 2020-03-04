@@ -7,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupLoginComponent implements OnInit {
 
+  formShow: boolean = false;
+
+  params: any = {
+    name: '',
+    email: '',
+    password: ''
+  };
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  formState() {
+    this.formShow = !this.formShow;
+    console.log(this.formShow);
+    console.log('clicked');
+  }
 }
