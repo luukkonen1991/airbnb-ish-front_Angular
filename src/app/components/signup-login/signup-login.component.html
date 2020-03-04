@@ -1,1 +1,52 @@
-<h1 class="signH1">Sign Up / Log In</h1>
+<div class="card card-body text-center form w-50 mt-5">
+
+    <form *ngIf="this.formShow === false" (ngSubmit)="onSubmit()">
+        <h3 class="text-center">Login</h3>
+        <div class="form-group">
+            <hr>
+            <div>
+                <label class="label">Email</label>
+                <input class="input-length" [(ngModel)]="params.minPrice" type="text" name="email">
+
+            </div>
+            <br>
+            <div>
+                <label class="label">Password</label>
+                <input class="input-length" [(ngModel)]="params.maxPrice" type="text" name="password">
+
+            </div>
+            <br>
+        </div>
+        <button class="btn btn-block mt-3 btn-primary">Login</button>
+        <button class="btn btn-block mt-3 btn-warning" (click)="formState()"> Not a user? Sign up here!</button>
+    </form>
+
+    <form *ngIf="this.formShow === true" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <h3 class="text-center">Sign Up</h3>
+            <hr>
+            <div>
+                <label class="label">Name</label>
+                <input class="input-length" [(ngModel)]="params.minPrice" type="text" name="name">
+            </div>
+            <br>
+            <div>
+                <label class="label">Email</label>
+                <input class="input-length" [(ngModel)]="params.minPrice" type="text" name="email">
+            </div>
+            <br>
+            <div>
+                <label class="label">Password</label>
+                <input class="input-length" [(ngModel)]="params.maxPrice" type="text" name="password">
+            </div>
+            <br>
+            <div>
+                <label class="label">Re-Type Password</label>
+                <input class="input-length" [(ngModel)]="params.maxPrice" type="text" name="password">
+            </div>
+            <br>
+        </div>
+        <button class="btn btn-block mt-3 btn-primary">Login</button>
+        <button class="btn btn-block mt-3 btn-warning" (click)="formState()"> Already a user? Login here!</button>
+    </form>
+</div>
