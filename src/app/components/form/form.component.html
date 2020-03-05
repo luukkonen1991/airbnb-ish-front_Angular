@@ -1,13 +1,6 @@
 <div class="card card-body form">
-  <h3
-    class="text-center"
-    (click)="formState()"
-  >Search</h3>
-  <form
-    *ngIf="this.formShow === true"
-    
-    (ngSubmit)="onSubmit()"
-  >
+  <h3 class="text-center" (click)="formState()">Search</h3>
+  <form *ngIf="this.formShow === true" (ngSubmit)="onSubmit()">
     <!-- <div class="form-group">
       <label>Location: {{params.location}} </label>
       <select
@@ -25,49 +18,27 @@
     <div class="form-group">
       <hr>
       <div>
-        <label class="label">Min Price:</label>
-        <input
-          class="input-length"
-          [(ngModel)]="params.minPrice"
-          type="number"
-          name="minPrice"
-        >
-      </div>
-      <div>
-        <label class="label">Max Price:</label>
-        <input
-          class="input-length"
-          [(ngModel)]="params.maxPrice"
-          type="number"
-          name="maxPrice"
-        >
+        <label class="label">Price</label><br>
+        <input class="input-length-price" [(ngModel)]="params.minPrice" type="number" name="minPrice" placeholder="min">
+        -
+        <input class="input-length-price" [(ngModel)]="params.maxPrice" type="number" name="maxPrice" placeholder="max">
       </div>
     </div>
     <div class="form-group">
-      <label class="label">Sort by:</label>
-      <select
-        class="form-control-block input-length"
-        id="sort"
-        name="sort"
-        [(ngModel)]="params.sortInput"
-      >
+      <label class="label">Animal Type</label><br>
+      <select class="form-control-block input-length" id="sort" name="sort" [(ngModel)]="params.animalType">
+        <option value="Dogs">Dogs</option>
+        <option value="Cats">Cats</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="label">Sort by</label><br>
+      <select class="form-control-block input-length" id="sort" name="sort" [(ngModel)]="params.sortInput">
         <option value="createdAt">Newest first</option>
         <option value="-createdAt">Oldest first</option>
         <option value="costAmount">Cheapest first</option>
         <option value="-costAmount">Most expensive first</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label class="label">Animal Type:</label>
-      <select
-        class="form-control-block input-length"
-        id="sort"
-        name="sort"
-        [(ngModel)]="params.animalType"
-      >
-        <option value="Dogs">Dogs</option>
-        <option value="Cats">Cats</option>
-        <option value="Other">Other</option>
       </select>
     </div>
 
@@ -171,9 +142,7 @@
     </div> -->
     <button class="btn btn-block mt-3 btn-primary">Search</button>
   </form>
-  <button
-    *ngIf="this.formShow === true"
-    class="btn btn-block mt-3 btn-warning"
-    (click)="clearState()"
-  >Reset form</button>
+  <button *ngIf="this.formShow === true" class="btn btn-block mt-3 btn-warning" (click)="clearState()">Reset
+    form
+  </button>
 </div>
