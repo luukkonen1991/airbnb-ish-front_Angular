@@ -22,6 +22,7 @@ import { AuthService } from './services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { CurrentUserComponent } from './components/current-user/current-user.component';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
 	declarations: [
@@ -37,7 +38,8 @@ import { LoginComponent } from './components/login/login.component';
 		AboutComponent,
 		FooterComponent,
 		CurrentUserComponent,
-		LoginComponent
+		LoginComponent,
+		RegisterComponent
 	],
 	imports: [
 		BrowserModule,
