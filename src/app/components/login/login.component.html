@@ -1,0 +1,104 @@
+<div class="card card-body mb-3 form">
+  <h2 class="text-center">Login</h2>
+  <form
+    class="justify-content-center"
+    #authForm="ngForm"
+    (ngSubmit)="onSubmit(authForm)"
+  >
+
+    <!-- <div class="form-group">
+      <label>Last Name</label>
+      <input
+        type="text"
+        [(ngModel)]="user.lastName"
+        [ngClass]="{
+          'is-invalid': userLastName.errors && userLastName.touched
+        }"
+        class="form-control"
+        name="lastName"
+        #userLastName="ngModel"
+        required
+        minlength="2"
+      />
+
+      <div
+        [hidden]="!userLastName.errors?.required"
+        class="invalid-feedback"
+      >
+        Last name required
+      </div>
+
+      <div
+        [hidden]="!userLastName.errors?.minlength"
+        class="invalid-feedback"
+      >
+        Must be at least 2 characters
+      </div>
+    </div> -->
+    <div class="form-group">
+      <label>Email</label>
+      <input
+        type="email"
+        [(ngModel)]="authLogin.email"
+        [ngClass]="{
+          'is-invalid': email.errors && email.touched
+        }"
+        class="form-control"
+        name="email"
+        #email="ngModel"
+        required
+        pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
+      />
+
+      <div
+        [hidden]="!email.errors?.required"
+        class="invalid-feedback"
+      >
+        Email required
+      </div>
+
+      <div
+        [hidden]="!email.errors?.pattern"
+        class="invalid-feedback"
+      >
+        Email is not valid
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Password</label>
+      <input
+        type="password"
+        [(ngModel)]="authLogin.password"
+        [ngClass]="{
+          'is-invalid': password.errors && password.touched
+        }"
+        class="form-control"
+        name="firstName"
+        #password="ngModel"
+        required
+        minlength="6"
+      />
+      <div
+        [hidden]="!password.errors?.required"
+        class="invalid-feedback"
+      >
+        Password required
+      </div>
+      <div
+        [hidden]="!password.errors?.minlength"
+        class="invalid-feedback"
+      >
+        Must be at least 6 characters
+      </div>
+    </div>
+    <br>
+    <button
+      [disabled]="!authForm.form.valid"
+      class="btn btn-block btn-primary mb-3"
+    >
+      Login
+    </button>
+    <p class="errorState">{{this.errorState}}</p>
+  </form>
+</div>

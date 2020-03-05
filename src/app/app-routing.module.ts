@@ -5,9 +5,9 @@ import { LocationComponent } from './components/location/location.component';
 import { HomeComponent } from './components/home/home.component';
 import { BecomeHostComponent } from './components/become-host/become-host.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { SignupLoginComponent } from './components/signup-login/signup-login.component';
 import { AboutComponent } from './components/about/about.component';
 import { CurrentUserComponent } from './components/current-user/current-user.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
 	{
@@ -27,8 +27,8 @@ const routes: Routes = [
 		component: ContactComponent
 	},
 	{
-		path: 'signuplogin',
-		component: SignupLoginComponent
+		path: 'login',
+		component: LoginComponent
 	},
 	{
 		path: 'location/:slug:',

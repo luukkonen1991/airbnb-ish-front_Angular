@@ -21,6 +21,7 @@ import { DataService } from './services/data.service';
 import { AuthService } from './services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { CurrentUserComponent } from './components/current-user/current-user.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
 	declarations: [
@@ -35,7 +36,8 @@ import { CurrentUserComponent } from './components/current-user/current-user.com
 		SignupLoginComponent,
 		AboutComponent,
 		FooterComponent,
-		CurrentUserComponent
+		CurrentUserComponent,
+		LoginComponent
 	],
 	imports: [
 		BrowserModule,

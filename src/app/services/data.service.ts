@@ -9,6 +9,7 @@ import { Location } from '../models/Location';
 export class DataService {
 	locations: Location[];
 	_id: string;
+	msg: any;
 
 	private searchParams = new BehaviorSubject({});
 	currentParams = this.searchParams.asObservable();
@@ -18,6 +19,9 @@ export class DataService {
 
 	private locationId = new BehaviorSubject(this._id);
 	currentId = this.locationId.asObservable();
+
+	private loginResponse = new BehaviorSubject(this.msg);
+	currentResponse = this.loginResponse.asObservable();
 
 	constructor() {}
 
@@ -31,5 +35,8 @@ export class DataService {
 
 	changeLocationId(_id: string) {
 		this.locationId.next(_id);
+	}
+	changeLoginResponse(msg: any) {
+		this.loginResponse.next(msg);
 	}
 }
