@@ -1,0 +1,8 @@
+<div *ngIf="userData !== undefined">
+  <p>{{userData.data.name}}</p>
+  <p>{{userData.data.role}}</p>
+  <p>{{userData.data.email}}</p>
+</div>
+<div *ngIf="userData === undefined">
+  <h2>Loading...</h2>
+</div>

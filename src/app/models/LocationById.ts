@@ -9,7 +9,7 @@ export interface LocationById {
 		costType: string;
 		costAmount: number;
 		animalTypes: string[];
-		service: string[];
+		services: string[];
 		photo?: string;
 		createdAt: string;
 	};

@@ -14,10 +14,13 @@ import { ContactComponent } from './components/contact/contact.component';
 import { SignupLoginComponent } from './components/signup-login/signup-login.component';
 import { AboutComponent } from './components/about/about.component';
 import { LocationComponent } from './components/location/location.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 import { LocationService } from './services/location.service';
 import { DataService } from './services/data.service';
-import { FooterComponent } from './components/footer/footer.component';
+import { AuthService } from './services/auth.service';
+import { CookieService } from 'ngx-cookie-service';
+import { CurrentUserComponent } from './components/current-user/current-user.component';
 
 @NgModule({
 	declarations: [
@@ -31,7 +34,8 @@ import { FooterComponent } from './components/footer/footer.component';
 		ContactComponent,
 		SignupLoginComponent,
 		AboutComponent,
-		FooterComponent
+		FooterComponent,
+		CurrentUserComponent
 	],
 	imports: [
 		BrowserModule,
@@ -42,7 +46,9 @@ import { FooterComponent } from './components/footer/footer.component';
 	],
 	providers: [
 		LocationService,
-		DataService
+		DataService,
+		AuthService,
+		CookieService
 	],
 	bootstrap: [
 		AppComponent

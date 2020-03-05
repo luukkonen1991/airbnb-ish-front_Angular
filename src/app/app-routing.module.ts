@@ -7,6 +7,7 @@ import { BecomeHostComponent } from './components/become-host/become-host.compon
 import { ContactComponent } from './components/contact/contact.component';
 import { SignupLoginComponent } from './components/signup-login/signup-login.component';
 import { AboutComponent } from './components/about/about.component';
+import { CurrentUserComponent } from './components/current-user/current-user.component';
 
 const routes: Routes = [
 	{
@@ -32,6 +33,10 @@ const routes: Routes = [
 	{
 		path: 'location/:slug:',
 		component: LocationComponent
+	},
+	{
+		path: 'me',
+		component: CurrentUserComponent
 	}
 ];
 

@@ -1,6 +1,12 @@
-<div *ngIf="location !== undefined" class="card">
-  <img class="card-img-top resize-img" src="http://localhost:5000/uploads/{{location.data.photo}}"
-    alt="Card image cap" />
+<div
+  *ngIf="location !== undefined"
+  class="card"
+>
+  <img
+    class="card-img-top resize-img"
+    src="http://localhost:5000/uploads/{{location.data.photo}}"
+    alt="Card image cap"
+  />
   <div class="card-body">
     <h1 class="card-title">{{location.data.title}}</h1>
     <h5>
@@ -38,9 +44,21 @@
     <p class="card-text">
       <small class="text-muted">Posted: {{location.data.createdAt | date}}</small>
       <br><br>
-      <button type="button" class="btn btn-secondary mr-1" routerLink="">Back</button>
-      <button type="button" class="btn btn-primary mr-1" routerLink="">Contact Host</button>
-      <button type="button" class="btn btn-primary mr-1" routerLink="">Show Reviews</button>
+      <button
+        type="button"
+        class="btn btn-secondary mr-1"
+        routerLink=""
+      >Back</button>
+      <button
+        type="button"
+        class="btn btn-primary mr-1"
+        routerLink=""
+      >Contact Host</button>
+      <button
+        type="button"
+        class="btn btn-primary mr-1"
+        routerLink=""
+      >Show Reviews</button>
     </p>
   </div>
 </div>
