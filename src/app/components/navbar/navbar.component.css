@@ -19,6 +19,31 @@
 } 
 }
 
+/* .navbar {
+  background-color: rgb(245, 245, 245);
+  text-align: center;
+  height: 100px;
+}
+
+.logo {
+  position: relative;
+    z-index: 1;
+    height: 180px;
+    margin: 0px;
+    padding-top: 50px;
+        transition: all .1s ease-in-out;
+}
+
+
+
+@media only screen 
+  and (min-device-width : 480px) {
+   .logo:hover {
+  transform: scale(1.1);
+} 
+} */
+
+
 /* .navbarLink {
     background: -webkit-linear-gradient(45deg, rgb(255, 0, 170), blue);
     -webkit-background-clip: text;
