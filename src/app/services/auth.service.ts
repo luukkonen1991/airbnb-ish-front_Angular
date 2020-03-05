@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 import { CookieService } from 'ngx-cookie-service';
+import { DataService } from '../services/data.service';
 
 import { User } from '../models/User';
 
@@ -20,7 +21,12 @@ export class AuthService {
 	authUrl: string = 'http://localhost:5000/api/v1/auth';
 	token: string;
 
-	constructor(private http: HttpClient, public router: Router, private cookieService: CookieService) {}
+	constructor(
+		private http: HttpClient,
+		public router: Router,
+		private cookieService: CookieService,
+		private dataService: DataService
+	) {}
 
 	// register
 	registerUser(user: User): Observable<any> {
@@ -34,9 +40,18 @@ export class AuthService {
 			email: email,
 			password: password
 		};
-		return this.http.post<any>(`${this.authUrl}/login`, data, httpHeaders).subscribe((res: any) => {
-			this.cookieService.set('token', res.token);
-		});
+		return this.http.post<any>(`${this.authUrl}/login`, data, httpHeaders).subscribe(
+			(res: any) => {
+				this.cookieService.set('token', res.token);
+				this.dataService.changeLoginResponse(res.success);
+				// this.dataService.currentResponse.subscribe(msg => (res.success = msg));
+				// alert(`Success: ${res.success}`);
+			},
+			error => {
+				// this.dataService.currentResponse.subscribe(msg => (error.statusText = msg));
+				this.dataService.changeLoginResponse(error.statusText);
+			}
+		);
 	}
 
 	// current user

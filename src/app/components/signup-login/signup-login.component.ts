@@ -31,6 +31,11 @@ export class SignupLoginComponent implements OnInit {
 	}
 
 	onSubmit() {
+		if (!this.params.email || !this.params.password) {
+			alert('Please add email/password');
+			return;
+		}
+
 		this.authService.loginUser(this.params.email, this.params.password);
 		this.router.navigate([
 			''
