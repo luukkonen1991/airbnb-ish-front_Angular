@@ -7,6 +7,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { DataService } from '../services/data.service';
 
 import { User } from '../models/User';
+import { AuthRegister } from '../models/AuthRegister';
 
 let httpHeaders = {
 	headers: new HttpHeaders({
@@ -20,6 +21,7 @@ let httpHeaders = {
 export class AuthService {
 	authUrl: string = 'http://localhost:5000/api/v1/auth';
 	token: string;
+	authRegister: AuthRegister;
 
 	constructor(
 		private http: HttpClient,
@@ -29,9 +31,22 @@ export class AuthService {
 	) {}
 
 	// register
-	registerUser(user: User): Observable<any> {
+	registerUser(authRegister: AuthRegister) {
 		let api = `${this.authUrl}/register`;
-		return this.http.post(api, user);
+		let data = {
+			name: authRegister.name,
+			email: authRegister.email,
+			password: authRegister.password
+		};
+		return this.http.post<any>(api, data, httpHeaders).subscribe(
+			(res: any) => {
+				this.cookieService.set('token', res.token);
+				this.dataService.changeLoginResponse(res.success);
+			},
+			error => {
+				this.dataService.changeLoginResponse(error.statusText);
+			}
+		);
 	}
 
 	// login

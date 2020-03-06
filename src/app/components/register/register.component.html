@@ -1,45 +1,61 @@
 <div class="card card-body mb-3 form">
-  <h2 class="text-center">Login</h2>
+  <h2 class="text-center">Register</h2>
   <form
     class="justify-content-center"
     #authForm="ngForm"
     (ngSubmit)="onSubmit(authForm)"
   >
 
-    <!-- <div class="form-group">
-      <label>Last Name</label>
+
+
+    <div class="form-group">
+      <label>Name</label>
       <input
-        type="text"
-        [(ngModel)]="user.lastName"
+        type="email"
+        [(ngModel)]="authRegister.name"
         [ngClass]="{
-          'is-invalid': userLastName.errors && userLastName.touched
-        }"
+        'is-invalid': name.errors && name.touched
+      }"
         class="form-control"
-        name="lastName"
-        #userLastName="ngModel"
+        name="name"
+        #name="ngModel"
         required
         minlength="2"
       />
 
       <div
-        [hidden]="!userLastName.errors?.required"
+        [hidden]="!name.errors?.required"
         class="invalid-feedback"
       >
-        Last name required
+        name required
       </div>
 
       <div
-        [hidden]="!userLastName.errors?.minlength"
+        [hidden]="!name.errors?.minlength"
         class="invalid-feedback"
       >
         Must be at least 2 characters
       </div>
-    </div> -->
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div class="form-group">
       <label>Email</label>
       <input
         type="email"
-        [(ngModel)]="authLogin.email"
+        [(ngModel)]="authRegister.email"
         [ngClass]="{
           'is-invalid': email.errors && email.touched
         }"
@@ -69,7 +85,7 @@
       <label>Password</label>
       <input
         type="password"
-        [(ngModel)]="authLogin.password"
+        [(ngModel)]="authRegister.password"
         [ngClass]="{
           'is-invalid': password.errors && password.touched
         }"
@@ -97,17 +113,8 @@
       [disabled]="!authForm.form.valid"
       class="btn btn-block btn-primary mb-3"
     >
-      Login
+      Register
     </button>
     <p class="errorState">{{this.errorState}}</p>
   </form>
-  <button
-    class="btn btn-block mt-3 btn-warning"
-    routerLink='/register'
-    routerLinkActive="link-active"
-  >
-    New user? create a profile
-
-
-  </button>
 </div>

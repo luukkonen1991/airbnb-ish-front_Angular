@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
 	selector: 'app-navbar',
@@ -8,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 	]
 })
 export class NavbarComponent implements OnInit {
-	constructor() {}
+	showMe: boolean;
+
+	constructor(private cookieService: CookieService) {}
 
 	ngOnInit() {}
 
@@ -23,6 +26,13 @@ export class NavbarComponent implements OnInit {
 
 		if (element2.className === 'navbar-collapse justify-content-end collapse show') {
 			element2.setAttribute('class', 'navbar-collapse justify-content-end collapse');
+		}
+	}
+
+	ngDoCheck() {
+		let token = this.cookieService.get('token');
+		if (token) {
+			this.showMe = true;
 		}
 	}
 }

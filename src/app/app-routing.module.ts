@@ -8,6 +8,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { AboutComponent } from './components/about/about.component';
 import { CurrentUserComponent } from './components/current-user/current-user.component';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
 	{
@@ -37,6 +38,10 @@ const routes: Routes = [
 	{
 		path: 'me',
 		component: CurrentUserComponent
+	},
+	{
+		path: 'register',
+		component: RegisterComponent
 	}
 ];
 
