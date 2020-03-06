@@ -1,5 +1,6 @@
 export interface LocationById {
 	success: boolean;
+	count: number;
 	data: {
 		_id: string;
 		slug: string;
