@@ -15,6 +15,12 @@ let httpHeaders = {
 	})
 };
 
+let httpHeadersPost = {
+	headers: new HttpHeaders({
+		'Content-type': 'application/json'
+	})
+};
+
 @Injectable({
 	providedIn: 'root'
 })
@@ -73,7 +79,7 @@ export class AuthService {
 	getMe(): Observable<User> {
 		let api = `${this.authUrl}/me`;
 		let token = this.cookieService.get('token');
-		httpHeaders.headers = httpHeaders.headers.append('Authorization', `Bearer ${token}`);
+		httpHeaders.headers = httpHeaders.headers.set('Authorization', `Bearer ${token}`);
 		return this.http.get<User>(api, httpHeaders);
 	}
 }
