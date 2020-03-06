@@ -71,6 +71,12 @@
 <!-- <p>{{data}}</p>
 </div> -->
 
-<div *ngIf="location === undefined">
-  <h4 class="text-center">Loading...</h4>
+<div class="d-flex justify-content-center">
+  <div class="spinner-border" role="status" *ngIf="location === undefined">
+    <h2 class="sr-only">Loading...</h2>
+  </div>
 </div>
+
+<!-- <div *ngIf="location === undefined">
+  <h4 class="text-center">Loading...</h4>
+</div> -->

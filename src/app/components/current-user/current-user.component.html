@@ -1,8 +1,57 @@
-<div *ngIf="userData !== undefined">
-  <p>{{userData.data.name}}</p>
-  <p>{{userData.data.role}}</p>
-  <p>{{userData.data.email}}</p>
+<!-- <div *ngIf="userData !== undefined">
+  <h2>Welcome to your Pet Hotel portal!</h2>
+  <p>Here you can add / edit your available hotels</p>
+
+  <div class="card">
+    <div class="card-body">
+      <h2>My Profile</h2>
+      <p>{{userData.data.name}}</p>
+      <p>Role: {{userData.data.role}}</p>
+      <p>Email: {{userData.data.email}}</p>
+    </div>
+    <div *ngIf="userData === undefined">
+      <h2>Loading...</h2>
+    </div> -->
+
+<div *ngIf="userData !== undefined" class="card">
+  <div class="card-body">
+    <h1 class="card-title ml-2">{{ userData.data.name }}´s profile</h1>
+    <h5 class="card-title ml-2">
+      My hotels:
+    </h5>
+    <p>
+      no hotels currently posted on Pet Hotel. :(
+    </p>
+    <button type="button" class="btn btn-warning mr-1" routerLink="">Edit hotel</button>
+    <br>
+    <br>
+    <h5 class="card-title ml-2">
+      My personal info:
+    </h5>
+    <h6>
+      Role:
+    </h6>
+    <p>
+      {{ userData.data.role }}
+    </p>
+    <hr>
+    <h6>
+      Email:
+    </h6>
+    <p>
+      {{ userData.data.email }}
+    </p>
+    <button type="button" class="btn btn-warning mr-1" routerLink="">Edit profile</button>
+    <br><br>
+  </div>
 </div>
-<div *ngIf="userData === undefined">
-  <h2>Loading...</h2>
+
+<div class="d-flex justify-content-center">
+  <div class="spinner-border" role="status" *ngIf="userData === undefined">
+    <h2 class="sr-only">Loading...</h2>
+  </div>
 </div>
+
+<!-- <div *ngIf="userData === undefined">
+  <h2 class="sr-only">Loading...</h2>
+</div> -->

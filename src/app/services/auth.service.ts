@@ -46,7 +46,8 @@ export class AuthService {
 		};
 		return this.http.post<any>(api, data, httpHeaders).subscribe(
 			(res: any) => {
-				this.cookieService.set('token', res.token);
+				// this.cookieService.set('token', res.token);
+				sessionStorage.setItem('token', res.token)
 				this.dataService.changeLoginResponse(res.success);
 			},
 			error => {
@@ -63,7 +64,9 @@ export class AuthService {
 		};
 		return this.http.post<any>(`${this.authUrl}/login`, data, httpHeaders).subscribe(
 			(res: any) => {
-				this.cookieService.set('token', res.token);
+				// this.cookieService.set('token', res.token);
+
+				sessionStorage.setItem('token', res.token)
 				this.dataService.changeLoginResponse(res.success);
 				// this.dataService.currentResponse.subscribe(msg => (res.success = msg));
 				// alert(`Success: ${res.success}`);
@@ -78,7 +81,8 @@ export class AuthService {
 	// current user
 	getMe(): Observable<User> {
 		let api = `${this.authUrl}/me`;
-		let token = this.cookieService.get('token');
+		// let token = this.cookieService.get('token');
+		let token = sessionStorage.getItem('token');
 		httpHeaders.headers = httpHeaders.headers.set('Authorization', `Bearer ${token}`);
 		return this.http.get<User>(api, httpHeaders);
 	}

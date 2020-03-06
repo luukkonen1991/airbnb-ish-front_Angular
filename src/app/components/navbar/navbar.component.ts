@@ -30,9 +30,15 @@ export class NavbarComponent implements OnInit {
 	}
 
 	ngDoCheck() {
-		let token = this.cookieService.get('token');
+		// let token = this.cookieService.get('token');
+		let token = sessionStorage.getItem('token');
 		if (token) {
 			this.showMe = true;
 		}
+	}
+
+	logOut() {
+		sessionStorage.clear();
+		this.showMe = false;
 	}
 }
