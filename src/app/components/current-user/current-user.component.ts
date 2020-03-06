@@ -18,8 +18,6 @@ export class CurrentUserComponent implements OnInit {
 	ngOnInit() {
 		this.authService.getMe().subscribe(user => {
 			this.userData = user;
-			console.log(this.userData);
-			console.log(1);
 		});
 	}
 }
