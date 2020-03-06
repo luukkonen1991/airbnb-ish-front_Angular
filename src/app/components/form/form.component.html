@@ -19,9 +19,11 @@
       <hr>
       <div>
         <label class="label">Price</label><br>
+        <div class="d-flex justify-content-between">
         <input class="input-length-price" [(ngModel)]="params.minPrice" type="number" name="minPrice" placeholder="min">
         -
         <input class="input-length-price" [(ngModel)]="params.maxPrice" type="number" name="maxPrice" placeholder="max">
+        </div>
       </div>
     </div>
     <div class="form-group">

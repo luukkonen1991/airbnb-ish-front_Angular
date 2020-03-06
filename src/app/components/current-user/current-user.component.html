@@ -67,8 +67,14 @@
     </div>
   </div>
 
+</div>
 
+<div class="d-flex justify-content-center">
+  <div class="spinner-border" role="status" *ngIf="userData === undefined">
+    <h2 class="sr-only">Loading...</h2>
+  </div>
 </div>
-<div *ngIf="userData === undefined">
-  <h2>Loading...</h2>
-</div>
+
+<!-- <div *ngIf="userData === undefined">
+  <h2 class="sr-only">Loading...</h2>
+</div> -->

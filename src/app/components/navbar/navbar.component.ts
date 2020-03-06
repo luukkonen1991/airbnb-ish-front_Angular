@@ -36,4 +36,9 @@ export class NavbarComponent implements OnInit {
 			this.showMe = true;
 		}
 	}
+
+	logOut() {
+		sessionStorage.clear();
+		this.showMe = false;
+	}
 }

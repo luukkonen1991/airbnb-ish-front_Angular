@@ -63,98 +63,64 @@
 <nav class="navbar navbar-expand-lg navbar-light primary-color">
 
 
-  <a
-    routerLink=''
-    routerLinkActive="link-active"
-  >
-    <img
-      class="navbar-brand logo"
-      src="../../../assets/logo1.png"
-      alt="Pet Hotel Logo"
-    >
+  <a routerLink='' routerLinkActive="link-active">
+    <img class="navbar-brand logo" src="../../../assets/logo1.png" alt="Pet Hotel Logo">
   </a>
 
   <!-- Collapse button -->
-  <button
-    id="buttonCollapse"
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navigationCollapse"
-    aria-controls="navigationCollapse"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
+  <button id="buttonCollapse" class="navbar-toggler" type="button" data-toggle="collapse"
+    data-target="#navigationCollapse" aria-controls="navigationCollapse" aria-expanded="false"
+    aria-label="Toggle navigation">
 
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <!-- Collapsible content -->
 
-  <div
-    class="collapse navbar-collapse justify-content-end"
-    id="navigationCollapse"
-  >
+  <div class="collapse navbar-collapse justify-content-end" id="navigationCollapse">
 
     <!-- Links -->
     <ul class="navbar-nav">
       <li class="nav-item">
 
-        <a
-          class="nav-link"
-          routerLink='/about'
-          routerLinkActive="link-active"
-          (click)="navState()"
-        >
+        <a class="nav-link" routerLink='/about' routerLinkActive="link-active" (click)="navState()">
           About
         </a>
       </li>
       <li class="nav-item">
-        <a
-          class="nav-link"
-          routerLink='/becomehost'
-          routerLinkActive="link-active"
-          (click)="navState()"
-        >
+        <a class="nav-link" routerLink='/becomehost' routerLinkActive="link-active" (click)="navState()">
           Become a Host
         </a>
       </li>
       <li class="nav-item">
-        <a
-          class="nav-link"
-          routerLink='/contact'
-          routerLinkActive="link-active"
-          (click)="navState()"
-        >
+        <a class="nav-link" routerLink='/contact' routerLinkActive="link-active" (click)="navState()">
           Contact Us
         </a>
       </li>
-      <li
-        *ngIf="this.showMe === false || this.showMe === undefined"
-        class="nav-item"
-      >
-        <a
-          class="nav-link"
-          routerLink='/login'
-          routerLinkActive="link-active"
-          (click)="navState()"
-        >
+      <li *ngIf="this.showMe === false || this.showMe === undefined" class="nav-item">
+        <a class="nav-link" routerLink='/login' routerLinkActive="link-active" (click)="navState()">
           SignUp/LogIn
         </a>
 
       </li>
-      <li
-        *ngIf="this.showMe === true"
-        class="nav-item"
-      >
-        <a
+      <li *ngIf="this.showMe === true" class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Profile
+        </a>
+        <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink='/me' routerLinkActive="link-active" (click)="navState()">Me</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" routerLink='' routerLinkActive="link-active" (click)="logOut()">Log Out</a>
+        </div>
+        <!-- <a
           class="nav-link"
           routerLink='/me'
           routerLinkActive="link-active"
           (click)="navState()"
         >
           Profile
-        </a>
+        </a> -->
 
       </li>
     </ul>
