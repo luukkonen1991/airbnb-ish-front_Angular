@@ -1,3 +1,22 @@
 * {
     margin: 1em;
 }
+
+.resize-img {
+	margin-top: 1rem;
+	margin-left: 1rem;
+	margin-right: 1rem;
+	width: 90%;
+	max-width: 40rem;
+	height: auto;
+	border: 1px solid rgb(228, 228, 228);
+	border-radius: 4px;
+}
+
+.card {
+	margin: 1rem;
+}
+
+h6 {
+    font-weight: bold;
+}

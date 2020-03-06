@@ -1,56 +1,81 @@
-<div *ngIf="userData !== undefined">
-  <p>{{userData.data.name}}</p>
-  <p>{{userData.data.role}}</p>
-  <p>{{userData.data.email}}</p>
-</div>
-
-  <div *ngIf="location !== undefined" class="card">
-    <img class="card-img-top resize-img" src="http://localhost:5000/uploads/{{location.data[0].photo}}"
-      alt="Card image cap" />
-    <div class="card-body">
-      <h1 class="card-title">{{location.data[0].title}}</h1>
-      <h5>
-        {{ location.data[0].description }}
-      </h5>
-      <br>
-      <h6>
-        What kind of animals are allowed
-      </h6>
-      <p>
-        {{ location.data[0].animalTypes }}
-      </p>
-      <hr>
-      <h6>
-        What's included
-      </h6>
-      <p>
-        {{ location.data[0].services }}
-      </p>
-      <hr>
-      <h6>
-        Where your pet will stay
-      </h6>
-      <p>
-        {{ location.data[0].address }}
-      </p>
-      <hr>
-      <h6>
-        How much you'll pay
-      </h6>
-      <p>
-        {{location.data[0].costAmount}}€ / {{location.data[0].costType}}
-      </p>
-      <hr>
-      <p class="card-text">
-        <small class="text-muted">Posted: {{location.data[0].createdAt | date}}</small>
-        <br><br>
-        <button type="button" class="btn btn-secondary mr-1" routerLink="">Back</button>
-        <button type="button" class="btn btn-primary mr-1" routerLink="">Contact Host</button>
-        <button type="button" class="btn btn-primary mr-1" routerLink="">Show Reviews</button>
-      </p>
-    </div>
+<h2 *ngIf="userData !== undefined">
+  My Profile
+</h2>
+<div *ngIf="userData !== undefined" class="card">
+  <div class="card-body">
+    <h6>Name</h6>
+    <p>{{userData.data.name}}</p>
+    <hr>
+    <h6>Role</h6>
+    <p>{{userData.data.role}}</p>
+    <hr>
+    <h6>Email</h6>
+    <p>{{userData.data.email}}</p>
+    <hr>
+    <button type="button" class="btn btn-danger mr-1" routerLink="">Delete Profile</button>
   </div>
+</div>
+<br><br>
 
+<h2 *ngIf="location !== undefined">
+  My hotel
+</h2>
+<div *ngIf="location !== undefined" class="card">
+  <img class="card-img-top resize-img" src="http://localhost:5000/uploads/{{location.data[0].photo}}"
+    alt="Card image cap" />
+  <div class="card-body">
+    <h6>
+      Title
+    </h6>
+    <p>
+      {{location.data[0].title}}
+    </p>
+    <hr>
+    <h6>
+      Description
+    </h6>
+    <p>
+      {{ location.data[0].description }}
+    </p>
+    <hr>
+    <h6>
+      Animal types
+    </h6>
+    <p>
+      {{ location.data[0].animalTypes }}
+    </p>
+    <hr>
+    <h6>
+      Services
+    </h6>
+    <p>
+      {{ location.data[0].services }}
+    </p>
+    <hr>
+    <h6>
+      Address
+    </h6>
+    <p>
+      {{ location.data[0].address }}
+    </p>
+    <hr>
+    <h6>
+      Price
+    </h6>
+    <p>
+      {{location.data[0].costAmount}}€ / {{location.data[0].costType}}
+    </p>
+    <hr>
+    <p class="card-text">
+      <small class="text-muted">Posted: {{location.data[0].createdAt | date}}</small>
+      <br><br>
+      <button type="button" class="btn btn-primary mr-1" routerLink="">Preview Hotel</button>
+      <button type="button" class="btn btn-warning mr-1" routerLink="">Edit Hotel</button>
+      <button type="button" class="btn btn-warning mr-1" routerLink="">Change Hotel Photo</button>
+      <button type="button" class="btn btn-danger mr-1" routerLink="">Delete Hotel</button>
+    </p>
+  </div>
+</div>
 
 <div class="d-flex justify-content-center">
   <div class="spinner-border" role="status" *ngIf="userData === undefined">
