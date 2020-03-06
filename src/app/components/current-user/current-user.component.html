@@ -1,16 +1,12 @@
-<div *ngIf="userData !== undefined && location !== undefined">
+<div *ngIf="userData !== undefined">
   <p>{{userData.data.name}}</p>
   <p>{{userData.data.role}}</p>
   <p>{{userData.data.email}}</p>
+</div>
 
-
-
-  <div class="card">
-    <img
-      class="card-img-top resize-img"
-      src="http://localhost:5000/uploads/{{location.data[0].photo}}"
-      alt="Card image cap"
-    />
+  <div *ngIf="location !== undefined" class="card">
+    <img class="card-img-top resize-img" src="http://localhost:5000/uploads/{{location.data[0].photo}}"
+      alt="Card image cap" />
     <div class="card-body">
       <h1 class="card-title">{{location.data[0].title}}</h1>
       <h5>
@@ -48,26 +44,13 @@
       <p class="card-text">
         <small class="text-muted">Posted: {{location.data[0].createdAt | date}}</small>
         <br><br>
-        <button
-          type="button"
-          class="btn btn-secondary mr-1"
-          routerLink=""
-        >Back</button>
-        <button
-          type="button"
-          class="btn btn-primary mr-1"
-          routerLink=""
-        >Contact Host</button>
-        <button
-          type="button"
-          class="btn btn-primary mr-1"
-          routerLink=""
-        >Show Reviews</button>
+        <button type="button" class="btn btn-secondary mr-1" routerLink="">Back</button>
+        <button type="button" class="btn btn-primary mr-1" routerLink="">Contact Host</button>
+        <button type="button" class="btn btn-primary mr-1" routerLink="">Show Reviews</button>
       </p>
     </div>
   </div>
 
-</div>
 
 <div class="d-flex justify-content-center">
   <div class="spinner-border" role="status" *ngIf="userData === undefined">

@@ -15,12 +15,18 @@ import { LocationById } from 'src/app/models/LocationById';
 export class CurrentUserComponent implements OnInit {
 	// currentUser: User;
 	userData: User;
-	location: LocationById;
+	location: LocationById = undefined;
 	constructor(private authService: AuthService, private locationService: LocationService) {}
 
 	ngOnInit() {
 		this.authService.getMe().subscribe(user => {
+			if (user.data.role !== 'publisher') {
+				return
+			}
 			this.locationService.getOwnedLocation(user.data._id).subscribe(location => {
+				if (location.count === 0) {
+					return
+				} 
 				this.location = location;
 				console.log(this.location);
 			});
