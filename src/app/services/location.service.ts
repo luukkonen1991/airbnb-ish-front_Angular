@@ -36,6 +36,11 @@ export class LocationService {
 		return this.http.get<Data>(this.locationUrl, { params });
 	}
 
+	getOwnedLocation(user: string): Observable<LocationById> {
+		let params = new HttpParams().set('user[in]', user);
+		return this.http.get<LocationById>(this.locationUrl, { params });
+	}
+
 	getLocation(_id: string): Observable<LocationById> {
 		const url = `${this.locationUrl}/${_id}`;
 		return this.http.get<LocationById>(url, httpHeaders);
