@@ -1,49 +1,72 @@
-<!-- <div *ngIf="userData !== undefined">
-  <h2>Welcome to your Pet Hotel portal!</h2>
-  <p>Here you can add / edit your available hotels</p>
+<div *ngIf="userData !== undefined && location !== undefined">
+  <p>{{userData.data.name}}</p>
+  <p>{{userData.data.role}}</p>
+  <p>{{userData.data.email}}</p>
+
+
 
   <div class="card">
+    <img
+      class="card-img-top resize-img"
+      src="http://localhost:5000/uploads/{{location.data[0].photo}}"
+      alt="Card image cap"
+    />
     <div class="card-body">
-      <h2>My Profile</h2>
-      <p>{{userData.data.name}}</p>
-      <p>Role: {{userData.data.role}}</p>
-      <p>Email: {{userData.data.email}}</p>
+      <h1 class="card-title">{{location.data[0].title}}</h1>
+      <h5>
+        {{ location.data[0].description }}
+      </h5>
+      <br>
+      <h6>
+        What kind of animals are allowed
+      </h6>
+      <p>
+        {{ location.data[0].animalTypes }}
+      </p>
+      <hr>
+      <h6>
+        What's included
+      </h6>
+      <p>
+        {{ location.data[0].services }}
+      </p>
+      <hr>
+      <h6>
+        Where your pet will stay
+      </h6>
+      <p>
+        {{ location.data[0].address }}
+      </p>
+      <hr>
+      <h6>
+        How much you'll pay
+      </h6>
+      <p>
+        {{location.data[0].costAmount}}€ / {{location.data[0].costType}}
+      </p>
+      <hr>
+      <p class="card-text">
+        <small class="text-muted">Posted: {{location.data[0].createdAt | date}}</small>
+        <br><br>
+        <button
+          type="button"
+          class="btn btn-secondary mr-1"
+          routerLink=""
+        >Back</button>
+        <button
+          type="button"
+          class="btn btn-primary mr-1"
+          routerLink=""
+        >Contact Host</button>
+        <button
+          type="button"
+          class="btn btn-primary mr-1"
+          routerLink=""
+        >Show Reviews</button>
+      </p>
     </div>
-    <div *ngIf="userData === undefined">
-      <h2>Loading...</h2>
-    </div> -->
-
-<div *ngIf="userData !== undefined" class="card">
-  <div class="card-body">
-    <h1 class="card-title ml-2">{{ userData.data.name }}´s profile</h1>
-    <h5 class="card-title ml-2">
-      My hotels:
-    </h5>
-    <p>
-      no hotels currently posted on Pet Hotel. :(
-    </p>
-    <button type="button" class="btn btn-warning mr-1" routerLink="">Edit hotel</button>
-    <br>
-    <br>
-    <h5 class="card-title ml-2">
-      My personal info:
-    </h5>
-    <h6>
-      Role:
-    </h6>
-    <p>
-      {{ userData.data.role }}
-    </p>
-    <hr>
-    <h6>
-      Email:
-    </h6>
-    <p>
-      {{ userData.data.email }}
-    </p>
-    <button type="button" class="btn btn-warning mr-1" routerLink="">Edit profile</button>
-    <br><br>
   </div>
+
 </div>
 
 <div class="d-flex justify-content-center">

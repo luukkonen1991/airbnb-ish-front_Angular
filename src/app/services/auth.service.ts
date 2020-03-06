@@ -47,7 +47,7 @@ export class AuthService {
 		return this.http.post<any>(api, data, httpHeaders).subscribe(
 			(res: any) => {
 				// this.cookieService.set('token', res.token);
-				sessionStorage.setItem('token', res.token)
+				sessionStorage.setItem('token', res.token);
 				this.dataService.changeLoginResponse(res.success);
 			},
 			error => {
@@ -62,11 +62,14 @@ export class AuthService {
 			email: email,
 			password: password
 		};
+
+		let expiredDate = new Date();
+		expiredDate.setDate(expiredDate.getDate() + 7);
+
 		return this.http.post<any>(`${this.authUrl}/login`, data, httpHeaders).subscribe(
 			(res: any) => {
-				// this.cookieService.set('token', res.token);
-
-				sessionStorage.setItem('token', res.token)
+				// this.cookieService.set('token', res.token, expiredDate, null, null, false);
+				sessionStorage.setItem('token', res.token);
 				this.dataService.changeLoginResponse(res.success);
 				// this.dataService.currentResponse.subscribe(msg => (res.success = msg));
 				// alert(`Success: ${res.success}`);
