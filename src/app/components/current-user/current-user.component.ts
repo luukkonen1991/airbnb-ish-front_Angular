@@ -16,7 +16,7 @@ export class CurrentUserComponent implements OnInit {
 	// currentUser: User;
 	userData: User;
 	location: LocationById = undefined;
-	constructor(private authService: AuthService, private locationService: LocationService) {}
+	constructor(private authService: AuthService, private locationService: LocationService) { }
 
 	ngOnInit() {
 		this.authService.getMe().subscribe(user => {
@@ -26,7 +26,7 @@ export class CurrentUserComponent implements OnInit {
 			this.locationService.getOwnedLocation(user.data._id).subscribe(location => {
 				if (location.count === 0) {
 					return
-				} 
+				}
 				this.location = location;
 				console.log(this.location);
 			});
@@ -39,4 +39,17 @@ export class CurrentUserComponent implements OnInit {
 			console.log(this.userData);
 		});
 	}
+
+	deleteProfile() {
+		console.log("Profile delete xD");
+	}
+
+	deleteHotel() {
+		console.log("Hotel delete xD");
+	}
+
+	editHotel() {
+		console.log("Hotel edit xD");
+	}
+	
 }
