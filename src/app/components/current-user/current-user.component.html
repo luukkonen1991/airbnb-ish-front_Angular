@@ -2,7 +2,10 @@
 <h2 *ngIf="userData !== undefined">
   My Profile
 </h2>
-<div *ngIf="userData !== undefined" class="card">
+<div
+  *ngIf="userData !== undefined"
+  class="card"
+>
   <div class="card-body">
     <h6>Name</h6>
     <p>{{userData.data.name}}</p>
@@ -13,7 +16,12 @@
     <h6>Email</h6>
     <p>{{userData.data.email}}</p>
     <hr>
-    <button type="button" class="btn btn-danger mr-1" data-toggle="modal" data-target="#deleteProfileModal">
+    <button
+      type="button"
+      class="btn btn-danger mr-1"
+      data-toggle="modal"
+      data-target="#deleteProfileModal"
+    >
       Delete Profile
     </button>
   </div>
@@ -21,25 +29,51 @@
 <br><br>
 
 <!-- Delete Profile Modal -->
-<div *ngIf="userData !== undefined" class="modal fade delete p-1" id="deleteProfileModal" tabindex="-1" role="dialog"
-  aria-labelledby="deleteProfileModalLabel" aria-hidden="true">
-  <div class="modal-dialog m-auto" role="document">
+<div
+  *ngIf="userData !== undefined"
+  class="modal fade delete p-1"
+  id="deleteProfileModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="deleteProfileModalLabel"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog m-auto"
+    role="document"
+  >
     <div class="modal-content p-2">
-      <h5 class="modal-title alert alert-danger" id="deleteProfileModalLabel">Are you sure you want to delete
+      <h5
+        class="modal-title alert alert-danger"
+        id="deleteProfileModalLabel"
+      >Are you sure you want to delete
         profile<br> <b>"{{ userData.data.name }}"</b>
       </h5>
       <br><br>
-      <button type="button" class="btn btn-danger mb-2" (click)="deleteProfile()" data-dismiss="modal">Delete
+      <button
+        type="button"
+        class="btn btn-danger mb-2"
+        (click)="deleteProfile()"
+        data-dismiss="modal"
+      >Delete
         Profile</button>
-      <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-dismiss="modal"
+      >Cancel</button>
     </div>
   </div>
 </div>
 
 <!-- Show add a hotel button, if user role is publisher and user has no hotel -->
 <div *ngIf="userData !== undefined">
-  <button *ngIf="location === undefined && userData.data.role === 'publisher'" type="button"
-    class="btn btn-primary" routerLink="">Host a pet hotel
+  <button
+    *ngIf="location === undefined && userData.data.role === 'publisher'"
+    type="button"
+    class="btn btn-primary"
+    routerLink=""
+  >Host a pet hotel
   </button>
 </div>
 
@@ -48,10 +82,17 @@
 <h2 *ngIf="location !== undefined">
   My hotel
 </h2>
-<div *ngIf="location !== undefined" class="card">
-  <img class="card-img-top resize-img" src="http://localhost:5000/uploads/{{location.data[0].photo}}"
-    alt="Card image cap" />
+<div
+  *ngIf="location !== undefined"
+  class="card"
+>
+  <img
+    class="card-img-top resize-img"
+    src="http://localhost:5000/uploads/{{location.data[0].photo}}"
+    alt="photo_5d713995b721c3bb38c1f5d0.jpg"
+  />
   <div class="card-body">
+
     <h6>
       Title
     </h6>
@@ -100,71 +141,206 @@
     <p>
       {{location.data[0].createdAt | date}}
     </p>
-    <button type="button" class="btn btn-primary mr-1" routerLink="">Preview Hotel</button>
-    <button type="button" class="btn btn-warning mr-1" data-toggle="modal" data-target="#editHotelModal">Edit
+    <button
+      type="button"
+      class="btn btn-primary mr-1"
+      routerLink=""
+    >Preview Hotel</button>
+    <button
+      type="button"
+      class="btn btn-warning mr-1"
+      data-toggle="modal"
+      data-target="#editHotelModal"
+    >Edit
       Hotel</button>
-    <button type="button" class="btn btn-warning mr-1" routerLink="">Change Hotel Photo</button>
-    <button type="button" class="btn btn-danger mr-1" data-toggle="modal" data-target="#deleteHotelModal">
+    <button
+      type="button"
+      class="btn btn-warning mr-1"
+      routerLink=""
+    >Change Hotel Photo</button>
+    <button
+      type="button"
+      class="btn btn-danger mr-1"
+      data-toggle="modal"
+      data-target="#deleteHotelModal"
+    >
       Delete Hotel
     </button>
   </div>
 </div>
 
 <!-- Edit Hotel Modal-->
-<div *ngIf="location !== undefined" class="modal fade bd-example-modal-lg" id="editHotelModal" tabindex="-1" role="dialog"
-  aria-labelledby="editHotelModalLabel" aria-hidden="true">
-  <div class="modal-dialog m-auto" role="document">
+<div
+  *ngIf="location !== undefined"
+  class="modal fade bd-example-modal-lg"
+  id="editHotelModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="editHotelModalLabel"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog m-auto"
+    role="document"
+  >
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="editHotelModalLabel">Edit your hotel</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <h4
+          class="modal-title"
+          id="editHotelModalLabel"
+        >Edit your hotel</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <div class="form-group">
+          <input
+            [(ngModel)]="this.location.data[0].photo"
+            type="text"
+            name="photo"
+            [hidden]="true"
+            value="{{location.data[0].photo}}"
+            #photo
+          >
+          <!-- <input
+            [(ngModel)]="this.location.data[0]._id"
+            type="text"
+            name="photo"
+            [hidden]="true"
+            value="{{location.data[0]._id}}"
+          > -->
           <label>Title</label>
-          <input type="text" class="form-control" name="title" value="{{location.data[0].title}}" /><br>
+          <input
+            [(ngModel)]="this.location.data[0].title"
+            type="text"
+            class="form-control"
+            name="title"
+            value="{{location.data[0].title}}"
+            #title
+          /><br>
           <label>Description</label>
-          <input type="text" class="form-control" name="title" value="{{ location.data[0].description }}" /><br>
+          <input
+            [(ngModel)]="this.location.data[0].description"
+            type="text"
+            class="form-control"
+            name="description"
+            value="{{ location.data[0].description }}"
+            #description
+          /><br>
           <label>Animal types</label>
-          <input type="text" class="form-control" name="title" value="{{ location.data[0].animalTypes }}" /><br>
+          <input
+            [(ngModel)]="this.location.data[0].animalTypes"
+            type="text"
+            class="form-control"
+            name="animalTypes"
+            value="{{ location.data[0].animalTypes }}"
+            #animalTypes
+          /><br>
           <label>Services</label>
-          <input type="text" class="form-control" name="title" value="{{ location.data[0].services }}" /><br>
+          <input
+            [(ngModel)]="this.location.data[0].services"
+            type="text"
+            class="form-control"
+            name="services"
+            value="{{ location.data[0].services }}"
+            #services
+          /><br>
           <label>Address</label>
-          <input type="text" class="form-control" name="title" value="{{ location.data[0].address }}" /><br>
+          <input
+            [(ngModel)]="this.location.data[0].address"
+            type="text"
+            class="form-control"
+            name="address"
+            value="{{ location.data[0].address }}"
+            #address
+          /><br>
           <label>Price € (Amount)</label>
-          <input type="text" class="form-control" name="title" value="{{location.data[0].costAmount}}" /><br>
+          <input
+            [(ngModel)]="this.location.data[0].costAmount"
+            type="text"
+            class="form-control"
+            name="costAmount"
+            value="{{location.data[0].costAmount}}"
+            #costAmount
+          /><br>
           <label>Price (Day or Hour)</label>
-          <input type="text" class="form-control" name="title" value="{{location.data[0].costType}}" />
+          <input
+            [(ngModel)]="this.location.data[0].costType"
+            type="text"
+            class="form-control"
+            name="costType"
+            value="{{location.data[0].costType}}"
+            #costType
+          />
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-warning" (click)="editHotel()" data-dismiss="modal">Save changes</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button
+          type="button"
+          class="btn btn-warning"
+          (click)="editHotel()"
+          data-dismiss="modal"
+        >Save changes</button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+        >Cancel</button>
       </div>
     </div>
   </div>
 </div>
 
 <!-- Delete Hotel Modal -->
-<div *ngIf="location !== undefined" class="modal fade delete p-1" id="deleteHotelModal" tabindex="-1" role="dialog"
-  aria-labelledby="deleteHotelModalLabel" aria-hidden="true">
-  <div class="modal-dialog m-auto" role="document">
+<div
+  *ngIf="location !== undefined"
+  class="modal fade delete p-1"
+  id="deleteHotelModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="deleteHotelModalLabel"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog m-auto"
+    role="document"
+  >
     <div class="modal-content p-2">
-      <h5 class="modal-title alert alert-danger" id="deleteHotelModalLabel">Are you sure you want to delete your hotel<br> <b>"{{ location.data[0].title }}"</b>
+      <h5
+        class="modal-title alert alert-danger"
+        id="deleteHotelModalLabel"
+      >Are you sure you want to delete your hotel<br> <b>"{{ location.data[0].title }}"</b>
       </h5>
       <br><br>
-      <button type="button" class="btn btn-danger mb-2" (click)="deleteHotel()" data-dismiss="modal">Delete
+      <button
+        type="button"
+        class="btn btn-danger mb-2"
+        (click)="deleteHotel()"
+        data-dismiss="modal"
+      >Delete
         Profile</button>
-      <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-dismiss="modal"
+      >Cancel</button>
     </div>
   </div>
 </div>
 
 <!-- Loading animation -->
 <div class="d-flex justify-content-center">
-  <div class="spinner-border" role="status" *ngIf="userData === undefined">
+  <div
+    class="spinner-border"
+    role="status"
+    *ngIf="userData === undefined"
+  >
     <h2 class="sr-only">Loading...</h2>
   </div>
 </div>
