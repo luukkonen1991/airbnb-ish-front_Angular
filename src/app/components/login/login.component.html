@@ -95,19 +95,25 @@
     <br>
     <button
       [disabled]="!authForm.form.valid"
-      class="btn btn-block btn-primary mb-3"
+      class="btn btn-block btn-primary mb-1"
     >
       Login
     </button>
     <p class="errorState">{{this.errorState}}</p>
   </form>
   <button
-    class="btn btn-block mt-3 btn-warning"
+    class="btn btn-block btn-warning"
     routerLink='/register'
     routerLinkActive="link-active"
   >
     New user? create a profile
-
-
   </button>
+  <p class="mt-3">
+    <a
+      class="stretched-link text-danger"
+      routerLink='/forgotpassword'
+      routerLinkActive="link-active"
+    >Forgot user credentials</a>
+  </p>
+
 </div>
