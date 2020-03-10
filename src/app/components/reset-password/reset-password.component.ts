@@ -2,36 +2,32 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-	selector: 'app-forgot-password',
-	templateUrl: './forgot-password.component.html',
+	selector: 'app-reset-password',
+	templateUrl: './reset-password.component.html',
 	styleUrls: [
-		'./forgot-password.component.css'
+		'./reset-password.component.css'
 	]
 })
-export class ForgotPasswordComponent implements OnInit {
+export class ResetPasswordComponent implements OnInit {
 	resetPassword = {
-		email: ''
+		secret: '',
+		password: ''
 	};
-
 	form: any;
 	msg: any;
 	failed: string;
 	errorState: string = '';
-
 	constructor(private router: Router, private authService: AuthService) {}
 
 	ngOnInit() {}
 
 	onSubmit() {
-		this.authService.forgotPassword(this.resetPassword.email).subscribe(msg => {
+		this.authService.resetPassword(this.resetPassword.secret, this.resetPassword.password).subscribe(msg => {
 			if (msg.success === true) {
-				this.msg = msg;
-				alert(this.msg.data);
 				this.router.navigate([
-					'resetpassword'
+					''
 				]);
 			}
 		});

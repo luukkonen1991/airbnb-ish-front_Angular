@@ -89,4 +89,21 @@ export class AuthService {
 		httpHeaders.headers = httpHeaders.headers.set('Authorization', `Bearer ${token}`);
 		return this.http.get<User>(api, httpHeaders);
 	}
+
+	// Forgot password
+	forgotPassword(email: string): Observable<any> {
+		let api = `${this.authUrl}/forgotpassword`;
+		let data = {
+			email: email
+		};
+		return this.http.post<any>(api, data, httpHeaders);
+	}
+
+	resetPassword(token: string, password: string) {
+		let api = `${this.authUrl}/resetpassword/${token}`;
+		let data = {
+			password: password
+		};
+		return this.http.put<any>(api, data, httpHeaders);
+	}
 }
