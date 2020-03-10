@@ -39,7 +39,7 @@ export class LocationService {
 	}
 
 	getOwnedLocation(user: string, createdAt: string): Observable<LocationById> {
-		let params = new HttpParams().set('user[in]', user).set('sort', createdAt);
+		let params = new HttpParams().set('user[in]', user);
 		return this.http.get<LocationById>(this.locationUrl, { params });
 	}
 

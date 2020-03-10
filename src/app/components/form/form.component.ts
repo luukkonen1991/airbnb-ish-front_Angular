@@ -38,7 +38,7 @@ export class FormComponent implements OnInit {
 		this.locationService
 			.getLocationsWithParams(
 				this.params.minPrice || 1,
-				this.params.maxPrice || 999,
+				this.params.maxPrice || 1000000,
 				this.params.sortInput || '',
 				this.params.animalType || undefined
 			)
