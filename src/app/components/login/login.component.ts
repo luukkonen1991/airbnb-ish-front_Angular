@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
 		// private cookieService: CookieService,
 		private router: Router,
 		private dataService: DataService
-	) {}
+	) { }
 
 	ngOnInit() {
 		sessionStorage.clear();
@@ -45,6 +45,9 @@ export class LoginComponent implements OnInit {
 
 	ngDoCheck() {
 		if (this.msg === true) {
+			if (document.getElementById('loggedIn')) {
+				document.getElementById('loggedIn').setAttribute('id', 'fadeOut')
+			}
 			this.router.navigate([
 				''
 			]);
