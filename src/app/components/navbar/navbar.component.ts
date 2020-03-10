@@ -38,6 +38,9 @@ export class NavbarComponent implements OnInit {
 	}
 
 	logOut() {
+		if (document.getElementById('fadeOut')) {
+			document.getElementById('fadeOut').setAttribute('id', 'loggedIn')
+		}
 		sessionStorage.clear();
 		this.showMe = false;
 	}

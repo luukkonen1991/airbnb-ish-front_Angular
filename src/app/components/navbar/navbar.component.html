@@ -1,69 +1,8 @@
-<!-- <nav class="navbar navbar-light bg-light p-4"> -->
-
-<!-- <a
-    class="navbar-brand"
-    href=""
-  >
-    <h2 class="ml-3">PetHotel</h2>
-  </a>
-  <ul class="nav justify-content-end">
-    <li class="nav-item h5">
-      <a
-        class="nav-link disabled"
-        href="#"
-      >About</a>
-    </li>
-    <li class="nav-item h5">
-      <a
-        class="nav-link disabled"
-        href="#"
-      >Become Host</a>
-    </li>
-    <li class="nav-item h5">
-      <a
-        class="nav-link disabled"
-        href="#"
-      >Contact</a>
-    </li>
-    <li class="nav-item h5">
-      <a
-        class="nav-link disabled"
-        href="#"
-      >SignUp/LogIn</a>
--->
-<!-- <a routerLink='' routerLinkActive="link-active">
-    <img class="logo" src="../../../assets/logo1.png" alt="logo1">
-  </a>
-  <ul class="nav justify-content-end">
-    <li class="nav-item h5">
-      <a routerLink='/about' routerLinkActive="link-active">
-        <h4 class="navbarLink">About</h4>
-      </a>
-    </li>
-    <li class="nav-item h5">
-      <a routerLink='/becomehost' routerLinkActive="link-active">
-        <h4 class="navbarLink">Become a Host</h4>
-      </a>
-    </li>
-    <li class="nav-item h5">
-      <a routerLink='/contact' routerLinkActive="link-active">
-        <h4 class="navbarLink">Contact</h4>
-      </a>
-    </li>
-    <li class="nav-item h5">
-      <a routerLink='/signuplogin' routerLinkActive="link-active">
-        <h4 class="navbarLink">SignUp/LogIn</h4>
-      </a>
-
-    </li>
-  </ul>
-</nav> -->
-
 <!--Navbar-->
 <nav class="navbar navbar-expand-sm navbar-light primary-color">
 
-
-  <a routerLink='' routerLinkActive="link-active">
+  <!-- Logo -->
+  <a routerLink='' routerLinkActive="link-acti>ve">
     <img class="navbar-brand logo" src="../../../assets/logo1.png" alt="Pet Hotel Logo">
   </a>
 
@@ -75,12 +14,16 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
+  <div class="alert alert-success text-center" role="alert" id="loggedIn">
+    <b>Successfully logged in!</b>
+  </div>
+
   <!-- Collapsible content -->
 
   <div class="collapse navbar-collapse justify-content-end" id="navigationCollapse">
-
     <!-- Links -->
     <ul class="navbar-nav">
+
       <li class="nav-item">
 
         <a class="nav-link" routerLink='/about' routerLinkActive="link-active" (click)="navState()">
@@ -113,15 +56,6 @@
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" routerLink='' routerLinkActive="link-active" (click)="logOut()">Log Out</a>
         </div>
-        <!-- <a
-          class="nav-link"
-          routerLink='/me'
-          routerLinkActive="link-active"
-          (click)="navState()"
-        >
-          Profile
-        </a> -->
-
       </li>
     </ul>
   </div>
