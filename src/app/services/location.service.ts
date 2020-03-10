@@ -73,4 +73,21 @@ export class LocationService {
 		httpHeaders.headers = httpHeaders.headers.set('Authorization', `Bearer ${token}`);
 		return this.http.put<UpdateLocation>(url, data, httpHeaders);
 	}
+
+	createLocation(newLocationData: UpdateLocation, userId: string): Observable<any> {
+		let data = {
+			photo: newLocationData.photo,
+			title: newLocationData.title,
+			description: newLocationData.description,
+			animalTypes: newLocationData.animalTypes,
+			services: newLocationData.services,
+			address: newLocationData.address,
+			costAmount: newLocationData.costAmount,
+			costType: newLocationData.costType,
+			user: userId
+		};
+		let token = sessionStorage.getItem('token');
+		httpHeaders.headers = httpHeaders.headers.set('Authorization', `Bearer ${token}`);
+		return this.http.post<UpdateLocation>(this.locationUrl, data, httpHeaders);
+	}
 }

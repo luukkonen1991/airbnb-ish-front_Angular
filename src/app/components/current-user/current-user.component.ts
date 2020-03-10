@@ -17,7 +17,7 @@ export class CurrentUserComponent implements OnInit {
 	// currentUser: User;
 	userData: User;
 	location: LocationById = undefined;
-	updateLocationData: UpdateLocation = {
+	newLocation: UpdateLocation = {
 		title: '',
 		description: '',
 		address: '',
@@ -28,7 +28,7 @@ export class CurrentUserComponent implements OnInit {
 		user: ''
 	};
 
-	constructor(private authService: AuthService, private locationService: LocationService) {}
+	constructor(private authService: AuthService, private locationService: LocationService) { }
 
 	ngOnInit() {
 		console.log(1);
@@ -72,6 +72,14 @@ export class CurrentUserComponent implements OnInit {
 			.subscribe(location => {
 				console.log(location.data.title + 'incoming location logg');
 				this.location.data[0] = location.data;
+			});
+	}
+
+	addHotel() {
+		this.locationService
+			.createLocation(this.newLocation, this.userData.data._id)
+			.subscribe(location => {
+				this.location.data = location;
 			});
 	}
 }
