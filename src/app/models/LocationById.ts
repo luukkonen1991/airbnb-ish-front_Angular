@@ -13,5 +13,6 @@ export interface LocationById {
 		services: string[];
 		photo?: string;
 		createdAt: string;
+		user: string;
 	};
 }

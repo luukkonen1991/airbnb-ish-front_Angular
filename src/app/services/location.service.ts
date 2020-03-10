@@ -4,8 +4,9 @@ import { Observable } from 'rxjs';
 
 import { Data } from '../models/Data';
 // import { Location } from '../models/Location';
-import { Location } from '../models/Location';
+// import { Location } from '../models/Location';
 import { LocationById } from '../models/LocationById';
+import { UpdateLocation } from '../models/UpdateLocation';
 
 const httpHeaders = {
 	headers: new HttpHeaders({
@@ -18,6 +19,7 @@ const httpHeaders = {
 })
 export class LocationService {
 	locationUrl: string = 'http://localhost:5000/api/v1/locations';
+	updateLocationData: UpdateLocation;
 
 	constructor(private http: HttpClient) {}
 
@@ -36,7 +38,7 @@ export class LocationService {
 		return this.http.get<Data>(this.locationUrl, { params });
 	}
 
-	getOwnedLocation(user: string): Observable<LocationById> {
+	getOwnedLocation(user: string, createdAt: string): Observable<LocationById> {
 		let params = new HttpParams().set('user[in]', user);
 		return this.http.get<LocationById>(this.locationUrl, { params });
 	}
@@ -44,5 +46,31 @@ export class LocationService {
 	getLocation(_id: string): Observable<LocationById> {
 		const url = `${this.locationUrl}/${_id}`;
 		return this.http.get<LocationById>(url, httpHeaders);
+	}
+
+	deleteLocation(_id: string): Observable<LocationById> {
+		const url = `${this.locationUrl}/${_id}`;
+		let token = sessionStorage.getItem('token');
+		httpHeaders.headers = httpHeaders.headers.set('Authorization', `Bearer ${token}`);
+		return this.http.delete<LocationById>(url, httpHeaders);
+	}
+
+	updateLocation(_id: string, updateLocationData: UpdateLocation, userId: string): Observable<any> {
+		let data = {
+			photo: updateLocationData.photo,
+			title: updateLocationData.title,
+			description: updateLocationData.description,
+			animalTypes: updateLocationData.animalTypes,
+			services: updateLocationData.services,
+			address: updateLocationData.address,
+			costAmount: updateLocationData.costAmount,
+			costType: updateLocationData.costType,
+			user: userId
+		};
+		console.log(data);
+		const url = `${this.locationUrl}/${_id}`;
+		let token = sessionStorage.getItem('token');
+		httpHeaders.headers = httpHeaders.headers.set('Authorization', `Bearer ${token}`);
+		return this.http.put<UpdateLocation>(url, data, httpHeaders);
 	}
 }
