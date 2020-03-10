@@ -1,22 +1,47 @@
+/* Basic navbar styles */
 .navbar {
   background-color: rgb(245, 245, 245);
   text-align: center;
 }
 
+/* Logo and its hover effect (no hover effect on mobile) */
 .logo {
-    height: 50px;
-    margin: 0px;
-    padding: 0px;
-        transition: all .1s ease-in-out;
+  height: 60px;
+  margin: 0px;
+  padding: 0px;
+  transition: all .1s ease-in-out;
 }
-
-
 
 @media only screen 
   and (min-device-width : 480px) {
    .logo:hover {
   transform: scale(1.1);
 } 
+}
+
+
+/* Logged In Notification */
+#loggedIn {
+    visibility: hidden;
+}
+
+#fadeOut {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform:translate(-50%);
+    -webkit-animation: cssAnimation 3s forwards; 
+    animation: cssAnimation 3s forwards;
+}
+@keyframes cssAnimation {
+    0%   {opacity: 1;}
+    50%  {opacity: 1;}
+    100% {opacity: 0;}
+}
+@-webkit-keyframes cssAnimation {
+    0%   {opacity: 1;}
+    50%  {opacity: 1;}
+    100% {opacity: 0;}
 }
 
 /* .navbar {
