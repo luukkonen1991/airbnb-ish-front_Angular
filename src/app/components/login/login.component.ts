@@ -34,7 +34,9 @@ export class LoginComponent implements OnInit {
 		private dataService: DataService
 	) { }
 
-	ngOnInit() { }
+	ngOnInit() {
+		sessionStorage.clear();
+	}
 
 	onSubmit() {
 		this.authService.loginUser(this.authLogin.email, this.authLogin.password);
