@@ -30,7 +30,7 @@ export class ForgotPasswordComponent implements OnInit {
 		this.authService.forgotPassword(this.resetPassword.email).subscribe(msg => {
 			if (msg.success === true) {
 				this.msg = msg;
-				this.dataService.showNotification(this.msg.data);
+				this.dataService.showNotification(this.msg.data, true);
 				// alert(this.msg.data);
 				this.router.navigate([
 					''

@@ -23,7 +23,7 @@ export class DataService {
 	private loginResponse = new BehaviorSubject(this.msg);
 	currentResponse = this.loginResponse.asObservable();
 
-	constructor() {}
+	constructor() { }
 
 	changeParams(params: any) {
 		this.searchParams.next(params);
@@ -40,10 +40,18 @@ export class DataService {
 		this.loginResponse.next(msg);
 	}
 
-	showNotification(text: string) {
+	showNotification(text: string, success: boolean) {
 		if (document.getElementById('showNotificationBox')) {
-			document.getElementById('showNotificationBox').setAttribute('id', 'hideNotificationBox')
-			document.getElementById('hideNotificationBox').innerText = text
+			if (success === true) {
+				document.getElementById('showNotificationBox').setAttribute('class', 'alert alert-success text-center')
+				document.getElementById('showNotificationBox').setAttribute('id', 'hideNotificationBox')
+				document.getElementById('hideNotificationBox').innerText = text
+			}
+			if (success === false) {
+				document.getElementById('showNotificationBox').setAttribute('class', 'alert alert-danger text-center')
+				document.getElementById('showNotificationBox').setAttribute('id', 'hideNotificationBox')
+				document.getElementById('hideNotificationBox').innerText = text
+			}
 			setTimeout(function () {
 				document.getElementById('hideNotificationBox').setAttribute('id', 'showNotificationBox');
 			}, 2500);

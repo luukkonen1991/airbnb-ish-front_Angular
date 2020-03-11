@@ -71,6 +71,7 @@ export class AuthService {
 				// this.cookieService.set('token', res.token, expiredDate, null, null, false);
 				sessionStorage.setItem('token', res.token);
 				this.dataService.changeLoginResponse(res.success);
+				console.log(res.success + 'dataser')
 				// this.dataService.currentResponse.subscribe(msg => (res.success = msg));
 				// alert(`Success: ${res.success}`);
 			},
