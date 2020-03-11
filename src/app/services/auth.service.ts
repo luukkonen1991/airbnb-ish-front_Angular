@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 import { CookieService } from 'ngx-cookie-service';
@@ -63,23 +64,24 @@ export class AuthService {
 			password: password
 		};
 
-		let expiredDate = new Date();
-		expiredDate.setDate(expiredDate.getDate() + 7);
+		// let expiredDate = new Date();
+		// expiredDate.setDate(expiredDate.getDate() + 7);
 
-		return this.http.post<any>(`${this.authUrl}/login`, data, httpHeaders).subscribe(
-			(res: any) => {
-				// this.cookieService.set('token', res.token, expiredDate, null, null, false);
-				sessionStorage.setItem('token', res.token);
-				this.dataService.changeLoginResponse(res.success);
-				console.log(res.success + 'dataser')
-				// this.dataService.currentResponse.subscribe(msg => (res.success = msg));
-				// alert(`Success: ${res.success}`);
-			},
-			error => {
-				// this.dataService.currentResponse.subscribe(msg => (error.statusText = msg));
-				this.dataService.changeLoginResponse(error.statusText);
-			}
-		);
+		return this.http.post<any>(`${this.authUrl}/login`, data, httpHeaders).pipe(catchError(this.handleError));
+		// .subscribe(
+		// 	(res: any) => {
+		// 		// this.cookieService.set('token', res.token, expiredDate, null, null, false);
+		// 		sessionStorage.setItem('token', res.token);
+		// 		this.dataService.changeLoginResponse(res.success);
+		// 		console.log(res.success + 'dataser')
+		// 		// this.dataService.currentResponse.subscribe(msg => (res.success = msg));
+		// 		// alert(`Success: ${res.success}`);
+		// 	},
+		// 	error => {
+		// 		// this.dataService.currentResponse.subscribe(msg => (error.statusText = msg));
+		// 		this.dataService.changeLoginResponse(error.statusText);
+		// 	}
+		// );
 	}
 
 	// current user
@@ -115,5 +117,10 @@ export class AuthService {
 				this.dataService.changeLoginResponse(error.statusText);
 			}
 		);
+	}
+
+	handleError(error: HttpErrorResponse) {
+		console.log('lalalalalalalala');
+		return throwError(error);
 	}
 }
