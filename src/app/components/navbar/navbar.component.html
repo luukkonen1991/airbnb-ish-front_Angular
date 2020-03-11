@@ -6,6 +6,12 @@
     <img class="navbar-brand logo" src="../../../assets/logo1.png" alt="Pet Hotel Logo">
   </a>
 
+  <!-- Log in message -->
+  <div class="alert alert-success text-center" role="alert" id="loggedIn">
+    <b>Successfully logged ln!</b>
+  </div>
+
+
   <!-- Collapse button -->
   <button id="buttonCollapse" class="navbar-toggler" type="button" data-toggle="collapse"
     data-target="#navigationCollapse" aria-controls="navigationCollapse" aria-expanded="false"
@@ -13,10 +19,6 @@
 
     <span class="navbar-toggler-icon"></span>
   </button>
-
-  <div class="alert alert-success text-center" role="alert" id="loggedIn">
-    <b>Successfully logged in!</b>
-  </div>
 
   <!-- Collapsible content -->
 
@@ -32,7 +34,7 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink='/becomehost' routerLinkActive="link-active" (click)="navState()">
-          Become a Host
+          Host a Pet Hotel
         </a>
       </li>
       <li class="nav-item">
