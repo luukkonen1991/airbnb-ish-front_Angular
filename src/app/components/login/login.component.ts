@@ -44,9 +44,7 @@ export class LoginComponent implements OnInit {
 
 	ngDoCheck() {
 		if (this.msg === true) {
-			if (document.getElementById('loggedIn')) {
-				document.getElementById('loggedIn').setAttribute('id', 'fadeOut')
-			}
+			this.dataService.showNotification('Successfully logged in!');
 			this.router.navigate([
 				''
 			]);

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
 	selector: 'app-navbar',
@@ -11,9 +12,23 @@ import { CookieService } from 'ngx-cookie-service';
 export class NavbarComponent implements OnInit {
 	showMe: boolean;
 
-	constructor(private cookieService: CookieService) {}
+	constructor(private cookieService: CookieService, private dataService: DataService) {}
 
 	ngOnInit() {}
+
+	ngDoCheck() {
+		// let token = this.cookieService.get('token');
+		let token = sessionStorage.getItem('token');
+		if (token) {
+			this.showMe = true;
+		}
+	}
+
+	logOut() {
+		sessionStorage.clear();
+		this.dataService.showNotification('Successfully logged out!');
+		this.showMe = false;
+	}
 
 	navState() {
 		var element = document.getElementById('buttonCollapse');
@@ -27,21 +42,5 @@ export class NavbarComponent implements OnInit {
 		if (element2.className === 'navbar-collapse justify-content-end collapse show') {
 			element2.setAttribute('class', 'navbar-collapse justify-content-end collapse');
 		}
-	}
-
-	ngDoCheck() {
-		// let token = this.cookieService.get('token');
-		let token = sessionStorage.getItem('token');
-		if (token) {
-			this.showMe = true;
-		}
-	}
-
-	logOut() {
-		if (document.getElementById('fadeOut')) {
-			document.getElementById('fadeOut').setAttribute('id', 'loggedIn')
-		}
-		sessionStorage.clear();
-		this.showMe = false;
 	}
 }
