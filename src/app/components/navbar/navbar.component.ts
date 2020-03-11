@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit {
 
 	logOut() {
 		sessionStorage.clear();
-		this.dataService.showNotification('Successfully logged out!');
+		this.dataService.showNotification('Successfully logged out!', true);
 		this.showMe = false;
 	}
 

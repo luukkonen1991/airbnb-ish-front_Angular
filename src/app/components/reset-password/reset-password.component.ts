@@ -30,11 +30,12 @@ export class ResetPasswordComponent implements OnInit {
 
 	onSubmit() {
 		if (this.resetPassword.password !== this.resetPassword.password2) {
-			alert('Passwords are not the same');
+			this.dataService.showNotification('Passwords are not the same!', false);
+			// alert('Passwords are not the same');
 		} else {
 			const token = this.route.snapshot.paramMap.get('token');
 			this.authService.resetPassword(token, this.resetPassword.password);
-      this.dataService.showNotification('Successfully reseted password and logged in!');
+      		this.dataService.showNotification('Successfully reseted password and logged in!', true);
 			this.router.navigate([
 				''
 			]);

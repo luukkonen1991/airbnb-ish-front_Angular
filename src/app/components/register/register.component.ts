@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
 
 	ngDoCheck() {
 		if (this.msg === true) {
-			this.dataService.showNotification('Successfully registered and logged in!');
+			this.dataService.showNotification('Successfully registered and logged in!', true);
 			this.router.navigate([
 				''
 			]);

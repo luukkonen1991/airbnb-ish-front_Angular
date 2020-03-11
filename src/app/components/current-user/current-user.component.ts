@@ -60,12 +60,12 @@ export class CurrentUserComponent implements OnInit {
 	// }
 
 	deleteProfile() {
-		this.dataService.showNotification('Profile delete not ready!');
+		this.dataService.showNotification('Profile delete not ready!', true);
 	}
 
 	deleteHotel() {
 		this.locationService.deleteLocation(this.location.data[0]._id).subscribe((this.location = undefined));
-		this.dataService.showNotification('Hotel deleted successfully!');
+		this.dataService.showNotification('Hotel deleted successfully!', true);
 	}
 
 	editHotel() {
@@ -74,7 +74,7 @@ export class CurrentUserComponent implements OnInit {
 			.subscribe(location => {
 				console.log(location.data.title + 'incoming location logg');
 				this.location.data[0] = location.data;
-				this.dataService.showNotification('Hotel edited successfully!');
+				this.dataService.showNotification('Hotel edited successfully!', true);
 			});
 	}
 
@@ -83,6 +83,6 @@ export class CurrentUserComponent implements OnInit {
 			.createLocation(this.newLocation, this.userData.data._id)
 			.subscribe();
 		this.ngOnInit();
-		this.dataService.showNotification('New hotel added succesfully!');
+		this.dataService.showNotification('New hotel added succesfully!', true);
 	}
 }
