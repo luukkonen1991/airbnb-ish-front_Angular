@@ -13,8 +13,8 @@ import { AuthService } from '../../services/auth.service';
 })
 export class ResetPasswordComponent implements OnInit {
 	resetPassword = {
-		// secret: '',
-		password: ''
+		password: '',
+		password2: ''
 	};
 	token: any;
 	form: any;
@@ -28,10 +28,14 @@ export class ResetPasswordComponent implements OnInit {
 	}
 
 	onSubmit() {
-    const token = this.route.snapshot.paramMap.get('token');
-		this.authService.resetPassword(token, this.resetPassword.password)
-		this.router.navigate([
-			''
-		]);
+		if (this.resetPassword.password !== this.resetPassword.password2) {
+			alert('Passwords are not the same');
+		} else {
+			const token = this.route.snapshot.paramMap.get('token');
+			this.authService.resetPassword(token, this.resetPassword.password);
+			this.router.navigate([
+				''
+			]);
+		}
 	}
 }
