@@ -99,7 +99,7 @@ export class AuthService {
 		return this.http.post<any>(api, data, httpHeaders);
 	}
 
-	resetPassword(token: string, password: string) {
+	resetPassword(token: any, password: string) {
 		let api = `${this.authUrl}/resetpassword/${token}`;
 		let data = {
 			password: password
