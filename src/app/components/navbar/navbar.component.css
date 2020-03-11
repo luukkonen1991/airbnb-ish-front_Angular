@@ -22,10 +22,13 @@
 
 /* Logged In Notification */
 #loggedIn {
+    margin: 0px;
+    padding: 0px;
     visibility: hidden;
 }
 
 #fadeOut {
+
     position: absolute;
     top: 8px;
     left: 50%;
