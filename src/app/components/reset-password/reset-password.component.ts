@@ -28,14 +28,10 @@ export class ResetPasswordComponent implements OnInit {
 	}
 
 	onSubmit() {
-		const token = this.route.snapshot.paramMap.get('token');
-		console.log(token);
-		this.authService.resetPassword(token, this.resetPassword.password).subscribe(msg => {
-			if (msg.success === true) {
-				this.router.navigate([
-					''
-				]);
-			}
-		});
+    const token = this.route.snapshot.paramMap.get('token');
+		this.authService.resetPassword(token, this.resetPassword.password)
+		this.router.navigate([
+			''
+		]);
 	}
 }

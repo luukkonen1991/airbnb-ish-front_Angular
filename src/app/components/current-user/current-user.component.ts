@@ -5,6 +5,7 @@ import { User } from '../../models/User';
 import { LocationService } from 'src/app/services/location.service';
 import { LocationById } from 'src/app/models/LocationById';
 import { UpdateLocation } from '../../models/UpdateLocation';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-current-user',
@@ -17,7 +18,7 @@ export class CurrentUserComponent implements OnInit {
 	// currentUser: User;
 	userData: User;
 	location: LocationById = undefined;
-	updateLocationData: UpdateLocation = {
+	newLocation: UpdateLocation = {
 		title: '',
 		description: '',
 		address: '',
@@ -28,7 +29,7 @@ export class CurrentUserComponent implements OnInit {
 		user: ''
 	};
 
-	constructor(private authService: AuthService, private locationService: LocationService) {}
+	constructor(private authService: AuthService, private locationService: LocationService, private router: Router) { }
 
 	ngOnInit() {
 		console.log(1);
@@ -73,5 +74,12 @@ export class CurrentUserComponent implements OnInit {
 				console.log(location.data.title + 'incoming location logg');
 				this.location.data[0] = location.data;
 			});
+	}
+
+	addHotel() {
+		this.locationService
+			.createLocation(this.newLocation, this.userData.data._id)
+			.subscribe();
+			this.ngOnInit();
 	}
 }

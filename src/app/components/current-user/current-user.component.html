@@ -67,19 +67,20 @@
 </div>
 
 <!-- Show add a hotel button, if user role is publisher and user has no hotel -->
-<div *ngIf="userData !== undefined">
+<div *ngIf="userData !== undefined" class="hostBtn">
   <button
     *ngIf="location === undefined && userData.data.role === 'publisher'"
     type="button"
-    class="btn btn-primary"
-    routerLink=""
+    class="btn btn-primary "
+    data-toggle="modal"
+    data-target="#addHotelModal"
   >Host a pet hotel
   </button>
 </div>
 
 
 <!-- Hotel Info Screen -->
-<h2 *ngIf="location !== undefined">
+<h2 *ngIf="location !== undefined && userData !== undefined">
   My hotel
 </h2>
 <div
@@ -143,24 +144,24 @@
     </p>
     <button
       type="button"
-      class="btn btn-primary mr-1"
+      class="btn btn-primary m-1"
       routerLink=""
     >Preview Hotel</button>
     <button
       type="button"
-      class="btn btn-warning mr-1"
+      class="btn btn-warning m-1"
       data-toggle="modal"
       data-target="#editHotelModal"
     >Edit
       Hotel</button>
     <button
       type="button"
-      class="btn btn-warning mr-1"
+      class="btn btn-warning m-1"
       routerLink=""
     >Change Hotel Photo</button>
     <button
       type="button"
-      class="btn btn-danger mr-1"
+      class="btn btn-danger m-1"
       data-toggle="modal"
       data-target="#deleteHotelModal"
     >
@@ -296,6 +297,55 @@
     </div>
   </div>
 </div>
+
+
+
+
+
+
+<!-- Add Hotel Modal-->
+<div class="modal fade bd-example-modal-lg" id="addHotelModal" tabindex="-1" role="dialog"
+  aria-labelledby="addHotelModalLabel" aria-hidden="true">
+  <div class="modal-dialog m-auto" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="addHotelModalLabel">Add Your Pet Hotel</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Title</label>
+          <input [(ngModel)]="newLocation.title" type="text" class="form-control" name="title" #title /><br>
+          <label>Description</label>
+          <input [(ngModel)]="newLocation.description" type="text" class="form-control" name="description" #description /><br>
+          <label>Animal types</label>
+          <input [(ngModel)]="newLocation.animalTypes" type="text" class="form-control" name="animalTypes" #animalTypes /><br>
+          <label>Services</label>
+          <input [(ngModel)]="newLocation.services" type="text" class="form-control" name="services" #services /><br>
+          <label>Address</label>
+          <input [(ngModel)]="newLocation.address" type="text" class="form-control" name="address" #address /><br>
+          <label>Price € (Amount)</label>
+          <input [(ngModel)]="newLocation.costAmount" type="text" class="form-control" name="costAmount" #costAmount /><br>
+          <label>Price (Day or Hour)</label>
+          <input [(ngModel)]="newLocation.costType" type="text" class="form-control" name="costType" #costType />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="addHotel()" data-dismiss="modal">Add Pet Hotel</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
 
 <!-- Delete Hotel Modal -->
 <div
