@@ -24,12 +24,9 @@ export class ResetPasswordComponent implements OnInit {
 	ngOnInit() {}
 
 	onSubmit() {
-		this.authService.resetPassword(this.resetPassword.secret, this.resetPassword.password).subscribe(msg => {
-			if (msg.success === true) {
-				this.router.navigate([
-					''
-				]);
-			}
-		});
+		this.authService.resetPassword(this.resetPassword.secret, this.resetPassword.password)
+		this.router.navigate([
+			''
+		]);
 	}
 }

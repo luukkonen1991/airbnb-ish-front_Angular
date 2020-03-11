@@ -104,6 +104,15 @@ export class AuthService {
 		let data = {
 			password: password
 		};
-		return this.http.put<any>(api, data, httpHeaders);
+		return this.http.put<any>(api, data, httpHeaders).subscribe(
+			(res: any) => {
+				// this.cookieService.set('token', res.token);
+				sessionStorage.setItem('token', res.token);
+				this.dataService.changeLoginResponse(res.success);
+			},
+			error => {
+				this.dataService.changeLoginResponse(error.statusText);
+			}
+		);;
 	}
 }
