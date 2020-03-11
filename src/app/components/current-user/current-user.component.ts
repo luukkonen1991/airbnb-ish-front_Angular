@@ -5,7 +5,7 @@ import { User } from '../../models/User';
 import { LocationService } from 'src/app/services/location.service';
 import { LocationById } from 'src/app/models/LocationById';
 import { UpdateLocation } from '../../models/UpdateLocation';
-import { Router } from '@angular/router';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
 	selector: 'app-current-user',
@@ -29,7 +29,7 @@ export class CurrentUserComponent implements OnInit {
 		user: ''
 	};
 
-	constructor(private authService: AuthService, private locationService: LocationService, private router: Router) { }
+	constructor(private authService: AuthService, private locationService: LocationService, private dataService: DataService) { }
 
 	ngOnInit() {
 		console.log(1);
@@ -60,11 +60,12 @@ export class CurrentUserComponent implements OnInit {
 	// }
 
 	deleteProfile() {
-		console.log('Profile delete xD');
+		this.dataService.showNotification('Profile delete not ready!', true);
 	}
 
 	deleteHotel() {
 		this.locationService.deleteLocation(this.location.data[0]._id).subscribe((this.location = undefined));
+		this.dataService.showNotification('Hotel deleted successfully!', true);
 	}
 
 	editHotel() {
@@ -73,6 +74,7 @@ export class CurrentUserComponent implements OnInit {
 			.subscribe(location => {
 				console.log(location.data.title + 'incoming location logg');
 				this.location.data[0] = location.data;
+				this.dataService.showNotification('Hotel edited successfully!', true);
 			});
 	}
 
@@ -80,6 +82,7 @@ export class CurrentUserComponent implements OnInit {
 		this.locationService
 			.createLocation(this.newLocation, this.userData.data._id)
 			.subscribe();
-			this.ngOnInit();
+		this.ngOnInit();
+		this.dataService.showNotification('New hotel added succesfully!', true);
 	}
 }

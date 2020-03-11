@@ -38,20 +38,21 @@ export class LoginComponent implements OnInit {
 	}
 
 	onSubmit() {
+		this.msg = undefined;
 		this.authService.loginUser(this.authLogin.email, this.authLogin.password);
 		this.dataService.currentResponse.subscribe(msg => (this.msg = msg));
+		console.log(this.msg)
 	}
 
 	ngDoCheck() {
-		if (this.msg === true) {
-			if (document.getElementById('loggedIn')) {
-				document.getElementById('loggedIn').setAttribute('id', 'fadeOut')
-			}
+		if (sessionStorage.getItem('token') && this.msg === true) {
+			this.dataService.showNotification('Successfully logged in!', true);
 			this.router.navigate([
 				''
 			]);
 		}
 		if (this.msg === 'Unauthorized') {
+			this.dataService.showNotification('Invalid Credentials!', false);
 			this.errorState = 'Invalid Credentials';
 		}
 	}

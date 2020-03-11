@@ -21,14 +21,13 @@
 
 
 /* Logged In Notification */
-#loggedIn {
+#showNotificationBox {
     margin: 0px;
     padding: 0px;
     visibility: hidden;
 }
 
-#fadeOut {
-
+#hideNotificationBox {
     position: absolute;
     top: 8px;
     left: 50%;
