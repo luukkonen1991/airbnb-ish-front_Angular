@@ -67,11 +67,11 @@
 </div>
 
 <!-- Show add a hotel button, if user role is publisher and user has no hotel -->
-<div *ngIf="userData !== undefined">
+<div *ngIf="userData !== undefined" class="hostBtn">
   <button
     *ngIf="location === undefined && userData.data.role === 'publisher'"
     type="button"
-    class="btn btn-primary"
+    class="btn btn-primary "
     data-toggle="modal"
     data-target="#addHotelModal"
   >Host a pet hotel
@@ -80,7 +80,7 @@
 
 
 <!-- Hotel Info Screen -->
-<h2 *ngIf="location !== undefined">
+<h2 *ngIf="location !== undefined && userData !== undefined">
   My hotel
 </h2>
 <div
@@ -144,24 +144,24 @@
     </p>
     <button
       type="button"
-      class="btn btn-primary mr-1"
+      class="btn btn-primary m-1"
       routerLink=""
     >Preview Hotel</button>
     <button
       type="button"
-      class="btn btn-warning mr-1"
+      class="btn btn-warning m-1"
       data-toggle="modal"
       data-target="#editHotelModal"
     >Edit
       Hotel</button>
     <button
       type="button"
-      class="btn btn-warning mr-1"
+      class="btn btn-warning m-1"
       routerLink=""
     >Change Hotel Photo</button>
     <button
       type="button"
-      class="btn btn-danger mr-1"
+      class="btn btn-danger m-1"
       data-toggle="modal"
       data-target="#deleteHotelModal"
     >
