@@ -39,4 +39,14 @@ export class DataService {
 	changeLoginResponse(msg: any) {
 		this.loginResponse.next(msg);
 	}
+
+	showNotification(text: string) {
+		if (document.getElementById('showNotificationBox')) {
+			document.getElementById('showNotificationBox').setAttribute('id', 'hideNotificationBox')
+			document.getElementById('hideNotificationBox').innerText = text
+			setTimeout(function () {
+				document.getElementById('hideNotificationBox').setAttribute('id', 'showNotificationBox');
+			}, 2500);
+		}
+	}
 }
