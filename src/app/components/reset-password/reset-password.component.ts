@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
 
@@ -12,19 +13,23 @@ import { AuthService } from '../../services/auth.service';
 })
 export class ResetPasswordComponent implements OnInit {
 	resetPassword = {
-		secret: '',
+		// secret: '',
 		password: ''
 	};
+	token: any;
 	form: any;
 	msg: any;
 	failed: string;
 	errorState: string = '';
-	constructor(private router: Router, private authService: AuthService) {}
+	constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService) {}
 
-	ngOnInit() {}
+	ngOnInit() {
+		// this.token = +this.route.snapshot.paramMap.get('token');
+	}
 
 	onSubmit() {
-		this.authService.resetPassword(this.resetPassword.secret, this.resetPassword.password)
+    const token = this.route.snapshot.paramMap.get('token');
+		this.authService.resetPassword(token, this.resetPassword.password)
 		this.router.navigate([
 			''
 		]);
