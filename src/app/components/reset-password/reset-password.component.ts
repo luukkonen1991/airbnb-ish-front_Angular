@@ -14,8 +14,8 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class ResetPasswordComponent implements OnInit {
 	resetPassword = {
-		// secret: '',
-		password: ''
+		password: '',
+		password2: ''
 	};
 	token: any;
 	form: any;
@@ -29,11 +29,15 @@ export class ResetPasswordComponent implements OnInit {
 	}
 
 	onSubmit() {
-    const token = this.route.snapshot.paramMap.get('token');
-		this.authService.resetPassword(token, this.resetPassword.password)
-		this.dataService.showNotification('Successfully reseted password and logged in!');
-		this.router.navigate([
-			''
-		]);
+		if (this.resetPassword.password !== this.resetPassword.password2) {
+			alert('Passwords are not the same');
+		} else {
+			const token = this.route.snapshot.paramMap.get('token');
+			this.authService.resetPassword(token, this.resetPassword.password);
+      this.dataService.showNotification('Successfully reseted password and logged in!');
+			this.router.navigate([
+				''
+			]);
+		}
 	}
 }

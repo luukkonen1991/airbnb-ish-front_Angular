@@ -113,6 +113,6 @@ export class AuthService {
 			error => {
 				this.dataService.changeLoginResponse(error.statusText);
 			}
-		);;
+		);
 	}
 }
