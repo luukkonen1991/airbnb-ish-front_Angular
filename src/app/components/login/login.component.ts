@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 
 import { AuthLogin } from '../../models/AuthLogin';
 import { DataService } from 'src/app/services/data.service';
+import { throwError } from 'rxjs';
 
 @Component({
 	selector: 'app-login',
@@ -32,29 +33,28 @@ export class LoginComponent implements OnInit {
 		// private cookieService: CookieService,
 		private router: Router,
 		private dataService: DataService
-	) { }
+	) {}
 
-	ngOnInit() {
-	}
+	ngOnInit() {}
 
 	onSubmit() {
-		this.msg = undefined;
-		this.authService.loginUser(this.authLogin.email, this.authLogin.password);
-		this.dataService.currentResponse.subscribe(msg => (this.msg = msg));
-		console.log(this.msg)
-	}
-
-	ngDoCheck() {
-		if (sessionStorage.getItem('token') && this.msg === true) {
-			this.dataService.showNotification('Successfully logged in!', true);
-			this.router.navigate([
-				''
-			]);
-		}
-		if (this.msg === 'Unauthorized') {
-			this.dataService.showNotification('Invalid Credentials!', false);
-			this.errorState = 'Invalid Credentials';
-		}
+		this.authService.loginUser(this.authLogin.email, this.authLogin.password).subscribe(
+			res => {
+				if (res.success === true) {
+					sessionStorage.setItem('token', res.token);
+					this.dataService.showNotification('Successfully logged in!', true);
+					this.router.navigate([
+						''
+					]);
+				}
+			},
+			error => {
+				if (error.error.success === false) {
+					this.dataService.showNotification(error.error.error, false);
+					this.errorState = error.error.error;
+				}
+			}
+		);
 	}
 }
 
