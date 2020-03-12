@@ -26,6 +26,8 @@ export class CurrentUserComponent implements OnInit {
 		costAmount: null,
 		animalTypes: [],
 		services: [],
+		phone: '',
+		email: '',
 		user: ''
 	};
 

@@ -14,5 +14,7 @@ export interface LocationById {
 		photo?: string;
 		createdAt: string;
 		user: string;
+		phone: string;
+		email: string;
 	};
 }

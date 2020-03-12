@@ -65,6 +65,8 @@ export class LocationService {
 			address: updateLocationData.address,
 			costAmount: updateLocationData.costAmount,
 			costType: updateLocationData.costType,
+			phone: updateLocationData.phone,
+			email: updateLocationData.email,
 			user: userId
 		};
 		console.log(data);
@@ -84,6 +86,8 @@ export class LocationService {
 			address: newLocationData.address,
 			costAmount: newLocationData.costAmount,
 			costType: newLocationData.costType,
+			phone: newLocationData.phone,
+			email: newLocationData.email,
 			user: userId
 		};
 		let token = sessionStorage.getItem('token');
