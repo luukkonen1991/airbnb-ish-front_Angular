@@ -8,5 +8,7 @@ export interface UpdateLocation {
 	costAmount?: number;
 	animalTypes?: string[];
 	services?: string[];
+	phone?: string;
+	email?: string;
 	user: string;
 }

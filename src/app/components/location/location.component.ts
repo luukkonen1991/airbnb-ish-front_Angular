@@ -15,6 +15,7 @@ import { DataService } from 'src/app/services/data.service';
 export class LocationComponent implements OnInit {
 	location: LocationById;
 	_id: string;
+	showMe: boolean;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -31,5 +32,11 @@ export class LocationComponent implements OnInit {
 		// console.log(window.history.state);
 		// console.log(_id);
 		this.locationService.getLocation(this._id).subscribe(location => (this.location = location));
+
+		//check if signed in
+		let token = sessionStorage.getItem('token');
+		if (token) {
+			this.showMe = true;
+		}
 	}
 }
