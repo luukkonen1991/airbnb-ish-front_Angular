@@ -46,6 +46,7 @@
 
 .pagination {
 	justify-content: space-evenly;
+	margin-bottom: 0.5rem;
 }
 
 .pagination a {
