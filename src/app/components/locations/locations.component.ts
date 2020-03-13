@@ -6,7 +6,7 @@ import { DataService } from '../../services/data.service';
 
 import { Locations } from '../../models/Locations';
 import { Location } from '../../models/Location';
-import { Pagination } from '../../models/Pagination';
+// import { Pagination } from '../../models/Pagination';
 
 @Component({
 	selector: 'app-locations',
@@ -16,9 +16,13 @@ import { Pagination } from '../../models/Pagination';
 	]
 })
 export class LocationsComponent implements OnInit {
+	pageNumber: number = 1;
 	tempLocations: Location[];
 	locations: Locations['data'];
-	pagination: Locations['pagination'];
+	pagination: Locations['pagination'] = {
+		next: null,
+		prev: null
+	};
 	params: any = {
 		minPrice: null,
 		maxPrice: null,
@@ -64,6 +68,10 @@ export class LocationsComponent implements OnInit {
 		}
 	}
 
+	// ngDoChekc() {
+	// 	this.pageNumber;
+	// }
+
 	passLocationId(_id: string) {
 		this.dataService.changeLocationId(_id);
 	}
@@ -87,6 +95,9 @@ export class LocationsComponent implements OnInit {
 						(this.pagination = locationArray.pagination),
 						console.log(this.pagination);
 				});
+			console.log(this.pageNumber);
+			this.pageNumber++;
+			console.log(this.pageNumber);
 		}
 	}
 	changePagePrev(e: any) {
@@ -108,6 +119,7 @@ export class LocationsComponent implements OnInit {
 						(this.pagination = locationArray.pagination),
 						console.log(this.pagination);
 				});
+			this.pageNumber--;
 		}
 	}
 }
