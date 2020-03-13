@@ -19,7 +19,10 @@ export class LocationsComponent implements OnInit {
 	pageNumber: number = 1;
 	tempLocations: Location[];
 	locations: Locations['data'];
-	pagination: Locations['pagination'];
+	pagination: Locations['pagination'] = {
+		next: null,
+		prev: null
+	};
 	params: any = {
 		minPrice: null,
 		maxPrice: null,
