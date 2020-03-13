@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AuthService } from 'src/app/services/auth.service';
-import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 
 import { AuthRegister } from '../../models/AuthRegister';
@@ -19,9 +19,7 @@ export class RegisterComponent implements OnInit {
 		email: '',
 		password: ''
 	};
-
 	form: any;
-	msg: any;
 	errorState: string = '';
 
 	constructor(private authService: AuthService, private router: Router, private dataService: DataService) {}
@@ -29,19 +27,22 @@ export class RegisterComponent implements OnInit {
 	ngOnInit() {}
 
 	onSubmit() {
-		this.authService.registerUser(this.authRegister);
-		this.dataService.currentResponse.subscribe(msg => (this.msg = msg));
-	}
-
-	ngDoCheck() {
-		if (this.msg === true) {
-			this.dataService.showNotification('Successfully registered and logged in!', true);
-			this.router.navigate([
-				''
-			]);
-		}
-		if (this.msg === 'Unauthorized') {
-			this.errorState = 'Invalid Credentials';
-		}
+		this.authService.registerUser(this.authRegister).subscribe(
+			res => {
+				if (res.success === true) {
+					sessionStorage.setItem('token', res.token);
+					this.dataService.showNotification('Successfully logged in!', true);
+					this.router.navigate([
+						''
+					]);
+				}
+			},
+			error => {
+				if (error.error.success === false) {
+					this.dataService.showNotification(error.error.error, false);
+					this.errorState = error.error.error;
+				}
+			}
+		);
 	}
 }

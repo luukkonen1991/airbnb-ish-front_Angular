@@ -33,15 +33,25 @@
 	text-align: center;
 }
 
-
 /* Dont show map on mobile */
-@media only screen 
-  and (max-device-width : 480px) {
-.map-img {
-	display: none;
+@media only screen and (max-device-width: 480px) {
+	.map-img {
+		display: none;
+	}
+
+	.map-div {
+		display: none;
+	}
 }
 
-.map-div {
-	display: none;
+.pagination {
+	justify-content: space-evenly;
+	margin-bottom: 0.5rem;
 }
+
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
 }

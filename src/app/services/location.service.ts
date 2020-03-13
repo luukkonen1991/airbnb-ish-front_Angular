@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 import { Data } from '../models/Data';
-// import { Location } from '../models/Location';
-// import { Location } from '../models/Location';
+import { Locations } from '../models/Locations';
 import { LocationById } from '../models/LocationById';
 import { UpdateLocation } from '../models/UpdateLocation';
+import { Pagination } from '../models/Pagination';
 
 const httpHeaders = {
 	headers: new HttpHeaders({
@@ -23,36 +24,48 @@ export class LocationService {
 
 	constructor(private http: HttpClient) {}
 
-	getLocations(): Observable<Data> {
-		return this.http.get<Data>(this.locationUrl);
+	getLocations(): Observable<Locations> {
+		return this.http.get<Locations>(this.locationUrl);
 	}
 
-	getLocationsWithParams(minPrice?: any, maxPrice?: any, sortInput?: any, animalType?: any): Observable<Data> {
+	getLocationsWithParams(
+		minPrice?: any,
+		maxPrice?: any,
+		sortInput?: any,
+		animalType?: any,
+		page?: any
+	): Observable<Locations> {
 		let params = new HttpParams()
 			.set('costAmount[lte]', maxPrice)
 			.set('costAmount[gte]', minPrice)
-			.set('sort', sortInput);
+			.set('sort', sortInput)
+			.set('page', page);
 		if (animalType !== undefined) {
 			params = params.append('animalTypes[in]', animalType);
 		}
-		return this.http.get<Data>(this.locationUrl, { params });
+		console.log(params);
+		return this.http.get<Locations>(this.locationUrl, { params }).pipe(catchError(this.handleError));
 	}
+
+	// getPaginationData(): Observable<Pagination> {
+	// 	return this.http.get<Pagination>(this.locationUrl);
+	// }
 
 	getOwnedLocation(user: string, createdAt: string): Observable<LocationById> {
 		let params = new HttpParams().set('user[in]', user);
-		return this.http.get<LocationById>(this.locationUrl, { params });
+		return this.http.get<LocationById>(this.locationUrl, { params }).pipe(catchError(this.handleError));
 	}
 
 	getLocation(_id: string): Observable<LocationById> {
 		const url = `${this.locationUrl}/${_id}`;
-		return this.http.get<LocationById>(url, httpHeaders);
+		return this.http.get<LocationById>(url, httpHeaders).pipe(catchError(this.handleError));
 	}
 
 	deleteLocation(_id: string): Observable<LocationById> {
 		const url = `${this.locationUrl}/${_id}`;
 		let token = sessionStorage.getItem('token');
 		httpHeaders.headers = httpHeaders.headers.set('Authorization', `Bearer ${token}`);
-		return this.http.delete<LocationById>(url, httpHeaders);
+		return this.http.delete<LocationById>(url, httpHeaders).pipe(catchError(this.handleError));
 	}
 
 	updateLocation(_id: string, updateLocationData: UpdateLocation, userId: string): Observable<any> {
@@ -73,7 +86,7 @@ export class LocationService {
 		const url = `${this.locationUrl}/${_id}`;
 		let token = sessionStorage.getItem('token');
 		httpHeaders.headers = httpHeaders.headers.set('Authorization', `Bearer ${token}`);
-		return this.http.put<UpdateLocation>(url, data, httpHeaders);
+		return this.http.put<UpdateLocation>(url, data, httpHeaders).pipe(catchError(this.handleError));
 	}
 
 	createLocation(newLocationData: UpdateLocation, userId: string): Observable<any> {
@@ -92,6 +105,10 @@ export class LocationService {
 		};
 		let token = sessionStorage.getItem('token');
 		httpHeaders.headers = httpHeaders.headers.set('Authorization', `Bearer ${token}`);
-		return this.http.post<UpdateLocation>(this.locationUrl, data, httpHeaders);
+		return this.http.post<UpdateLocation>(this.locationUrl, data, httpHeaders).pipe(catchError(this.handleError));
+	}
+
+	handleError(error: HttpErrorResponse) {
+		return throwError(error);
 	}
 }

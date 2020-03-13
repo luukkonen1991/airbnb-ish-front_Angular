@@ -22,7 +22,8 @@ export class FormComponent implements OnInit {
 		minPrice: null,
 		maxPrice: null,
 		sortInput: '',
-		animalType: undefined
+		animalType: undefined,
+		page: 1
 	};
 
 	@Output() locationsEvent = new EventEmitter<Location[]>();
@@ -30,23 +31,27 @@ export class FormComponent implements OnInit {
 	constructor(private dataService: DataService, private locationService: LocationService) {}
 
 	ngOnInit() {
-		this.dataService.currentParams.subscribe(params => (this.params = params));
+		console.log(this.params);
+
 		// this.dataService.currentLocations.subscribe((locations) => (this.locations = locations));
 	}
 
 	onSubmit() {
+		this.dataService.changeParams(this.params);
+		console.log(this.params.page);
 		this.locationService
 			.getLocationsWithParams(
 				this.params.minPrice || 1,
 				this.params.maxPrice || 1000000,
 				this.params.sortInput || '',
-				this.params.animalType || undefined
+				this.params.animalType || undefined,
+				this.params.page || 1
 			)
 			.subscribe(locationArray => {
 				this.locations = locationArray.data;
 				this.locationsEvent.emit(this.locations);
 				console.log(this.locations);
-				console.log(this.params.animalType);
+				console.log(this.params.page);
 			});
 		// this.dataService.changeLocations(this.locations);
 		// this.dataService.changeLocations({

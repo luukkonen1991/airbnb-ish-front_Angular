@@ -31,35 +31,46 @@ export class CurrentUserComponent implements OnInit {
 		user: ''
 	};
 
-	constructor(private authService: AuthService, private locationService: LocationService, private dataService: DataService) { }
+	constructor(
+		private authService: AuthService,
+		private locationService: LocationService,
+		private dataService: DataService
+	) {}
 
 	ngOnInit() {
-		console.log(1);
-		this.authService.getMe().subscribe(user => {
-			if (user.data.role !== 'publisher') {
-				return;
-			}
-			this.locationService.getOwnedLocation(user.data._id, user.data.createdAt).subscribe(location => {
-				if (location.count === 0) {
+		this.authService.getMe().subscribe(
+			user => {
+				if (user.data.role !== 'publisher') {
 					return;
 				}
-				this.location = location;
-				console.log(this.location);
-			});
-		});
+				this.locationService.getOwnedLocation(user.data._id, user.data.createdAt).subscribe(location => {
+					if (location.count === 0) {
+						return;
+					}
+					this.location = location;
+					console.log(this.location);
+				});
+			},
+			error => {
+				if (error.error.success === false) {
+					this.dataService.showNotification(error.error.error, false);
+				}
+			}
+		);
 	}
 
 	ngAfterContentInit() {
-		console.log(2);
-		this.authService.getMe().subscribe(user => {
-			this.userData = user;
-			console.log(this.userData);
-		});
+		this.authService.getMe().subscribe(
+			user => {
+				this.userData = user;
+			},
+			error => {
+				if (error.error.success === false) {
+					this.dataService.showNotification(error.error.error, false);
+				}
+			}
+		);
 	}
-
-	// ngAfterViewInit() {
-	// 	console.log(3);
-	// }
 
 	deleteProfile() {
 		this.dataService.showNotification('Profile delete not ready!', true);
@@ -81,9 +92,7 @@ export class CurrentUserComponent implements OnInit {
 	}
 
 	addHotel() {
-		this.locationService
-			.createLocation(this.newLocation, this.userData.data._id)
-			.subscribe();
+		this.locationService.createLocation(this.newLocation, this.userData.data._id).subscribe();
 		this.ngOnInit();
 		this.dataService.showNotification('New hotel added succesfully!', true);
 	}

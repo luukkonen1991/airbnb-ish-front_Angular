@@ -4,7 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
-import { CookieService } from 'ngx-cookie-service';
+// import { CookieService } from 'ngx-cookie-service';
 import { DataService } from '../services/data.service';
 
 import { User } from '../models/User';
@@ -33,7 +33,7 @@ export class AuthService {
 	constructor(
 		private http: HttpClient,
 		public router: Router,
-		private cookieService: CookieService,
+		// private cookieService: CookieService,
 		private dataService: DataService
 	) {}
 
@@ -45,20 +45,12 @@ export class AuthService {
 			email: authRegister.email,
 			password: authRegister.password
 		};
-		return this.http.post<any>(api, data, httpHeaders).subscribe(
-			(res: any) => {
-				// this.cookieService.set('token', res.token);
-				sessionStorage.setItem('token', res.token);
-				this.dataService.changeLoginResponse(res.success);
-			},
-			error => {
-				this.dataService.changeLoginResponse(error.statusText);
-			}
-		);
+		return this.http.post<any>(api, data, httpHeaders).pipe(catchError(this.handleError));
 	}
 
 	// login
 	loginUser(email: string, password: string) {
+		let api = `${this.authUrl}/login`;
 		let data = {
 			email: email,
 			password: password
@@ -67,7 +59,7 @@ export class AuthService {
 		// let expiredDate = new Date();
 		// expiredDate.setDate(expiredDate.getDate() + 7);
 
-		return this.http.post<any>(`${this.authUrl}/login`, data, httpHeaders).pipe(catchError(this.handleError));
+		return this.http.post<any>(api, data, httpHeaders).pipe(catchError(this.handleError));
 		// .subscribe(
 		// 	(res: any) => {
 		// 		// this.cookieService.set('token', res.token, expiredDate, null, null, false);
@@ -87,10 +79,9 @@ export class AuthService {
 	// current user
 	getMe(): Observable<User> {
 		let api = `${this.authUrl}/me`;
-		// let token = this.cookieService.get('token');
 		let token = sessionStorage.getItem('token');
 		httpHeaders.headers = httpHeaders.headers.set('Authorization', `Bearer ${token}`);
-		return this.http.get<User>(api, httpHeaders);
+		return this.http.get<User>(api, httpHeaders).pipe(catchError(this.handleError));
 	}
 
 	// Forgot password
@@ -120,7 +111,6 @@ export class AuthService {
 	}
 
 	handleError(error: HttpErrorResponse) {
-		console.log('lalalalalalalala');
 		return throwError(error);
 	}
 }

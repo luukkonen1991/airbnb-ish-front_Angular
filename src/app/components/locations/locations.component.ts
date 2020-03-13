@@ -4,7 +4,9 @@ import { Router } from '@angular/router';
 import { LocationService } from '../../services/location.service';
 import { DataService } from '../../services/data.service';
 
+import { Locations } from '../../models/Locations';
 import { Location } from '../../models/Location';
+import { Pagination } from '../../models/Pagination';
 
 @Component({
 	selector: 'app-locations',
@@ -15,8 +17,14 @@ import { Location } from '../../models/Location';
 })
 export class LocationsComponent implements OnInit {
 	tempLocations: Location[];
-	locations: Location[];
-	params: any;
+	locations: Locations['data'];
+	pagination: Locations['pagination'];
+	params: any = {
+		minPrice: null,
+		maxPrice: null,
+		sortInput: '',
+		animalType: undefined
+	};
 	_id: string;
 
 	@Input() fromHome: Location[];
@@ -24,22 +32,82 @@ export class LocationsComponent implements OnInit {
 	constructor(private locationService: LocationService, private dataService: DataService, private router: Router) {}
 
 	ngOnInit() {
+		console.log('ONINIT');
 		this.locationService.getLocations().subscribe(locationArray => {
-			this.locations = locationArray.data;
+			console.log(locationArray.pagination),
+				(this.locations = locationArray.data),
+				(this.pagination = locationArray.pagination);
 		});
 
 		this.dataService.currentId.subscribe(_id => (this._id = _id));
+		this.dataService.currentParams.subscribe(params => {
+			this.params = params;
+		});
 	}
+
+	// ngAfterContentInit() {
+	// 	this.locationService.getPaginationData().subscribe(pagination => {
+	// 		console.log(pagination), (this.pagination = pagination);
+	// 		console.log(this.pagination.pagination.next.page + 'logged this.pagination');
+	// 		console.log(this.pagination.pagination.prev + 'logged this.pagination');
+	// 	});
+	// }
 
 	ngDoCheck() {
 		if (this.fromHome === undefined) {
 			return;
 		} else {
+			// console.log(this.fromHome + 'FromHOME');
+			// console.log(this.params);
 			this.locations = this.fromHome;
+			this.fromHome = undefined;
 		}
 	}
 
 	passLocationId(_id: string) {
 		this.dataService.changeLocationId(_id);
+	}
+
+	changePageNext(e: any) {
+		console.log(this.pagination + 'Logged pagination on next');
+		console.log(this.pagination.next.page);
+		console.log(e);
+		if (e === 'next' && this.pagination.next !== undefined) {
+			console.log(this.pagination.next.page + 'Is there next page before getLOCATIONSWITHPARAMS');
+			this.locationService
+				.getLocationsWithParams(
+					this.params.minPrice || 1,
+					this.params.maxPrice || 1000000,
+					this.params.sortInput || '',
+					this.params.animalType || undefined,
+					this.pagination.next.page
+				)
+				.subscribe(locationArray => {
+					(this.locations = locationArray.data),
+						(this.pagination = locationArray.pagination),
+						console.log(this.pagination);
+				});
+		}
+	}
+	changePagePrev(e: any) {
+		console.log(this.pagination + 'Logged pagination on prev');
+		console.log(this.pagination.prev.page);
+		console.log(e);
+		if (e === 'prev' && this.pagination.prev !== undefined) {
+			console.log(this.pagination.prev.page + 'Is there prev page before getLOCATIONSWITHPARAMS');
+			this.locationService
+				.getLocationsWithParams(
+					this.params.minPrice || 1,
+					this.params.maxPrice || 1000000,
+					this.params.sortInput || '',
+					this.params.animalType || undefined,
+					this.pagination.prev.page
+				)
+				.subscribe(locationArray => {
+					(this.locations = locationArray.data),
+						(this.pagination = locationArray.pagination),
+						console.log(this.pagination);
+				});
+		}
 	}
 }
