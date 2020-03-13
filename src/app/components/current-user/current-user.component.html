@@ -1,24 +1,35 @@
-<!-- Profile Info Screen -->
-<h2 *ngIf="userData !== undefined">
-  My Profile
+<h2 class="alert alert-warning" *ngIf="userData !== undefined && userData.data.role === 'admin'">
+  ADMIN TOOLS
 </h2>
-<div *ngIf="userData !== undefined" class="card">
-  <div class="card-body">
-    <h6>Name</h6>
-    <p>{{userData.data.name}}</p>
-    <hr>
-    <h6>Role</h6>
-    <p>{{userData.data.role}}</p>
-    <hr>
-    <h6>Email</h6>
-    <p>{{userData.data.email}}</p>
-    <hr>
-    <button type="button" class="btn btn-danger mr-1" data-toggle="modal" data-target="#deleteProfileModal">
-      Delete Profile
-    </button>
+
+<!-- START OF PROFILE STUFF -->
+
+<!-- Profile Info Screen -->
+<div *ngIf="userData !== undefined">
+  <h2 *ngIf="userData.data.role === 'user' || userData.data.role === 'publisher'">
+    My Profile
+  </h2>
+  <h2 *ngIf="userData.data.role === 'admin'" class="alert alert-primary">
+    ADMIN / My Profile
+  </h2>
+  <div class="card">
+    <div class="card-body">
+      <h6>Name</h6>
+      <p>{{userData.data.name}}</p>
+      <hr>
+      <h6>Role</h6>
+      <p>{{userData.data.role}}</p>
+      <hr>
+      <h6>Email</h6>
+      <p>{{userData.data.email}}</p>
+      <hr>
+      <button type="button" class="btn btn-danger mr-1" data-toggle="modal" data-target="#deleteProfileModal">
+        Delete Profile
+      </button>
+    </div>
+    <br><br>
   </div>
 </div>
-<br><br>
 
 <!-- Delete Profile Modal -->
 <div *ngIf="userData !== undefined" class="modal fade delete p-1" id="deleteProfileModal" tabindex="-1" role="dialog"
@@ -43,6 +54,8 @@
   </button>
 </div>
 
+
+<!-- START OF HOTEL STUFF -->
 
 <!-- Hotel Info Screen -->
 <h2 *ngIf="location !== undefined && userData !== undefined">
@@ -184,11 +197,6 @@
   </div>
 </div>
 
-
-
-
-
-
 <!-- Add Hotel Modal-->
 <div class="modal fade bd-example-modal-lg" id="addHotelModal" tabindex="-1" role="dialog"
   aria-labelledby="addHotelModalLabel" aria-hidden="true">
@@ -233,13 +241,6 @@
   </div>
 </div>
 
-
-
-
-
-
-
-
 <!-- Delete Hotel Modal -->
 <div *ngIf="location !== undefined" class="modal fade delete p-1" id="deleteHotelModal" tabindex="-1" role="dialog"
   aria-labelledby="deleteHotelModalLabel" aria-hidden="true">
@@ -256,13 +257,44 @@
   </div>
 </div>
 
+<!-- START OF ADMIN STUFF -->
+<div class="daddy-div" *ngIf="userData !== undefined && userData.data.role === 'admin' && allUsersData !== undefined">
+  <h2 class="alert alert-primary">ADMIN / Users</h2>
+  <div class="results">
+    <div class="card-group" *ngFor="let item of allUsersData.data">
+      <div class="card resize-card m-2">
+        <div class="card-body">
+          <h6>#ID</h6>
+          <p>{{item._id}}</p>
+          <h6>Name</h6>
+          <p>{{item.name}}</p>
+          <h6>Role</h6>
+          <p>{{item.role}}</p>
+          <h6>Email</h6>
+          <p>{{item.email}}</p>
+          <h6>Created at</h6>
+          <p>{{item.createdAt}}</p>
+          <button type="button" class="btn btn-danger mr-1" data-toggle="modal" data-target="#deleteProfileModal">
+            Delete User
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+
+
+
+
+
+</div>
+
+<!-- LOADING ANIMATION -->
+
 <!-- Loading animation -->
 <div class="d-flex justify-content-center">
   <div class="spinner-border" role="status" *ngIf="userData === undefined">
     <h2 class="sr-only">Loading...</h2>
   </div>
 </div>
-
-<!-- <div *ngIf="userData === undefined">
-  <h2 class="sr-only">Loading...</h2>
-</div> -->
