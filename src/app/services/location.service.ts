@@ -4,8 +4,10 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { Data } from '../models/Data';
+import { Locations } from '../models/Locations';
 import { LocationById } from '../models/LocationById';
 import { UpdateLocation } from '../models/UpdateLocation';
+import { Pagination } from '../models/Pagination';
 
 const httpHeaders = {
 	headers: new HttpHeaders({
@@ -22,20 +24,32 @@ export class LocationService {
 
 	constructor(private http: HttpClient) {}
 
-	getLocations(): Observable<Data> {
-		return this.http.get<Data>(this.locationUrl);
+	getLocations(): Observable<Locations> {
+		return this.http.get<Locations>(this.locationUrl);
 	}
 
-	getLocationsWithParams(minPrice?: any, maxPrice?: any, sortInput?: any, animalType?: any): Observable<Data> {
+	getLocationsWithParams(
+		minPrice?: any,
+		maxPrice?: any,
+		sortInput?: any,
+		animalType?: any,
+		page?: any
+	): Observable<Locations> {
 		let params = new HttpParams()
 			.set('costAmount[lte]', maxPrice)
 			.set('costAmount[gte]', minPrice)
-			.set('sort', sortInput);
+			.set('sort', sortInput)
+			.set('page', page);
 		if (animalType !== undefined) {
 			params = params.append('animalTypes[in]', animalType);
 		}
-		return this.http.get<Data>(this.locationUrl, { params }).pipe(catchError(this.handleError));
+		console.log(params);
+		return this.http.get<Locations>(this.locationUrl, { params }).pipe(catchError(this.handleError));
 	}
+
+	// getPaginationData(): Observable<Pagination> {
+	// 	return this.http.get<Pagination>(this.locationUrl);
+	// }
 
 	getOwnedLocation(user: string, createdAt: string): Observable<LocationById> {
 		let params = new HttpParams().set('user[in]', user);

@@ -1,6 +1,12 @@
 <div class="card card-body form">
-  <h3 class="text-center" (click)="formState()">Search</h3>
-  <form *ngIf="this.formShow === true" (ngSubmit)="onSubmit()">
+  <h3
+    class="text-center"
+    (click)="formState()"
+  >Search</h3>
+  <form
+    *ngIf="this.formShow === true"
+    (ngSubmit)="onSubmit()"
+  >
     <!-- <div class="form-group">
       <label>Location: {{params.location}} </label>
       <select
@@ -20,15 +26,32 @@
       <div>
         <label class="label">Price</label>
         <div class="d-flex justify-content-between">
-        <input class="form-control" [(ngModel)]="params.minPrice" type="number" name="minPrice" placeholder="min">
-        <p class="pl-2 pr-2">-</p>
-        <input class="form-control" [(ngModel)]="params.maxPrice" type="number" name="maxPrice" placeholder="max">
+          <input
+            class="form-control"
+            [(ngModel)]="params.minPrice"
+            type="number"
+            name="minPrice"
+            placeholder="min"
+          >
+          <p class="pl-2 pr-2">-</p>
+          <input
+            class="form-control"
+            [(ngModel)]="params.maxPrice"
+            type="number"
+            name="maxPrice"
+            placeholder="max"
+          >
         </div>
       </div>
     </div>
     <div class="form-group">
       <label class="label">Animal Type</label>
-      <select class="form-control" id="sort" name="sort" [(ngModel)]="params.animalType">
+      <select
+        class="form-control"
+        id="sort"
+        name="sort"
+        [(ngModel)]="params.animalType"
+      >
         <option value="Dogs">Dogs</option>
         <option value="Cats">Cats</option>
         <option value="Other">Other</option>
@@ -36,7 +59,12 @@
     </div>
     <div class="form-group">
       <label class="label">Sort by</label>
-      <select class="form-control" id="sort" name="sort" [(ngModel)]="params.sortInput">
+      <select
+        class="form-control"
+        id="sort"
+        name="sort"
+        [(ngModel)]="params.sortInput"
+      >
         <option value="createdAt">Newest first</option>
         <option value="-createdAt">Oldest first</option>
         <option value="costAmount">Cheapest first</option>
@@ -144,7 +172,11 @@
     </div> -->
     <button class="btn btn-block mt-3 btn-primary">Search</button>
   </form>
-  <button *ngIf="this.formShow === true" class="btn btn-block mt-3 btn-warning" (click)="clearState()">Reset
+  <button
+    *ngIf="this.formShow === true"
+    class="btn btn-block mt-3 btn-warning"
+    (click)="clearState()"
+  >Reset
     form
   </button>
 </div>
