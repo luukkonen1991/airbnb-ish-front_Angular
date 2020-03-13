@@ -75,6 +75,11 @@ export class FormComponent implements OnInit {
 
 	formState() {
 		this.formShow = !this.formShow;
+		if (this.formShow === true) {
+			document.getElementById('searchForm').setAttribute('class','card card-body form searchForm' )
+		} else {
+			document.getElementById('searchForm').setAttribute('class', 'card card-body form searchFormSmall')
+		}
 		console.log(this.formShow);
 		console.log('clicked');
 	}
