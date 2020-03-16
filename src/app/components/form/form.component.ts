@@ -5,6 +5,7 @@ import { LocationService } from '../../services/location.service';
 import { DataService } from '../../services/data.service';
 
 import { Location } from '../../models/Location';
+import { VirtualTimeScheduler } from 'rxjs';
 
 @Component({
 	selector: 'app-form',
@@ -31,6 +32,7 @@ export class FormComponent implements OnInit {
 	constructor(private dataService: DataService, private locationService: LocationService) {}
 
 	ngOnInit() {
+		this.params.page = 1;
 		console.log(this.params);
 
 		// this.dataService.currentLocations.subscribe((locations) => (this.locations = locations));
