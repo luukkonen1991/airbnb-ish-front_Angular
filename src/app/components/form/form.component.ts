@@ -22,7 +22,7 @@ export class FormComponent implements OnInit {
 		minPrice: null,
 		maxPrice: null,
 		sortInput: '',
-		animalType: undefined,
+		animalTypes: [],
 		page: 1
 	};
 
@@ -37,14 +37,16 @@ export class FormComponent implements OnInit {
 	}
 
 	onSubmit() {
+		this.getCheckboxValue(event);
 		this.dataService.changeParams(this.params);
+		console.log(this.params.animalTypes + ' Log of this.params');
 		console.log(this.params.page);
 		this.locationService
 			.getLocationsWithParams(
 				this.params.minPrice || 1,
 				this.params.maxPrice || 1000000,
 				this.params.sortInput || '',
-				this.params.animalType || undefined,
+				this.params.animalTypes || [],
 				this.params.page || 1
 			)
 			.subscribe(locationArray => {
@@ -77,5 +79,14 @@ export class FormComponent implements OnInit {
 		this.formShow = !this.formShow;
 		console.log(this.formShow);
 		console.log('clicked');
+	}
+
+	getCheckboxValue(event: Event) {
+		console.log(event);
+		if ((<HTMLInputElement>event.target).checked === true) {
+			this.params.animalTypes.push((<HTMLInputElement>event.target).value);
+		} else if ((<HTMLInputElement>event.target).checked === false) {
+			this.params.animalTypes.splice((<HTMLInputElement>event.target).value, 1);
+		}
 	}
 }

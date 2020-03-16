@@ -8,6 +8,7 @@ import { Locations } from '../models/Locations';
 import { LocationById } from '../models/LocationById';
 import { UpdateLocation } from '../models/UpdateLocation';
 import { Pagination } from '../models/Pagination';
+import { AnimalTypes } from '../models/AnimalTypes';
 
 const httpHeaders = {
 	headers: new HttpHeaders({
@@ -32,7 +33,7 @@ export class LocationService {
 		minPrice?: any,
 		maxPrice?: any,
 		sortInput?: any,
-		animalType?: any,
+		animalTypes?: any,
 		page?: any
 	): Observable<Locations> {
 		let params = new HttpParams()
@@ -40,8 +41,19 @@ export class LocationService {
 			.set('costAmount[gte]', minPrice)
 			.set('sort', sortInput)
 			.set('page', page);
-		if (animalType !== undefined) {
-			params = params.append('animalTypes[in]', animalType);
+		if (animalTypes !== []) {
+			Object.keys(animalTypes).forEach(function(key) {
+				params = params.append('animalTypes[in]', animalTypes[key]);
+			});
+			// for (let i: number; i < animalTypes.length; i++) {
+			// 	console.log(1);
+			// 	params = params.append('animalTypes[in]', animalTypes[i]);
+			// 	console.log(2);
+			// }
+			// params = params.append('animalTypes[in]', animalTypes);
+			// params = params.append(animalTypes.forEach(animal => {
+			//   return 'animalTypes[in]' animal
+			// }););
 		}
 		console.log(params);
 		return this.http.get<Locations>(this.locationUrl, { params }).pipe(catchError(this.handleError));
