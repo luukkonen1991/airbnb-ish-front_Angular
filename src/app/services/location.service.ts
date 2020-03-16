@@ -34,6 +34,7 @@ export class LocationService {
 		maxPrice?: any,
 		sortInput?: any,
 		animalTypes?: any,
+		services?: any,
 		page?: any
 	): Observable<Locations> {
 		let params = new HttpParams()
@@ -45,6 +46,12 @@ export class LocationService {
 			Object.keys(animalTypes).forEach(function(key) {
 				params = params.append('animalTypes[in]', animalTypes[key]);
 			});
+			if (services !== []) {
+				Object.keys(services).forEach(function(key) {
+					params = params.append('services[in]', services[key]);
+				});
+			}
+
 			// for (let i: number; i < animalTypes.length; i++) {
 			// 	console.log(1);
 			// 	params = params.append('animalTypes[in]', animalTypes[i]);

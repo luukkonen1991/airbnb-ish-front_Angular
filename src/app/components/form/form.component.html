@@ -72,11 +72,11 @@
       </select>
     </div>
 
-    <div class="form-check">
+    <div class="form-check inlineCheckBox">
       <!-- <p>infoa {{params.animalTypeDog}} {{params.animalTypeCat}}</p> -->
       <p>Animal Types</p>
       <input
-        (click)="getCheckboxValue($event)"
+        (click)="getCheckboxValueAnimalTypes($event)"
         class="form-check-input mr-4"
         type="checkbox"
         value="Dogs"
@@ -92,7 +92,7 @@
         value="Cats"
         name="Cats"
         id="Cats"
-        (click)="getCheckboxValue($event)"
+        (click)="getCheckboxValueAnimalTypes($event)"
       >
       <label class="mr-4">
         Cats
@@ -103,10 +103,47 @@
         value="Other"
         name="Other"
         id="Other"
-        (click)="getCheckboxValue($event)"
+        (click)="getCheckboxValueAnimalTypes($event)"
       >
       <label class="mr-4">
         Other
+      </label>
+    </div>
+    <div class="form-check inlineCheckBox">
+      <!-- <p>infoa {{params.animalTypeDog}} {{params.animalTypeCat}}</p> -->
+      <p>Services</p>
+      <input
+        (click)="getCheckboxValueAnimalServices($event)"
+        class="form-check-input mr-4"
+        type="checkbox"
+        value="Food"
+        name="Food"
+        id="Food"
+      >
+      <label class="mr-4">
+        Food
+      </label>
+      <input
+        class="form-check-input mr-4"
+        type="checkbox"
+        value="Toys"
+        name="Toys"
+        id="Toys"
+        (click)="getCheckboxValueAnimalServices($event)"
+      >
+      <label class="mr-4">
+        Toys
+      </label>
+      <input
+        class="form-check-input mr-4"
+        type="checkbox"
+        value="Walking"
+        name="Walking"
+        id="Walking"
+        (click)="getCheckboxValueAnimalServices($event)"
+      >
+      <label class="mr-4">
+        Walking
       </label>
     </div>
     <!--

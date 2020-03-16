@@ -23,6 +23,7 @@ export class FormComponent implements OnInit {
 		maxPrice: null,
 		sortInput: '',
 		animalTypes: [],
+		services: [],
 		page: 1
 	};
 
@@ -37,7 +38,8 @@ export class FormComponent implements OnInit {
 	}
 
 	onSubmit() {
-		this.getCheckboxValue(event);
+		this.getCheckboxValueAnimalTypes(event);
+		this.getCheckboxValueAnimalServices(event);
 		this.dataService.changeParams(this.params);
 		console.log(this.params.animalTypes + ' Log of this.params');
 		console.log(this.params.page);
@@ -47,6 +49,7 @@ export class FormComponent implements OnInit {
 				this.params.maxPrice || 1000000,
 				this.params.sortInput || '',
 				this.params.animalTypes || [],
+				this.params.services || [],
 				this.params.page || 1
 			)
 			.subscribe(locationArray => {
@@ -72,7 +75,8 @@ export class FormComponent implements OnInit {
 			(this.params.maxPrice = null),
 			(this.params.sortInput = ''),
 			(this.params.sortInput = ''),
-			(this.params.animalType = undefined);
+			(this.params.animalTypes = undefined);
+		this.params.services = undefined;
 	}
 
 	formState() {
@@ -81,12 +85,21 @@ export class FormComponent implements OnInit {
 		console.log('clicked');
 	}
 
-	getCheckboxValue(event: Event) {
+	getCheckboxValueAnimalTypes(event: Event) {
 		console.log(event);
 		if ((<HTMLInputElement>event.target).checked === true) {
 			this.params.animalTypes.push((<HTMLInputElement>event.target).value);
 		} else if ((<HTMLInputElement>event.target).checked === false) {
 			this.params.animalTypes.splice((<HTMLInputElement>event.target).value, 1);
+		}
+	}
+
+	getCheckboxValueAnimalServices(event: Event) {
+		console.log(event);
+		if ((<HTMLInputElement>event.target).checked === true) {
+			this.params.services.push((<HTMLInputElement>event.target).value);
+		} else if ((<HTMLInputElement>event.target).checked === false) {
+			this.params.services.splice((<HTMLInputElement>event.target).value, 1);
 		}
 	}
 }
