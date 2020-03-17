@@ -1,12 +1,6 @@
 <div class="card card-body form" id="searchForm">
-  <h3
-    class="text-center"
-    (click)="formState()"
-  >Search</h3>
-  <form
-    *ngIf="this.formShow === true"
-    (ngSubmit)="onSubmit()"
-  >
+  <h3 class="text-center" (click)="formState()">Search</h3>
+  <form *ngIf="this.formShow === true" (ngSubmit)="onSubmit()">
     <!-- <div class="form-group">
       <label>Location: {{params.location}} </label>
       <select
@@ -26,21 +20,9 @@
       <div>
         <label class="label">Price</label>
         <div class="d-flex justify-content-between">
-          <input
-            class="form-control"
-            [(ngModel)]="params.minPrice"
-            type="number"
-            name="minPrice"
-            placeholder="min"
-          >
+          <input class="form-control" [(ngModel)]="params.minPrice" type="number" name="minPrice" placeholder="min">
           <p class="pl-2 pr-2">-</p>
-          <input
-            class="form-control"
-            [(ngModel)]="params.maxPrice"
-            type="number"
-            name="maxPrice"
-            placeholder="max"
-          >
+          <input class="form-control" [(ngModel)]="params.maxPrice" type="number" name="maxPrice" placeholder="max">
         </div>
       </div>
     </div>
@@ -59,12 +41,7 @@
     </div> -->
     <div class="form-group">
       <label class="label">Sort by</label>
-      <select
-        class="form-control"
-        id="sort"
-        name="sort"
-        [(ngModel)]="params.sortInput"
-      >
+      <select class="form-control" id="sort" name="sort" [(ngModel)]="params.sortInput">
         <option value="createdAt">Newest first</option>
         <option value="-createdAt">Oldest first</option>
         <option value="costAmount">Cheapest first</option>
@@ -74,78 +51,86 @@
 
     <div class="form-check inlineCheckBox">
       <!-- <p>infoa {{params.animalTypeDog}} {{params.animalTypeCat}}</p> -->
-      <p>Animal Types</p>
-      <input
-        (click)="getCheckboxValueAnimalTypes($event)"
-        class="form-check-input mr-4"
-        type="checkbox"
-        value="Dogs"
-        name="Dogs"
-        id="Dogs"
-      >
-      <label class="mr-4">
-        Dogs
-      </label>
-      <input
-        class="form-check-input mr-4"
-        type="checkbox"
-        value="Cats"
-        name="Cats"
-        id="Cats"
-        (click)="getCheckboxValueAnimalTypes($event)"
-      >
-      <label class="mr-4">
-        Cats
-      </label>
-      <input
-        class="form-check-input mr-4"
-        type="checkbox"
-        value="Other"
-        name="Other"
-        id="Other"
-        (click)="getCheckboxValueAnimalTypes($event)"
-      >
-      <label class="mr-4">
-        Other
-      </label>
+      <label class="label">Animal Types</label><br>
+      <div class="form-row">
+        <div class="custom-control custom-checkbox">
+          <input class="custom-control-input" (click)="getCheckboxValueAnimalTypes($event)" type="checkbox" value="Dogs"
+            name="Dogs" id="Dogs">
+          <label class="custom-control-label mr-2" for="Dogs">Dogs</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+          <input class="custom-control-input" (click)="getCheckboxValueAnimalTypes($event)" type="checkbox" value="Cats"
+            name="Cats" id="Cats">
+          <label class="custom-control-label mr-2" for="Cats">Cats</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+          <input class="custom-control-input" (click)="getCheckboxValueAnimalTypes($event)" type="checkbox"
+            value="Other" name="Other" id="Other">
+          <label class="custom-control-label mr-2" for="Other">Other</label>
+        </div>
+      </div>
     </div>
+
+
     <div class="form-check inlineCheckBox">
       <!-- <p>infoa {{params.animalTypeDog}} {{params.animalTypeCat}}</p> -->
-      <p>Services</p>
-      <input
-        (click)="getCheckboxValueAnimalServices($event)"
-        class="form-check-input mr-4"
-        type="checkbox"
-        value="Food"
-        name="Food"
-        id="Food"
-      >
-      <label class="mr-4">
+      <label class="label">Services</label><br>
+      <div class="form-row">
+      <div class="custom-control custom-checkbox">
+        <input class="custom-control-input" (click)="getCheckboxValueAnimalServices($event)" type="checkbox"
+          value="Food" name="Food" id="Food">
+        <label class="custom-control-label mr-2" for="Food">Food</label>
+      </div>
+      <div class="custom-control custom-checkbox">
+        <input class="custom-control-input" (click)="getCheckboxValueAnimalServices($event)" type="checkbox"
+          value="Toys" name="Toys" id="Toys">
+        <label class="custom-control-label mr-2" for="Toys">Toys</label>
+      </div>
+      <div class="custom-control custom-checkbox">
+        <input class="custom-control-input" (click)="getCheckboxValueAnimalServices($event)" type="checkbox"
+          value="Walking" name="Walking" id="Walking">
+        <label class="custom-control-label mr-2" for="Walking">Walking</label>
+      </div>
+      </div>
+    </div>
+
+
+
+    <!-- <label class="checkboxLabel">
+        <input (click)="getCheckboxValueAnimalTypes($event)" class="form-check-input mr-4" type="checkbox" value="Dogs"
+          name="Dogs" id="Dogs">
+        Dogs
+      </label>
+      <label class="checkboxLabel">
+        <input class="form-check-input mr-4" type="checkbox" value="Cats" name="Cats" id="Cats"
+          (click)="getCheckboxValueAnimalTypes($event)">
+        Cats
+      </label>
+      <label class="checkboxLabel">
+        <input class="form-check-input mr-4" type="checkbox" value="Other" name="Other" id="Other"
+          (click)="getCheckboxValueAnimalTypes($event)">
+        Other
+      </label>
+    </div> -->
+    <!-- <div class="form-check inlineCheckBox"> -->
+    <!-- <p>infoa {{params.animalTypeDog}} {{params.animalTypeCat}}</p> -->
+    <!-- <label class="label">Services</label><br>
+      <label class="checkboxLabel">
+        <input (click)="getCheckboxValueAnimalServices($event)" class="form-check-input mr-4" type="checkbox"
+          value="Food" name="Food" id="Food">
         Food
       </label>
-      <input
-        class="form-check-input mr-4"
-        type="checkbox"
-        value="Toys"
-        name="Toys"
-        id="Toys"
-        (click)="getCheckboxValueAnimalServices($event)"
-      >
-      <label class="mr-4">
+      <label class="checkboxLabel">
+        <input class="form-check-input mr-4" type="checkbox" value="Toys" name="Toys" id="Toys"
+          (click)="getCheckboxValueAnimalServices($event)">
         Toys
       </label>
-      <input
-        class="form-check-input mr-4"
-        type="checkbox"
-        value="Walking"
-        name="Walking"
-        id="Walking"
-        (click)="getCheckboxValueAnimalServices($event)"
-      >
-      <label class="mr-4">
+      <label class="checkboxLabel">
+        <input class="form-check-input mr-4" type="checkbox" value="Walking" name="Walking" id="Walking"
+          (click)="getCheckboxValueAnimalServices($event)">
         Walking
       </label>
-    </div>
+    </div> -->
     <!--
     <div class="form-group">
       <label>Animal Types: {{ params.animalType }} </label><br>
@@ -218,11 +203,7 @@
     </div> -->
     <button class="btn btn-block mt-3 btn-primary">Search</button>
   </form>
-  <button
-    *ngIf="this.formShow === true"
-    class="btn btn-block mt-3 btn-warning"
-    (click)="clearState()"
-  >Reset
+  <button *ngIf="this.formShow === true" class="btn btn-block mt-3 btn-warning" (click)="clearState()">Reset
     form
   </button>
 </div>
