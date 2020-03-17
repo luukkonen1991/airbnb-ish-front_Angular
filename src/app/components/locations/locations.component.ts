@@ -63,6 +63,7 @@ export class LocationsComponent implements OnInit {
 		if (this.fromHome === undefined) {
 			return;
 		} else {
+<<<<<<< HEAD
 			// console.log(this.fromHome + 'FromHOME');
 			// console.log(this.params);
 			this.pageNumber = this.params.page;
@@ -74,6 +75,25 @@ export class LocationsComponent implements OnInit {
 			} else {
 				this.pagination = {};
 			}
+=======
+			this.pageNumber = this.params.page
+			this.locations = this.fromHome;
+			// console.log(this.fromHome + 'FromHOME');
+			// console.log(this.params);
+			this.locationService
+				.getLocationsWithParams(
+					this.params.minPrice || 1,
+					this.params.maxPrice || 1000000,
+					this.params.sortInput || '',
+					this.params.animalType || undefined,
+					this.params.page || 1
+				)
+				.subscribe(locationArray => {
+				this.pagination = locationArray.pagination;
+				console.log(this.pagination)
+			});
+			console.log(this.fromHome)
+>>>>>>> 045a7e1f30bf5d8f047bb534ce7c2e41cbd4b9ee
 			this.fromHome = undefined;
 		}
 	}
