@@ -40,7 +40,7 @@ export class LocationsComponent implements OnInit {
 		console.log('ONINIT');
 		this.locationService.getLocations().subscribe(locationArray => {
 			console.log(locationArray.pagination),
-			console.log(locationArray),
+				console.log(locationArray),
 				(this.locations = locationArray.data),
 				(this.pagination = locationArray.pagination);
 		});
@@ -51,19 +51,11 @@ export class LocationsComponent implements OnInit {
 		});
 	}
 
-	// ngAfterContentInit() {
-	// 	this.locationService.getPaginationData().subscribe(pagination => {
-	// 		console.log(pagination), (this.pagination = pagination);
-	// 		console.log(this.pagination.pagination.next.page + 'logged this.pagination');
-	// 		console.log(this.pagination.pagination.prev + 'logged this.pagination');
-	// 	});
-	// }
-
 	ngDoCheck() {
 		if (this.fromHome === undefined) {
 			return;
 		} else {
-			this.pageNumber = this.params.page
+			this.pageNumber = this.params.page;
 			this.locations = this.fromHome;
 			// console.log(this.fromHome + 'FromHOME');
 			// console.log(this.params);
@@ -72,14 +64,15 @@ export class LocationsComponent implements OnInit {
 					this.params.minPrice || 1,
 					this.params.maxPrice || 1000000,
 					this.params.sortInput || '',
-					this.params.animalType || undefined,
+					this.params.animalType || [],
+					this.params.services || [],
 					this.params.page || 1
 				)
 				.subscribe(locationArray => {
-				this.pagination = locationArray.pagination;
-				console.log(this.pagination)
-			});
-			console.log(this.fromHome)
+					this.pagination = locationArray.pagination;
+					console.log(this.pagination);
+				});
+			console.log(this.fromHome);
 			this.fromHome = undefined;
 		}
 	}
