@@ -40,7 +40,7 @@ export class LocationsComponent implements OnInit {
 		console.log('ONINIT');
 		this.locationService.getLocations().subscribe(locationArray => {
 			console.log(locationArray.pagination),
-			console.log(locationArray),
+				console.log(locationArray),
 				(this.locations = locationArray.data),
 				(this.pagination = locationArray.pagination);
 		});
@@ -65,16 +65,15 @@ export class LocationsComponent implements OnInit {
 		} else {
 			// console.log(this.fromHome + 'FromHOME');
 			// console.log(this.params);
-			this.pageNumber = this.params.page
+			this.pageNumber = this.params.page;
 			this.locations = this.fromHome;
 			if (this.fromHome.length >= 4) {
-			this.locationService.getLocations().subscribe(locationArray => {
-				this.pagination = locationArray.pagination;
-			});
-
-		} else {
-			this.pagination = {};
-		}
+				this.locationService.getLocations().subscribe(locationArray => {
+					this.pagination = locationArray.pagination;
+				});
+			} else {
+				this.pagination = {};
+			}
 			this.fromHome = undefined;
 		}
 	}
