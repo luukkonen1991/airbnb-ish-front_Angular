@@ -27,7 +27,8 @@ export class LocationsComponent implements OnInit {
 		minPrice: null,
 		maxPrice: null,
 		sortInput: '',
-		animalType: undefined
+		animalTypes: [],
+		services: []
 	};
 	_id: string;
 
@@ -68,10 +69,6 @@ export class LocationsComponent implements OnInit {
 		}
 	}
 
-	// ngDoChekc() {
-	// 	this.pageNumber;
-	// }
-
 	passLocationId(_id: string) {
 		this.dataService.changeLocationId(_id);
 	}
@@ -87,7 +84,8 @@ export class LocationsComponent implements OnInit {
 					this.params.minPrice || 1,
 					this.params.maxPrice || 1000000,
 					this.params.sortInput || '',
-					this.params.animalType || undefined,
+					this.params.animalTypes || [],
+					this.params.services || [],
 					this.pagination.next.page
 				)
 				.subscribe(locationArray => {
@@ -111,7 +109,7 @@ export class LocationsComponent implements OnInit {
 					this.params.minPrice || 1,
 					this.params.maxPrice || 1000000,
 					this.params.sortInput || '',
-					this.params.animalType || undefined,
+					this.params.animalTypes || [],
 					this.pagination.prev.page
 				)
 				.subscribe(locationArray => {
