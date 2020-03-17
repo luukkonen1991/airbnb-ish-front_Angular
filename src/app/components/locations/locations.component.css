@@ -44,6 +44,19 @@
 	}
 }
 
+@media only screen and (max-device-width: 1000px) {
+	.resize-img {
+		max-width: 90vw;
+		min-width: 100%;
+		height: auto;
+	}
+
+	.resize-card {
+		min-width: 350px;
+		max-width: 90vw;
+	}
+}
+
 .pagination {
 	justify-content: space-evenly;
 	margin-bottom: 0.5rem;
