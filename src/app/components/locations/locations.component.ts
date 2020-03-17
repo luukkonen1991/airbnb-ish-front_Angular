@@ -63,20 +63,7 @@ export class LocationsComponent implements OnInit {
 		if (this.fromHome === undefined) {
 			return;
 		} else {
-<<<<<<< HEAD
-			// console.log(this.fromHome + 'FromHOME');
-			// console.log(this.params);
 			this.pageNumber = this.params.page;
-			this.locations = this.fromHome;
-			if (this.fromHome.length >= 4) {
-				this.locationService.getLocations().subscribe(locationArray => {
-					this.pagination = locationArray.pagination;
-				});
-			} else {
-				this.pagination = {};
-			}
-=======
-			this.pageNumber = this.params.page
 			this.locations = this.fromHome;
 			// console.log(this.fromHome + 'FromHOME');
 			// console.log(this.params);
@@ -89,11 +76,10 @@ export class LocationsComponent implements OnInit {
 					this.params.page || 1
 				)
 				.subscribe(locationArray => {
-				this.pagination = locationArray.pagination;
-				console.log(this.pagination)
-			});
-			console.log(this.fromHome)
->>>>>>> 045a7e1f30bf5d8f047bb534ce7c2e41cbd4b9ee
+					this.pagination = locationArray.pagination;
+					console.log(this.pagination);
+				});
+			console.log(this.fromHome);
 			this.fromHome = undefined;
 		}
 	}
