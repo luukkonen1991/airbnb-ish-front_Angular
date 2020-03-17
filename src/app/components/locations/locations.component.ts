@@ -51,14 +51,6 @@ export class LocationsComponent implements OnInit {
 		});
 	}
 
-	// ngAfterContentInit() {
-	// 	this.locationService.getPaginationData().subscribe(pagination => {
-	// 		console.log(pagination), (this.pagination = pagination);
-	// 		console.log(this.pagination.pagination.next.page + 'logged this.pagination');
-	// 		console.log(this.pagination.pagination.prev + 'logged this.pagination');
-	// 	});
-	// }
-
 	ngDoCheck() {
 		if (this.fromHome === undefined) {
 			return;
@@ -72,7 +64,8 @@ export class LocationsComponent implements OnInit {
 					this.params.minPrice || 1,
 					this.params.maxPrice || 1000000,
 					this.params.sortInput || '',
-					this.params.animalType || undefined,
+					this.params.animalType || [],
+					this.params.services || [],
 					this.params.page || 1
 				)
 				.subscribe(locationArray => {
