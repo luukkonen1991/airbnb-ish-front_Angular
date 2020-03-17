@@ -17,6 +17,7 @@ import { DataService } from 'src/app/services/data.service';
 export class CurrentUserComponent implements OnInit {
 	// currentUser: User;
 	userData: User;
+	allUsersData: User;
 	location: LocationById = undefined;
 	newLocation: UpdateLocation = {
 		title: '',
@@ -26,6 +27,8 @@ export class CurrentUserComponent implements OnInit {
 		costAmount: null,
 		animalTypes: [],
 		services: [],
+		phone: '',
+		email: '',
 		user: ''
 	};
 
@@ -38,6 +41,12 @@ export class CurrentUserComponent implements OnInit {
 	ngOnInit() {
 		this.authService.getMe().subscribe(
 			user => {
+				if (user.data.role === 'admin') {
+					this.authService.getAllUsers().subscribe(allUsers => {
+						this.allUsersData = allUsers
+						console.log(this.allUsersData)
+					})
+				}
 				if (user.data.role !== 'publisher') {
 					return;
 				}

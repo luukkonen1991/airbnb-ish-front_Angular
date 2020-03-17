@@ -17,7 +17,15 @@
 	transition: 0.4s;
 	max-width: 35rem;
 	min-width: 20rem;
-	opacity: 0.6;
+	opacity: 0.4;
+}
+
+.searchFormSmall:hover {
+  opacity: 1;
+}
+
+.searchForm {
+  opacity: 1;
 }
 
 .form:hover {
@@ -25,11 +33,19 @@
 }
 
 .form > h3:hover {
-	text-decoration: underline;
+    color: rgb(20, 20, 20);
+    text-decoration: none;
+    transition: all .2s ease-in-out;
 	opacity: 1.0;
 	cursor: pointer;
 }
 
+
 .inlineCheckBox {
 	display: inline-block;
+}
+
+.form > h3:active {
+  transition:  none;
+  text-shadow: 0 0 5px rgb(150, 150, 150);
 }

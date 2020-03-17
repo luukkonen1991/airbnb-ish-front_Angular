@@ -1,12 +1,6 @@
-<div
-  *ngIf="location !== undefined"
-  class="card"
->
-  <img
-    class="card-img-top resize-img"
-    src="http://localhost:5000/uploads/{{location.data.photo}}"
-    alt="Card image cap"
-  />
+<div *ngIf="location !== undefined" class="card">
+  <img class="card-img-top resize-img" src="http://localhost:5000/uploads/{{location.data.photo}}"
+    alt="Card image cap" />
   <div class="card-body">
     <h1 class="card-title">{{location.data.title}}</h1>
     <h5>
@@ -44,26 +38,36 @@
     <p class="card-text">
       <small class="text-muted">Posted: {{location.data.createdAt | date}}</small>
       <br><br>
-      <button
-        type="button"
-        class="btn btn-secondary mr-1"
-        routerLink=""
-      >Back</button>
-      <button
-        type="button"
-        class="btn btn-primary mr-1"
-        routerLink=""
-      >Contact Host</button>
-      <button
-        type="button"
-        class="btn btn-primary mr-1"
-        routerLink=""
-      >Show Reviews</button>
+      <button type="button" class="btn btn-secondary mr-1" routerLink="">Back</button>
+      <button [disabled]="this.showMe !== true" type="button" class="btn btn-primary mr-1" data-toggle="modal"
+        data-target="#contactHostModal">Contact Host</button>
+      <button type="button" class="btn btn-primary mr-1" routerLink="">Show Reviews</button>
     </p>
   </div>
 </div>
 
-
+<!-- Contact Host Modal -->
+<div *ngIf="this.showMe === true && location !== undefined" class="modal fade delete p-1" id="contactHostModal"
+  tabindex="-1" role="dialog" aria-labelledby="contactHostModalLabel" aria-hidden="true">
+  <div class="modal-dialog m-auto text-center" role="document">
+    <div class="modal-content p-2">
+      <div class="card-body">
+        <h4 class="modal-title"><b>Contact Host</b></h4><br>
+        <h5><b>"{{location.data.title}}"</b></h5>
+        <hr>
+        <div class="modal-body">
+          <h5 class="modal-title" id="contactHostModalLabel">Phone<br> <b>{{location.data.phone}}</b>
+          </h5>
+          <br>
+          <h5 class="modal-title" id="contactHostModalLabel">Email<br> <b>{{location.data.email}}</b>
+          </h5>
+          <br>
+        </div>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- <div *ngIf="location !== undefined"> -->
 <!-- <p>{{location.data.title}}</p> -->

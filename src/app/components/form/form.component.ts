@@ -5,6 +5,7 @@ import { LocationService } from '../../services/location.service';
 import { DataService } from '../../services/data.service';
 
 import { Location } from '../../models/Location';
+import { VirtualTimeScheduler } from 'rxjs';
 
 @Component({
 	selector: 'app-form',
@@ -32,6 +33,7 @@ export class FormComponent implements OnInit {
 	constructor(private dataService: DataService, private locationService: LocationService) {}
 
 	ngOnInit() {
+		this.params.page = 1;
 		console.log(this.params);
 
 		// this.dataService.currentLocations.subscribe((locations) => (this.locations = locations));
@@ -81,6 +83,11 @@ export class FormComponent implements OnInit {
 
 	formState() {
 		this.formShow = !this.formShow;
+		if (this.formShow === true) {
+			document.getElementById('searchForm').setAttribute('class','card card-body form searchForm' )
+		} else {
+			document.getElementById('searchForm').setAttribute('class', 'card card-body form searchFormSmall')
+		}
 		console.log(this.formShow);
 		console.log('clicked');
 	}
