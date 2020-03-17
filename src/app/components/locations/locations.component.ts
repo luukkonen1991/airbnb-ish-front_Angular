@@ -64,11 +64,16 @@ export class LocationsComponent implements OnInit {
 		} else {
 			// console.log(this.fromHome + 'FromHOME');
 			// console.log(this.params);
+			this.pageNumber = this.params.page
+			this.locations = this.fromHome;
+			if (this.fromHome.length >= 4) {
 			this.locationService.getLocations().subscribe(locationArray => {
 				this.pagination = locationArray.pagination;
 			});
-			this.pageNumber = this.params.page
-			this.locations = this.fromHome;
+
+		} else {
+			this.pagination = {};
+		}
 			this.fromHome = undefined;
 		}
 	}
