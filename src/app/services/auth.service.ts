@@ -44,7 +44,8 @@ export class AuthService {
 		let data = {
 			name: authRegister.name,
 			email: authRegister.email,
-			password: authRegister.password
+			password: authRegister.password,
+			role: authRegister.role
 		};
 		return this.http.post<any>(api, data, httpHeaders).pipe(catchError(this.handleError));
 	}
