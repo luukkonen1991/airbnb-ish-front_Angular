@@ -17,6 +17,7 @@ import { Location } from '../../models/Location';
 })
 export class LocationsComponent implements OnInit {
 	pageNumber: number = 1;
+	lastPage: number = null;
 	tempLocations: Location[];
 	locations: Locations['data'];
 	pagination: Locations['pagination'] = {
@@ -62,7 +63,10 @@ export class LocationsComponent implements OnInit {
 				this.params.page || 1
 			)
 			.subscribe(locationArray => {
-				(this.locations = locationArray.data), (this.pagination = locationArray.pagination);
+				(this.locations = locationArray.data),
+					(this.pagination = locationArray.pagination),
+					(this.lastPage = this.countLastPage(locationArray.total, 5));
+				console.log(this.lastPage);
 			});
 
 		this.dataService.currentId.subscribe(_id => (this._id = _id));
@@ -79,10 +83,11 @@ export class LocationsComponent implements OnInit {
 					this.params.sortInput || '',
 					this.params.animalTypes || [],
 					this.params.services || [],
-					this.params.page || 1
+					(this.params.page = 1)
 				)
 				.subscribe(locationArray => {
 					this.pagination = locationArray.pagination;
+					this.lastPage = this.countLastPage(locationArray.total, 5);
 				});
 			this.pageNumber = this.params.page;
 			this.locations = this.fromHome;
@@ -154,5 +159,10 @@ export class LocationsComponent implements OnInit {
 			this.pageNumber--;
 			this.dataService.changePage(this.pageNumber);
 		}
+	}
+
+	countLastPage(x: number, y: number) {
+		let val = x / y;
+		return Math.ceil(val);
 	}
 }
