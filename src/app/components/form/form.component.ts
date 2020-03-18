@@ -1,11 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChildren, ElementRef } from '@angular/core';
+// import { FormBuilder } from '@angular/forms';
 
 import { LocationService } from '../../services/location.service';
 import { DataService } from '../../services/data.service';
 
 import { Location } from '../../models/Location';
-import { VirtualTimeScheduler } from 'rxjs';
 
 @Component({
 	selector: 'app-form',
@@ -15,6 +14,8 @@ import { VirtualTimeScheduler } from 'rxjs';
 	]
 })
 export class FormComponent implements OnInit {
+	@ViewChildren('inputs') public inputs: ElementRef<HTMLInputElement>[];
+
 	locations: Location[];
 
 	formShow: boolean = false;
@@ -77,23 +78,25 @@ export class FormComponent implements OnInit {
 			(this.params.maxPrice = null),
 			(this.params.sortInput = ''),
 			(this.params.sortInput = ''),
-			(this.params.animalTypes = undefined);
-		this.params.services = undefined;
+			(this.params.animalTypes = []);
+		this.params.services = [];
+		this.uncheck();
+		// console.log(this.input.nativeElement);
+		// console.log(document.querySelectorAll('Dog'));
 	}
 
 	formState() {
 		this.formShow = !this.formShow;
 		if (this.formShow === true) {
-			document.getElementById('searchForm').setAttribute('class','card card-body form searchForm' )
+			document.getElementById('searchForm').setAttribute('class', 'card card-body form searchForm');
 		} else {
-			document.getElementById('searchForm').setAttribute('class', 'card card-body form searchFormSmall')
+			document.getElementById('searchForm').setAttribute('class', 'card card-body form searchFormSmall');
 		}
 		console.log(this.formShow);
 		console.log('clicked');
 	}
 
 	getCheckboxValueAnimalTypes(event: Event) {
-		console.log(event);
 		if ((<HTMLInputElement>event.target).checked === true) {
 			this.params.animalTypes.push((<HTMLInputElement>event.target).value);
 		} else if ((<HTMLInputElement>event.target).checked === false) {
@@ -102,11 +105,21 @@ export class FormComponent implements OnInit {
 	}
 
 	getCheckboxValueAnimalServices(event: Event) {
-		console.log(event);
 		if ((<HTMLInputElement>event.target).checked === true) {
 			this.params.services.push((<HTMLInputElement>event.target).value);
 		} else if ((<HTMLInputElement>event.target).checked === false) {
 			this.params.services.splice((<HTMLInputElement>event.target).value, 1);
 		}
 	}
+
+	uncheck() {
+		this.inputs.forEach(check => {
+			check.nativeElement.checked = false;
+		});
+	}
+	// clearCheckBoxes() {
+	// 	if ((<HTMLInputElement>event.target).checked === true) {
+	// 		(<HTMLInputElement>event.target).checked = false;
+	// 	}
+	// }
 }
