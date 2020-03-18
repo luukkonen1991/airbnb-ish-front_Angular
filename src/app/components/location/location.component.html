@@ -1,3 +1,5 @@
+<!-- Hotel info screen -->
+
 <div
   *ngIf="location !== undefined"
   class="card"
@@ -108,22 +110,14 @@
   </div>
 </div>
 
-<!-- <div *ngIf="location !== undefined"> -->
-<!-- <p>{{location.data.title}}</p> -->
-<!-- <p>{{location.data.title}}</p> -->
-<!-- <p>{{data}}</p>
-</div> -->
+<!-- Loading Screen -->
 
 <div class="d-flex justify-content-center">
   <div
-    class="spinner-border"
+    class="spinner-border m-4"
     role="status"
     *ngIf="location === undefined"
   >
     <h2 class="sr-only">Loading...</h2>
   </div>
 </div>
-
-<!-- <div *ngIf="location === undefined">
-  <h4 class="text-center">Loading...</h4>
-</div> -->

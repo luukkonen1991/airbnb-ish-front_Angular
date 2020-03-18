@@ -6,6 +6,8 @@ import { LocationService } from 'src/app/services/location.service';
 import { LocationById } from 'src/app/models/LocationById';
 import { UpdateLocation } from '../../models/UpdateLocation';
 import { DataService } from 'src/app/services/data.service';
+import { UserService } from 'src/app/services/user.service';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
 	selector: 'app-current-user',
@@ -35,14 +37,15 @@ export class CurrentUserComponent implements OnInit {
 	constructor(
 		private authService: AuthService,
 		private locationService: LocationService,
-		private dataService: DataService
+		private dataService: DataService,
+		private userService: UserService
 	) {}
 
 	ngOnInit() {
 		this.authService.getMe().subscribe(
 			user => {
 				if (user.data.role === 'admin') {
-					this.authService.getAllUsers().subscribe(allUsers => {
+					this.userService.getAllUsers(100000).subscribe(allUsers => {
 						this.allUsersData = allUsers
 						console.log(this.allUsersData)
 					})
