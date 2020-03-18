@@ -83,7 +83,7 @@ export class LocationsComponent implements OnInit {
 					this.params.sortInput || '',
 					this.params.animalTypes || [],
 					this.params.services || [],
-					this.params.page || 1
+					(this.params.page = 1)
 				)
 				.subscribe(locationArray => {
 					this.pagination = locationArray.pagination;
