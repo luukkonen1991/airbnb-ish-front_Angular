@@ -17,6 +17,7 @@ import { Location } from '../../models/Location';
 })
 export class LocationsComponent implements OnInit {
 	pageNumber: number = 1;
+	lastPage: number = null;
 	tempLocations: Location[];
 	locations: Locations['data'];
 	pagination: Locations['pagination'] = {
@@ -62,7 +63,10 @@ export class LocationsComponent implements OnInit {
 				this.params.page || 1
 			)
 			.subscribe(locationArray => {
-				(this.locations = locationArray.data), (this.pagination = locationArray.pagination);
+				(this.locations = locationArray.data),
+					(this.pagination = locationArray.pagination),
+					(this.lastPage = Math.ceil(locationArray.total / 5));
+				console.log(this.lastPage);
 			});
 
 		this.dataService.currentId.subscribe(_id => (this._id = _id));
