@@ -10,6 +10,10 @@ export class DataService {
 	locations: Location[];
 	_id: string;
 	msg: any;
+	page: number;
+
+	private searchPage = new BehaviorSubject(this.page);
+	currentPage = this.searchPage.asObservable();
 
 	private searchParams = new BehaviorSubject({});
 	currentParams = this.searchParams.asObservable();
@@ -23,7 +27,11 @@ export class DataService {
 	private loginResponse = new BehaviorSubject(this.msg);
 	currentResponse = this.loginResponse.asObservable();
 
-	constructor() { }
+	constructor() {}
+
+	changePage(page: number) {
+		this.searchPage.next(page);
+	}
 
 	changeParams(params: any) {
 		this.searchParams.next(params);
@@ -43,16 +51,16 @@ export class DataService {
 	showNotification(text: string, success: boolean) {
 		if (document.getElementById('showNotificationBox')) {
 			if (success === true) {
-				document.getElementById('showNotificationBox').setAttribute('class', 'alert alert-success text-center')
-				document.getElementById('showNotificationBox').setAttribute('id', 'hideNotificationBox')
-				document.getElementById('hideNotificationBox').innerText = text
+				document.getElementById('showNotificationBox').setAttribute('class', 'alert alert-success text-center');
+				document.getElementById('showNotificationBox').setAttribute('id', 'hideNotificationBox');
+				document.getElementById('hideNotificationBox').innerText = text;
 			}
 			if (success === false) {
-				document.getElementById('showNotificationBox').setAttribute('class', 'alert alert-danger text-center')
-				document.getElementById('showNotificationBox').setAttribute('id', 'hideNotificationBox')
-				document.getElementById('hideNotificationBox').innerText = text
+				document.getElementById('showNotificationBox').setAttribute('class', 'alert alert-danger text-center');
+				document.getElementById('showNotificationBox').setAttribute('id', 'hideNotificationBox');
+				document.getElementById('hideNotificationBox').innerText = text;
 			}
-			setTimeout(function () {
+			setTimeout(function() {
 				document.getElementById('hideNotificationBox').setAttribute('id', 'showNotificationBox');
 			}, 2500);
 		}

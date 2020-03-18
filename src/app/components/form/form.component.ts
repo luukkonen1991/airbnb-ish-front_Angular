@@ -97,8 +97,6 @@ export class FormComponent implements OnInit {
 	}
 
 	getCheckboxValueAnimalTypes(event: Event) {
-		console.log(event);
-		console.log(event);
 		if ((<HTMLInputElement>event.target).checked === true) {
 			this.params.animalTypes.push((<HTMLInputElement>event.target).value);
 		} else if ((<HTMLInputElement>event.target).checked === false) {
@@ -107,7 +105,6 @@ export class FormComponent implements OnInit {
 	}
 
 	getCheckboxValueAnimalServices(event: Event) {
-		console.log(event);
 		if ((<HTMLInputElement>event.target).checked === true) {
 			this.params.services.push((<HTMLInputElement>event.target).value);
 		} else if ((<HTMLInputElement>event.target).checked === false) {

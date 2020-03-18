@@ -17,6 +17,14 @@ export class LocationComponent implements OnInit {
 	_id: string;
 	showMe: boolean;
 
+	params: any = {
+		minPrice: null,
+		maxPrice: null,
+		sortInput: '',
+		animalTypes: [],
+		services: []
+	};
+
 	constructor(
 		private route: ActivatedRoute,
 		private locationService: LocationService,
@@ -38,5 +46,9 @@ export class LocationComponent implements OnInit {
 		if (token) {
 			this.showMe = true;
 		}
+	}
+
+	backToLocations() {
+		this.dataService.changeParams(this.params);
 	}
 }
