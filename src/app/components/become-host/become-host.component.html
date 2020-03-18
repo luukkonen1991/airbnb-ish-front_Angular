@@ -1,10 +1,63 @@
-<h2>
-    Become host
-</h2>
-<p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam deserunt magnam a illum, obcaecati nihil recusandae blanditiis cupiditate mollitia consequatur fuga consequuntur pariatur aperiam rem nulla culpa veritatis, vel animi quaerat nobis deleniti veniam! Praesentium, esse impedit. Recusandae quaerat exercitationem commodi suscipit odio officiis distinctio? Suscipit placeat optio saepe corporis facilis harum quia aperiam culpa, sapiente, excepturi exercitationem quisquam quos accusantium eligendi, at soluta? Modi voluptates temporibus sed dolorem excepturi ab deserunt magnam a recusandae fugiat eos voluptate impedit dolor suscipit voluptatem molestias, voluptatum iusto eius voluptas blanditiis maiores distinctio. Laudantium ratione, aperiam ex consequuntur, molestiae quia iure distinctio cupiditate, minus eum veniam tenetur. Reprehenderit rem dicta dolorem doloremque, maxime enim quae ab illo mollitia similique ducimus vero, repellat animi quia neque sint nostrum exercitationem nam iste eos consectetur. Repellendus tenetur provident necessitatibus nisi ipsam, excepturi omnis modi laudantium ut adipisci ab vitae tempore temporibus dolore ea consequatur exercitationem. Quis, voluptate nihil omnis quibusdam commodi quas accusantium alias ad minus. Nesciunt sit et aperiam modi voluptatem soluta quas mollitia autem odio eligendi commodi illo nisi assumenda provident ab, velit magnam quia reprehenderit, iure accusantium aliquam vero. Voluptas animi, odit dolores, porro nulla, nemo quod tempora ipsam enim quas maxime maiores.
-</p>
+<!-- Become a host info screen -->
 
-<p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, vel numquam. Ex ducimus officia natus doloremque expedita sequi, incidunt hic dolore consectetur veniam rerum modi similique magnam excepturi in atque eos temporibus, et nihil. Praesentium atque sapiente maxime ab deleniti omnis sint molestiae quam, corrupti unde fugit nostrum dignissimos aspernatur?
-</p>
+<div class="justify-content-center">
+    <p class="text-center alert alert-info m-4">
+        You register through here if you want to host your own pet hotel. As a host you are not able to contact or rate other hosts.
+        <br>
+        If you are looking for places to leave your pet, go to the
+        <a class="text-info m-0 p-0" routerLink='/login' routerLinkActive="link-active">Sign Up / Login</a>
+        page.
+    </p>
+</div>
+
+<!-- Become a host form-->
+
+<div class="card card-body mb-3 mt-0 form">
+    <h2 class="text-center">Become a host</h2>
+    <form class="justify-content-center" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+        <div class="form-group">
+            <label>Name</label>
+            <input type="email" [(ngModel)]="authRegister.name" [ngClass]="{
+        'is-invalid': name.errors && name.touched
+      }" class="form-control" name="name" #name="ngModel" required minlength="2" />
+
+            <div [hidden]="!name.errors?.required" class="invalid-feedback">
+                name required
+            </div>
+
+            <div [hidden]="!name.errors?.minlength" class="invalid-feedback">
+                Must be at least 2 characters
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" [(ngModel)]="authRegister.email" [ngClass]="{
+          'is-invalid': email.errors && email.touched
+        }" class="form-control" name="email" #email="ngModel" required pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" />
+
+            <div [hidden]="!email.errors?.required" class="invalid-feedback">
+                Email required
+            </div>
+            <div [hidden]="!email.errors?.pattern" class="invalid-feedback">
+                Email is not valid
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" [(ngModel)]="authRegister.password" [ngClass]="{
+          'is-invalid': password.errors && password.touched
+        }" class="form-control" name="firstName" #password="ngModel" required minlength="6" />
+            <div [hidden]="!password.errors?.required" class="invalid-feedback">
+                Password required
+            </div>
+            <div [hidden]="!password.errors?.minlength" class="invalid-feedback">
+                Must be at least 6 characters
+            </div>
+        </div>
+        <br>
+        <button [disabled]="!authForm.form.valid" class="btn btn-block btn-primary mb-3">
+            Become a host
+        </button>
+        <p class="errorState">{{this.errorState}}</p>
+    </form>
+</div>

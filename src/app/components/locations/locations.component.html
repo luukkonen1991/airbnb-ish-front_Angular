@@ -1,16 +1,11 @@
+<!-- Locations -->
+
 <div class="daddy-div">
   <h2 class="text-center mt-5">Most recent locations</h2>
   <div class="results">
-    <div
-      class="card-group"
-      *ngFor="let item of locations"
-    >
+    <div class="card-group" *ngFor="let item of locations">
       <div class="card resize-card m-2">
-        <img
-          class="card-img-top resize-img"
-          src="http://localhost:5000/uploads/{{item.photo}}"
-          alt="Card image cap"
-        />
+        <img class="card-img-top resize-img" src="http://localhost:5000/uploads/{{item.photo}}" alt="Card image cap" />
         <div class="card-body">
           <h3 class="card-title">{{item.title}}</h3>
           <p class="card-text">
@@ -21,17 +16,13 @@
           </p>
           <p class="card-text">
             <small class="text-muted">Posted: {{item.createdAt | date}}</small>
-            <a
-              type="button"
-              class="btn btn-secondary ml-2"
-              routerLink="/location/{{item.slug}}"
-              (click)="passLocationId(item._id)"
-            >View locations</a>
+            <a type="button" class="btn btn-secondary ml-2" routerLink="/location/{{item.slug}}"
+              (click)="passLocationId(item._id)">View locations</a>
           </p>
         </div>
       </div>
     </div>
-    <div class="pagination">
+    <div class="pagination" *ngIf="locations !== undefined">
       <button
         [disabled]="this.pagination.prev === undefined"
         (click)="changePagePrev('prev')"
@@ -45,12 +36,19 @@
       ><i class="fa fa-chevron-right"></i></button>
     </div>
   </div>
-  <div class="map-div m-2">
-    <img
-      class="map-img"
-      src="../../../assets/coming_soon_map.png"
-      alt=""
-    />
+
+  <!-- Map -->
+
+  <div class="map-div m-2" *ngIf="locations !== undefined">
+    <img class="map-img" src="../../../assets/coming_soon_map.png" alt="" />
   </div>
 </div>
 <div>
+
+  <!-- Loading Screen -->
+
+  <div class="d-flex justify-content-center">
+    <div class="spinner-border m-4" role="status" *ngIf="locations === undefined">
+      <h2 class="sr-only">Loading...</h2>
+    </div>
+  </div>

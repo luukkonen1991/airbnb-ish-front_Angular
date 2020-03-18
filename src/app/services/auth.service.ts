@@ -27,7 +27,6 @@ let httpHeadersPost = {
 })
 export class AuthService {
 	authUrl: string = 'http://localhost:5000/api/v1/auth';
-	adminAuthUrl: string = 'http://localhost:5000/api/v1';
 	token: string;
 	authRegister: AuthRegister;
 
@@ -44,7 +43,8 @@ export class AuthService {
 		let data = {
 			name: authRegister.name,
 			email: authRegister.email,
-			password: authRegister.password
+			password: authRegister.password,
+			role: authRegister.role
 		};
 		return this.http.post<any>(api, data, httpHeaders).pipe(catchError(this.handleError));
 	}
@@ -80,13 +80,6 @@ export class AuthService {
 	// current user
 	getMe(): Observable<User> {
 		let api = `${this.authUrl}/me`;
-		let token = sessionStorage.getItem('token');
-		httpHeaders.headers = httpHeaders.headers.set('Authorization', `Bearer ${token}`);
-		return this.http.get<User>(api, httpHeaders).pipe(catchError(this.handleError));
-	}
-
-	getAllUsers(): Observable<User> {
-		let api = `${this.adminAuthUrl}/users`;
 		let token = sessionStorage.getItem('token');
 		httpHeaders.headers = httpHeaders.headers.set('Authorization', `Bearer ${token}`);
 		return this.http.get<User>(api, httpHeaders).pipe(catchError(this.handleError));
