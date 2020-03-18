@@ -1,9 +1,20 @@
-<div class="card card-body mb-3 form">
-    <h2 class="text-center">Become a Host</h2>
+<!-- Become a host info screen -->
+
+<div class="justify-content-center">
+    <p class="text-center alert alert-info m-4">
+        You register through here if you want to host your own pet hotel. As a host you are not able to contact or rate other hosts.
+        <br>
+        If you are looking for places to leave your pet, go to the
+        <a class="text-info m-0 p-0" routerLink='/login' routerLinkActive="link-active">Sign Up / Login</a>
+        page.
+    </p>
+</div>
+
+<!-- Become a host form-->
+
+<div class="card card-body mb-3 mt-0 form">
+    <h2 class="text-center">Become a host</h2>
     <form class="justify-content-center" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
-
-
-
         <div class="form-group">
             <label>Name</label>
             <input type="email" [(ngModel)]="authRegister.name" [ngClass]="{
