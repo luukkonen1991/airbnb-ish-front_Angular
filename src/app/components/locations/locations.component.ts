@@ -65,7 +65,7 @@ export class LocationsComponent implements OnInit {
 			.subscribe(locationArray => {
 				(this.locations = locationArray.data),
 					(this.pagination = locationArray.pagination),
-					(this.lastPage = Math.ceil(locationArray.total / 5));
+					(this.lastPage = this.countLastPage(locationArray.total, 5));
 				console.log(this.lastPage);
 			});
 
@@ -87,6 +87,7 @@ export class LocationsComponent implements OnInit {
 				)
 				.subscribe(locationArray => {
 					this.pagination = locationArray.pagination;
+					this.lastPage = this.countLastPage(locationArray.total, 5);
 				});
 			this.pageNumber = this.params.page;
 			this.locations = this.fromHome;
@@ -158,5 +159,10 @@ export class LocationsComponent implements OnInit {
 			this.pageNumber--;
 			this.dataService.changePage(this.pageNumber);
 		}
+	}
+
+	countLastPage(x: number, y: number) {
+		let val = x / y;
+		return Math.ceil(val);
 	}
 }
