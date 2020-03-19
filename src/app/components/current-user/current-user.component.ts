@@ -102,6 +102,8 @@ export class CurrentUserComponent implements OnInit {
 	}
 
 	editHotel() {
+		this.getCheckboxValueAnimalServices(event);
+		this.getCheckboxValueAnimalTypes(event);
 		this.locationService
 			.updateLocation(this.location.data[0]._id, this.location.data[0], this.userData.data._id)
 			.subscribe(location => {
@@ -109,6 +111,7 @@ export class CurrentUserComponent implements OnInit {
 				this.location.data[0] = location.data;
 				this.dataService.showNotification('Hotel edited successfully!', true);
 			});
+		this.uncheck();
 	}
 
 	addHotel() {
@@ -126,9 +129,12 @@ export class CurrentUserComponent implements OnInit {
 		} else if ((<HTMLInputElement>event.target).checked === true && this.location !== undefined) {
 			this.location.data[0].animalTypes.push((<HTMLInputElement>event.target).value);
 		} else if ((<HTMLInputElement>event.target).checked === false && this.location === undefined) {
-			this.newLocation.animalTypes.splice(+(<HTMLInputElement>event.target).value, 1);
+			this.newLocation.animalTypes.splice(
+				this.newLocation.animalTypes.indexOf((<HTMLInputElement>event.target).value),
+				1
+			);
 		} else if ((<HTMLInputElement>event.target).checked === false && this.location !== undefined) {
-			this.location.data[0].animalTypes.splice(+(<HTMLInputElement>event.target).value, 1);
+			this.location.data[0].animalTypes.splice((<HTMLInputElement>event.target).value, 1);
 		}
 	}
 
@@ -138,9 +144,12 @@ export class CurrentUserComponent implements OnInit {
 		} else if ((<HTMLInputElement>event.target).checked === true && this.location !== undefined) {
 			this.location.data[0].services.push((<HTMLInputElement>event.target).value);
 		} else if ((<HTMLInputElement>event.target).checked === false && this.location === undefined) {
-			this.newLocation.services.splice(+(<HTMLInputElement>event.target).value, 1);
+			this.newLocation.services.splice(
+				this.newLocation.services.indexOf((<HTMLInputElement>event.target).value),
+				1
+			);
 		} else if ((<HTMLInputElement>event.target).checked === false && this.location !== undefined) {
-			this.location.data[0].services.splice(+(<HTMLInputElement>event.target).value, 1);
+			this.location.data[0].services.splice((<HTMLInputElement>event.target).value, 1);
 		}
 	}
 	getCostTypeValue(event: Event) {
@@ -154,6 +163,7 @@ export class CurrentUserComponent implements OnInit {
 	oldValues() {
 		console.log('cliccked');
 		console.log(this.location.data[0].animalTypes);
+		console.log(this.location.data[0].services);
 		this.inputs.forEach(check => {
 			if (this.location.data[0].animalTypes.includes(check.nativeElement.value)) {
 				check.nativeElement.checked = true;
@@ -172,6 +182,12 @@ export class CurrentUserComponent implements OnInit {
 		// 	check.nativeElement.checked = true;
 		// }
 		// });
+	}
+
+	uncheck() {
+		this.inputs.forEach(check => {
+			check.nativeElement.checked = false;
+		});
 	}
 
 	//admincommands
