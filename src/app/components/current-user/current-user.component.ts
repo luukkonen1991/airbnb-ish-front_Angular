@@ -44,21 +44,20 @@ export class CurrentUserComponent implements OnInit {
 		private dataService: DataService,
 		private userService: UserService,
 		private contactService: ContactService
-	) { }
+	) {}
 
 	ngOnInit() {
 		this.authService.getMe().subscribe(
 			user => {
 				if (user.data.role === 'admin') {
 					this.userService.getAllUsers(100000).subscribe(allUsers => {
-
-						this.allUsersData = allUsers
-						console.log(this.allUsersData)
-					})
+						this.allUsersData = allUsers;
+						console.log(this.allUsersData);
+					});
 					this.contactService.getAllMessages(100000).subscribe(allMessages => {
-						this.allMessagesData = allMessages
-						console.log(this.allMessagesData)
-					})
+						this.allMessagesData = allMessages;
+						console.log(this.allMessagesData);
+					});
 				}
 				if (user.data.role !== 'publisher') {
 					return;
@@ -120,12 +119,12 @@ export class CurrentUserComponent implements OnInit {
 		this.ngOnInit();
 		this.dataService.showNotification('New hotel added succesfully!', true);
 	}
-  
+
 	getCheckboxValueAnimalTypes(event: Event) {
 		if ((<HTMLInputElement>event.target).checked === true && this.location === undefined) {
 			this.newLocation.animalTypes.push((<HTMLInputElement>event.target).value);
 		} else if ((<HTMLInputElement>event.target).checked === true && this.location !== undefined) {
-			this.location.data[0].services.push((<HTMLInputElement>event.target).value);
+			this.location.data[0].animalTypes.push((<HTMLInputElement>event.target).value);
 		} else if ((<HTMLInputElement>event.target).checked === false && this.location === undefined) {
 			this.newLocation.animalTypes.splice(+(<HTMLInputElement>event.target).value, 1);
 		} else if ((<HTMLInputElement>event.target).checked === false && this.location !== undefined) {
@@ -173,16 +172,16 @@ export class CurrentUserComponent implements OnInit {
 		// 	check.nativeElement.checked = true;
 		// }
 		// });
-
+	}
 
 	//admincommands
 	deleteUser(deleteId) {
 		console.log(deleteId);
 		this.userService.deleteUser(deleteId).subscribe();
 		this.userService.getAllUsers(100000).subscribe(allUsers => {
-			this.allUsersData = allUsers
-			console.log(this.allUsersData)
-		})
+			this.allUsersData = allUsers;
+			console.log(this.allUsersData);
+		});
 		this.dataService.showNotification('User deleted successfully!', true);
 	}
 
@@ -190,22 +189,23 @@ export class CurrentUserComponent implements OnInit {
 		console.log(deleteId);
 		this.contactService.deleteMessage(deleteId).subscribe();
 		this.contactService.getAllMessages(100000).subscribe(allMessages => {
-			this.allMessagesData = allMessages
-			console.log(this.allMessagesData)
+			this.allMessagesData = allMessages;
+			console.log(this.allMessagesData);
 		});
 		this.dataService.showNotification('Message deleted successfully!', true);
 	}
 
 	passDeleteMessageData(id, msg) {
 		console.log(id);
-		document.getElementById('deleteMessageModalLabel').innerHTML = 'Are you sure you want to delete message: "<b>' + msg + '"</b>?';
-		document.getElementById('deleteMessageId').addEventListener("click", () => this.deleteMessage(id));
+		document.getElementById('deleteMessageModalLabel').innerHTML =
+			'Are you sure you want to delete message: "<b>' + msg + '"</b>?';
+		document.getElementById('deleteMessageId').addEventListener('click', () => this.deleteMessage(id));
 	}
 
 	passDeleteUserData(id, name) {
 		console.log(id);
-		document.getElementById('deleteUserModalLabel').innerHTML = 'Are you sure you want to delete user: "<b>' + name + '"</b>?';
-		document.getElementById('deleteUserId').addEventListener("click", () => this.deleteUser(id));
-
+		document.getElementById('deleteUserModalLabel').innerHTML =
+			'Are you sure you want to delete user: "<b>' + name + '"</b>?';
+		document.getElementById('deleteUserId').addEventListener('click', () => this.deleteUser(id));
 	}
 }
