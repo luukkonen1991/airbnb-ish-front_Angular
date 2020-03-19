@@ -181,6 +181,7 @@
       routerLink=""
     >Preview Hotel</button>
     <button
+      (click)="oldValues()"
       type="button"
       class="btn btn-warning m-1"
       data-toggle="modal"
@@ -303,7 +304,10 @@
             value="{{location.data[0].costAmount}}"
             #costAmount
           /><br>
-          <label>Price (Day or Hour)</label>
+
+
+
+          <!-- <label>Price (Day or Hour)</label>
           <input
             [(ngModel)]="this.location.data[0].costType"
             type="text"
@@ -311,7 +315,55 @@
             name="costType"
             value="{{location.data[0].costType}}"
             #costType
-          /><br>
+          /><br> -->
+
+          <div class="form-check inlineCheckBox">
+            <label class="label">Price (Day or Hour)</label><br>
+            <div class="form-row flexbox">
+              <div class="form-check">
+                <input
+                  (click)="getCostTypeValue($event)"
+                  class="form-check-input"
+                  type="radio"
+                  name=costTypeRadios
+                  id="Day"
+                  value="Day"
+                  #inputs
+                >
+                <label
+                  class="form-check-label"
+                  for="Day"
+                >
+                  Day
+                </label>
+              </div>
+
+
+
+              <div class="form-check">
+                <input
+                  (click)="getCostTypeValue($event)"
+                  class="form-check-input"
+                  type="radio"
+                  name=costTypeRadios
+                  id="Hour"
+                  value="Hour"
+                  #inputs
+                >
+                <label
+                  class="form-check-label"
+                  for="Hour"
+                >
+                  Hour
+                </label>
+              </div>
+            </div>
+          </div>
+          <br>
+          <br>
+
+
+
           <label>Email address</label>
           <input
             [(ngModel)]="this.location.data[0].email"
@@ -330,6 +382,108 @@
             value="{{location.data[0].phone}}"
             #phone
           />
+        </div>
+      </div>
+      <div class="form-check inlineCheckBox">
+        <label class="label">Animal Types</label><br>
+        <div class="form-row">
+          <div class="custom-control custom-checkbox">
+            <input
+              class="custom-control-input"
+              (click)="getCheckboxValueAnimalTypes($event)"
+              type="checkbox"
+              value="Dogs"
+              name="Dogs"
+              id="Dogs"
+              #inputs
+            >
+            <label
+              class="custom-control-label mr-2"
+              for="Dogs"
+            >Dogs</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input
+              class="custom-control-input"
+              (click)="getCheckboxValueAnimalTypes($event)"
+              type="checkbox"
+              value="Cats"
+              name="Cats"
+              id="Cats"
+              #inputs
+            >
+            <label
+              class="custom-control-label mr-2"
+              for="Cats"
+            >Cats</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input
+              class="custom-control-input"
+              (click)="getCheckboxValueAnimalTypes($event)"
+              type="checkbox"
+              value="Other"
+              name="Other"
+              id="Other"
+              #inputs
+            >
+            <label
+              class="custom-control-label mr-2"
+              for="Other"
+            >Other</label>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="form-check inlineCheckBox">
+        <!-- <p>infoa {{params.animalTypeDog}} {{params.animalTypeCat}}</p> -->
+        <label class="label">Services</label><br>
+        <div class="form-row">
+          <div class="custom-control custom-checkbox">
+            <input
+              class="custom-control-input"
+              (click)="getCheckboxValueAnimalServices($event)"
+              type="checkbox"
+              value="Food"
+              name="Food"
+              id="Food"
+              #inputs
+            >
+            <label
+              class="custom-control-label mr-2"
+              for="Food"
+            >Food</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input
+              class="custom-control-input"
+              (click)="getCheckboxValueAnimalServices($event)"
+              type="checkbox"
+              value="Toys"
+              name="Toys"
+              id="Toys"
+              #inputs
+            >
+            <label
+              class="custom-control-label mr-2"
+              for="Toys"
+            >Toys</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input
+              class="custom-control-input"
+              (click)="getCheckboxValueAnimalServices($event)"
+              type="checkbox"
+              value="Walking"
+              name="Walking"
+              id="Walking"
+              #inputs
+            >
+            <label
+              class="custom-control-label mr-2"
+              for="Walking"
+            >Walking</label>
+          </div>
         </div>
       </div>
       <div class="modal-footer">
@@ -476,6 +630,7 @@
                   name=costTypeRadios
                   id="Day"
                   value="Day"
+                  #inputs
                 >
                 <label
                   class="form-check-label"
@@ -495,6 +650,7 @@
                   name=costTypeRadios
                   id="Hour"
                   value="Hour"
+                  #inputs
                 >
                 <label
                   class="form-check-label"

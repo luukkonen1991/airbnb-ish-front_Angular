@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChildren, ElementRef } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 
 import { User } from '../../models/User';
@@ -17,6 +17,7 @@ import { HttpParams } from '@angular/common/http';
 	]
 })
 export class CurrentUserComponent implements OnInit {
+	@ViewChildren('inputs') public inputs: ElementRef<HTMLInputElement>[];
 	// currentUser: User;
 	userData: User;
 	allUsersData: User;
@@ -111,23 +112,55 @@ export class CurrentUserComponent implements OnInit {
 	}
 
 	getCheckboxValueAnimalTypes(event: Event) {
-		if ((<HTMLInputElement>event.target).checked === true) {
+		if ((<HTMLInputElement>event.target).checked === true && this.location === undefined) {
 			this.newLocation.animalTypes.push((<HTMLInputElement>event.target).value);
+			if ((<HTMLInputElement>event.target).checked === true && this.location !== undefined) {
+				this.location.data[0].services.push((<HTMLInputElement>event.target).value);
+			}
 		} else if ((<HTMLInputElement>event.target).checked === false) {
 			this.newLocation.animalTypes.splice(+(<HTMLInputElement>event.target).value, 1);
 		}
 	}
 
 	getCheckboxValueAnimalServices(event: Event) {
-		if ((<HTMLInputElement>event.target).checked === true) {
+		if ((<HTMLInputElement>event.target).checked === true && this.location === undefined) {
 			this.newLocation.services.push((<HTMLInputElement>event.target).value);
+			if ((<HTMLInputElement>event.target).checked === true && this.location !== undefined) {
+				this.location.data[0].services.push((<HTMLInputElement>event.target).value);
+			}
 		} else if ((<HTMLInputElement>event.target).checked === false) {
 			this.newLocation.services.splice(+(<HTMLInputElement>event.target).value, 1);
 		}
 	}
 	getCostTypeValue(event: Event) {
-		if ((<HTMLInputElement>event.target).checked === true) {
+		if ((<HTMLInputElement>event.target).checked === true && this.location === undefined) {
 			this.newLocation.costType = (<HTMLInputElement>event.target).value;
 		}
+		if ((<HTMLInputElement>event.target).checked === true && this.location !== undefined) {
+			this.location.data[0].costType = (<HTMLInputElement>event.target).value;
+		}
+	}
+	oldValues() {
+		console.log('cliccked');
+		console.log(this.location.data[0].animalTypes);
+		this.inputs.forEach(check => {
+			if (this.location.data[0].animalTypes.includes(check.nativeElement.value)) {
+				check.nativeElement.checked = true;
+			}
+			if (this.location.data[0].services.includes(check.nativeElement.value)) {
+				check.nativeElement.checked = true;
+			}
+			if (this.location.data[0].costType.includes(check.nativeElement.value)) {
+				check.nativeElement.checked = true;
+			}
+		});
+
+		// this.inputs.forEach(check => {
+		// 	console.log(this.location.data.animalTypes);
+		// 	console.log(check.nativeElement.value, 'tämä');
+		// if (this.location.data.animalTypes.includes(check.nativeElement.value)) {
+		// 	check.nativeElement.checked = true;
+		// }
+		// });
 	}
 }
