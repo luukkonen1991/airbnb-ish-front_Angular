@@ -41,6 +41,7 @@ label {
 	text-align: center;
 }
 
+
 .inlineCheckBox {
 	padding: 0px;
 	width: 50%;
@@ -68,3 +69,12 @@ label {
 	display: flex;
 	justify-content: space-evenly;
 }
+
+.collapseBtn {
+	cursor: pointer;
+}
+
+.text-muted {
+	font-size: 0.5em;
+}
+

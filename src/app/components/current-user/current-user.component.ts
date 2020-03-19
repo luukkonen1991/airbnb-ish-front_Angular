@@ -8,6 +8,8 @@ import { UpdateLocation } from '../../models/UpdateLocation';
 import { DataService } from 'src/app/services/data.service';
 import { UserService } from 'src/app/services/user.service';
 import { HttpParams } from '@angular/common/http';
+import { ContactService } from 'src/app/services/contact.service';
+import { ContactMessage } from 'src/app/models/ContactMessage';
 
 @Component({
 	selector: 'app-current-user',
@@ -21,6 +23,7 @@ export class CurrentUserComponent implements OnInit {
 	// currentUser: User;
 	userData: User;
 	allUsersData: User;
+	allMessagesData: ContactMessage;
 	location: LocationById = undefined;
 	newLocation: UpdateLocation = {
 		title: '',
@@ -39,17 +42,23 @@ export class CurrentUserComponent implements OnInit {
 		private authService: AuthService,
 		private locationService: LocationService,
 		private dataService: DataService,
-		private userService: UserService
-	) {}
+		private userService: UserService,
+		private contactService: ContactService
+	) { }
 
 	ngOnInit() {
 		this.authService.getMe().subscribe(
 			user => {
 				if (user.data.role === 'admin') {
 					this.userService.getAllUsers(100000).subscribe(allUsers => {
-						this.allUsersData = allUsers;
-						console.log(this.allUsersData);
-					});
+
+						this.allUsersData = allUsers
+						console.log(this.allUsersData)
+					})
+					this.contactService.getAllMessages(100000).subscribe(allMessages => {
+						this.allMessagesData = allMessages
+						console.log(this.allMessagesData)
+					})
 				}
 				if (user.data.role !== 'publisher') {
 					return;
@@ -83,6 +92,7 @@ export class CurrentUserComponent implements OnInit {
 		);
 	}
 
+	//usercommands
 	deleteProfile() {
 		this.dataService.showNotification('Profile delete not ready!', true);
 	}
@@ -110,7 +120,7 @@ export class CurrentUserComponent implements OnInit {
 		this.ngOnInit();
 		this.dataService.showNotification('New hotel added succesfully!', true);
 	}
-
+  
 	getCheckboxValueAnimalTypes(event: Event) {
 		if ((<HTMLInputElement>event.target).checked === true && this.location === undefined) {
 			this.newLocation.animalTypes.push((<HTMLInputElement>event.target).value);
@@ -163,5 +173,39 @@ export class CurrentUserComponent implements OnInit {
 		// 	check.nativeElement.checked = true;
 		// }
 		// });
+
+
+	//admincommands
+	deleteUser(deleteId) {
+		console.log(deleteId);
+		this.userService.deleteUser(deleteId).subscribe();
+		this.userService.getAllUsers(100000).subscribe(allUsers => {
+			this.allUsersData = allUsers
+			console.log(this.allUsersData)
+		})
+		this.dataService.showNotification('User deleted successfully!', true);
+	}
+
+	deleteMessage(deleteId) {
+		console.log(deleteId);
+		this.contactService.deleteMessage(deleteId).subscribe();
+		this.contactService.getAllMessages(100000).subscribe(allMessages => {
+			this.allMessagesData = allMessages
+			console.log(this.allMessagesData)
+		});
+		this.dataService.showNotification('Message deleted successfully!', true);
+	}
+
+	passDeleteMessageData(id, msg) {
+		console.log(id);
+		document.getElementById('deleteMessageModalLabel').innerHTML = 'Are you sure you want to delete message: "<b>' + msg + '"</b>?';
+		document.getElementById('deleteMessageId').addEventListener("click", () => this.deleteMessage(id));
+	}
+
+	passDeleteUserData(id, name) {
+		console.log(id);
+		document.getElementById('deleteUserModalLabel').innerHTML = 'Are you sure you want to delete user: "<b>' + name + '"</b>?';
+		document.getElementById('deleteUserId').addEventListener("click", () => this.deleteUser(id));
+
 	}
 }

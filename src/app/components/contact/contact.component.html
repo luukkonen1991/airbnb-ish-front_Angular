@@ -1,11 +1,63 @@
-  <div class="contactDiv">
-  <form class="contactForm" action="https://formspree.io/techiediaries9@gmail.com" method="POST">
-    <label for="name" class="contactLabel">Name</label>
-    <input type="text" id="name" name="name" class="contactText" /><br />
-    <label for="email" class="contactLabel">Email Address</label>
-    <input type="email" id="email" name="_replyto" class="contactText" /><br />
-    <label for="message" class="contactLabel">Message</label>
-    <textarea name="message" id="message" class="contactMessage"></textarea><br />
-    <input type="submit" value="Send" class="button" />
+<div class="card card-body mb-3 form">
+  <h2 class="text-center">Contact Us</h2>
+  <form class="justify-content-center" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+
+    <div class="form-group">
+      <label>Name *</label>
+      <input type="text" [(ngModel)]="contactMessage.data.name" [ngClass]="{
+                  'is-invalid': name.errors && name.touched
+                }" class="form-control" name="name" #name="ngModel" required minlength="4" />
+      <div [hidden]="!name.errors?.required" class="invalid-feedback">
+        Name required
+      </div>
+      <div [hidden]="!name.errors?.minlength" class="invalid-feedback">
+        Must be at least 4 characters
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Email *</label>
+      <input type="email" [(ngModel)]="contactMessage.data.email" [ngClass]="{
+          'is-invalid': email.errors && email.touched
+        }" class="form-control" name="email" #email="ngModel" required pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" />
+
+      <div [hidden]="!email.errors?.required" class="invalid-feedback">
+        Email required
+      </div>
+
+      <div [hidden]="!email.errors?.pattern" class="invalid-feedback">
+        Email is not valid
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Phone <span class="text-muted">/ optional / for a call back</span></label>
+      <input type="text" [(ngModel)]="contactMessage.data.phone" [ngClass]="{
+                          'is-invalid': phone.errors && phone.touched
+                        }" class="form-control" name="phone" #phone="ngModel" minlength="6
+                        " />
+      <div [hidden]="!phone.errors?.minlength" class="invalid-feedback">
+        Must be at least 6 characters
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Message *</label>
+      <textarea rows="5" cols="50" [(ngModel)]="contactMessage.data.message" [ngClass]="{
+                  'is-invalid': message.errors && message.touched
+                }" class="form-control" name="message" #message="ngModel" required minlength="10" maxlength="250">
+      </textarea>
+      <div [hidden]="!message.errors?.required" class="invalid-feedback">
+        Message required
+      </div>
+      <div [hidden]="!message.errors?.minlength" class="invalid-feedback">
+        Must be at least 10 characters
+      </div>
+    </div>
+    <br>
+    <button [disabled]="!authForm.form.valid" class="btn btn-block btn-primary mb-1">
+      Send Message
+    </button>
+    <p class="errorState">{{this.errorState}}</p>
   </form>
 </div>
