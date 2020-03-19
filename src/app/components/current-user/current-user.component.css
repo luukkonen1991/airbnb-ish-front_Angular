@@ -18,7 +18,7 @@ h2 {
 }
 
 h6 {
-    font-weight: bold;
+	font-weight: bold;
 }
 
 label {
@@ -37,6 +37,34 @@ label {
 	text-align: center;
 }
 
-.hostBtn{
+.hostBtn {
 	text-align: center;
+}
+
+.inlineCheckBox {
+	padding: 0px;
+	width: 50%;
+	display: inline-block;
+}
+
+.form-row {
+	padding-left: 6px;
+}
+
+.form > h3:active {
+	transition: none;
+	text-shadow: 0 0 5px rgb(150, 150, 150);
+}
+
+.form-check-input {
+	display: inline-block;
+}
+
+/* .constAmount {
+	width: 50%;
+} */
+
+.flexbox {
+	display: flex;
+	justify-content: space-evenly;
 }

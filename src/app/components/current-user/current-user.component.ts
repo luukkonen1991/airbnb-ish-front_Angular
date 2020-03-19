@@ -46,9 +46,9 @@ export class CurrentUserComponent implements OnInit {
 			user => {
 				if (user.data.role === 'admin') {
 					this.userService.getAllUsers(100000).subscribe(allUsers => {
-						this.allUsersData = allUsers
-						console.log(this.allUsersData)
-					})
+						this.allUsersData = allUsers;
+						console.log(this.allUsersData);
+					});
 				}
 				if (user.data.role !== 'publisher') {
 					return;
@@ -102,8 +102,32 @@ export class CurrentUserComponent implements OnInit {
 	}
 
 	addHotel() {
+		console.log(this.newLocation.animalTypes);
+		console.log(this.newLocation.services);
+		console.log(this.newLocation.costType);
 		this.locationService.createLocation(this.newLocation, this.userData.data._id).subscribe();
 		this.ngOnInit();
 		this.dataService.showNotification('New hotel added succesfully!', true);
+	}
+
+	getCheckboxValueAnimalTypes(event: Event) {
+		if ((<HTMLInputElement>event.target).checked === true) {
+			this.newLocation.animalTypes.push((<HTMLInputElement>event.target).value);
+		} else if ((<HTMLInputElement>event.target).checked === false) {
+			this.newLocation.animalTypes.splice(+(<HTMLInputElement>event.target).value, 1);
+		}
+	}
+
+	getCheckboxValueAnimalServices(event: Event) {
+		if ((<HTMLInputElement>event.target).checked === true) {
+			this.newLocation.services.push((<HTMLInputElement>event.target).value);
+		} else if ((<HTMLInputElement>event.target).checked === false) {
+			this.newLocation.services.splice(+(<HTMLInputElement>event.target).value, 1);
+		}
+	}
+	getCostTypeValue(event: Event) {
+		if ((<HTMLInputElement>event.target).checked === true) {
+			this.newLocation.costType = (<HTMLInputElement>event.target).value;
+		}
 	}
 }

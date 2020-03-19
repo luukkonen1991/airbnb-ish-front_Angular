@@ -7,16 +7,18 @@ import { DataService } from 'src/app/services/data.service';
 import { AuthRegister } from '../../models/AuthRegister';
 
 @Component({
-  selector: 'app-become-host',
-  templateUrl: './become-host.component.html',
-  styleUrls: ['./become-host.component.css']
+	selector: 'app-become-host',
+	templateUrl: './become-host.component.html',
+	styleUrls: [
+		'./become-host.component.css'
+	]
 })
 export class BecomeHostComponent implements OnInit {
 	authRegister: AuthRegister = {
 		name: '',
 		email: '',
-    password: '',
-    role: 'publisher'
+		password: '',
+		role: 'publisher'
 	};
 	form: any;
 	errorState: string = '';
