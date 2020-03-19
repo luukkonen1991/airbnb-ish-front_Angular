@@ -100,7 +100,7 @@ export class FormComponent implements OnInit {
 		if ((<HTMLInputElement>event.target).checked === true) {
 			this.params.animalTypes.push((<HTMLInputElement>event.target).value);
 		} else if ((<HTMLInputElement>event.target).checked === false) {
-			this.params.animalTypes.splice((<HTMLInputElement>event.target).value, 1);
+			this.params.animalTypes = this.params.animalTypes.filter(e => e !== (<HTMLInputElement>event.target).value);
 		}
 	}
 
@@ -108,7 +108,7 @@ export class FormComponent implements OnInit {
 		if ((<HTMLInputElement>event.target).checked === true) {
 			this.params.services.push((<HTMLInputElement>event.target).value);
 		} else if ((<HTMLInputElement>event.target).checked === false) {
-			this.params.services.splice((<HTMLInputElement>event.target).value, 1);
+			this.params.services = this.params.services.filter(e => e !== (<HTMLInputElement>event.target).value);
 		}
 	}
 

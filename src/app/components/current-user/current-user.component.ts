@@ -19,7 +19,8 @@ import { ContactMessage } from 'src/app/models/ContactMessage';
 	]
 })
 export class CurrentUserComponent implements OnInit {
-	@ViewChildren('inputs') public inputs: ElementRef<HTMLInputElement>[];
+	@ViewChildren('inputsNew') public inputsNew: ElementRef<HTMLInputElement>[];
+	@ViewChildren('inputsEdit') public inputsEdit: ElementRef<HTMLInputElement>[];
 	// currentUser: User;
 	userData: User;
 	allUsersData: User;
@@ -102,8 +103,8 @@ export class CurrentUserComponent implements OnInit {
 	}
 
 	editHotel() {
-		this.getCheckboxValueAnimalServices(event);
-		this.getCheckboxValueAnimalTypes(event);
+		this.checkAnimalsEdit(event);
+		this.checkServicesEdit(event);
 		this.locationService
 			.updateLocation(this.location.data[0]._id, this.location.data[0], this.userData.data._id)
 			.subscribe(location => {
@@ -122,44 +123,108 @@ export class CurrentUserComponent implements OnInit {
 		this.ngOnInit();
 		this.dataService.showNotification('New hotel added succesfully!', true);
 	}
-
-	getCheckboxValueAnimalTypes(event: Event) {
-		if ((<HTMLInputElement>event.target).checked === true && this.location === undefined) {
+	checkAnimalsNew(event: Event) {
+		if ((<HTMLInputElement>event.target).checked === true) {
 			this.newLocation.animalTypes.push((<HTMLInputElement>event.target).value);
-		} else if ((<HTMLInputElement>event.target).checked === true && this.location !== undefined) {
-			this.location.data[0].animalTypes.push((<HTMLInputElement>event.target).value);
-		} else if ((<HTMLInputElement>event.target).checked === false && this.location === undefined) {
-			this.newLocation.animalTypes.splice(
-				this.newLocation.animalTypes.indexOf((<HTMLInputElement>event.target).value),
-				1
+		}
+		if ((<HTMLInputElement>event.target).checked === false) {
+			this.newLocation.animalTypes = this.newLocation.animalTypes.filter(
+				e => e !== (<HTMLInputElement>event.target).value
 			);
-			this.newLocation.animalTypes.filter((a, b) => this.newLocation.animalTypes.indexOf(a) === b);
-		} else if ((<HTMLInputElement>event.target).checked === false && this.location !== undefined) {
-			this.location.data[0].animalTypes.splice(
-				this.location.data[0].animalTypes.indexOf((<HTMLInputElement>event.target).value, 1)
-			);
-			this.location.data[0].animalTypes.filter((a, b) => this.location.data[0].animalTypes.indexOf(a) === b);
 		}
 	}
 
-	getCheckboxValueAnimalServices(event: Event) {
-		if ((<HTMLInputElement>event.target).checked === true && this.location === undefined) {
+	checkServicesNew(event: Event) {
+		if ((<HTMLInputElement>event.target).checked === true) {
 			this.newLocation.services.push((<HTMLInputElement>event.target).value);
-		} else if ((<HTMLInputElement>event.target).checked === true && this.location !== undefined) {
-			this.location.data[0].services.push((<HTMLInputElement>event.target).value);
-		} else if ((<HTMLInputElement>event.target).checked === false && this.location === undefined) {
-			this.newLocation.services.splice(
-				this.newLocation.services.indexOf((<HTMLInputElement>event.target).value),
-				1
+		}
+		if ((<HTMLInputElement>event.target).checked === false) {
+			this.newLocation.services = this.newLocation.services.filter(
+				e => e !== (<HTMLInputElement>event.target).value
 			);
-			this.newLocation.services.filter((a, b) => this.newLocation.services.indexOf(a) === b);
-		} else if ((<HTMLInputElement>event.target).checked === false && this.location !== undefined) {
-			this.location.data[0].services.splice(
-				this.location.data[0].services.indexOf((<HTMLInputElement>event.target).value, 1)
-			);
-			this.location.data[0].services.filter((a, b) => this.location.data[0].services.indexOf(a) === b);
 		}
 	}
+
+	checkAnimalsEdit(event: Event) {
+		// this.location.data[0].animalTypes.filter((a, b) => this.location.data[0].animalTypes.indexOf(a) === b);
+		if ((<HTMLInputElement>event.target).checked === true) {
+			this.location.data[0].animalTypes.push((<HTMLInputElement>event.target).value);
+			console.log(this.location.data[0].animalTypes);
+		}
+		if ((<HTMLInputElement>event.target).checked === false) {
+			// this.location.data[0].animalTypes.splice(
+			// 	this.location.data[0].animalTypes.indexOf((<HTMLInputElement>event.target).value, 1)
+			// );
+			// console.log(this.location.data[0].animalTypes);
+			this.location.data[0].animalTypes = this.location.data[0].animalTypes.filter(
+				e => e !== (<HTMLInputElement>event.target).value
+			);
+			console.log(this.location.data[0].animalTypes);
+		}
+	}
+
+	checkServicesEdit(event: Event) {
+		// this.location.data[0].services.filter((a, b) => this.location.data[0].services.indexOf(a) === b);
+		if ((<HTMLInputElement>event.target).checked === true) {
+			this.location.data[0].services.push((<HTMLInputElement>event.target).value);
+			console.log(this.location.data[0].services);
+		}
+		if ((<HTMLInputElement>event.target).checked === false) {
+			// 	this.location.data[0].services.splice(
+			// 		this.location.data[0].services.indexOf((<HTMLInputElement>event.target).value, 1)
+			// 	);
+			// }
+			this.location.data[0].services = this.location.data[0].services.filter(
+				e => e !== (<HTMLInputElement>event.target).value
+			);
+			console.log(this.location.data[0].services);
+		}
+	}
+	// getCheckboxValueAnimalTypes(event: Event) {
+	// 	this.location.data[0].animalTypes.filter((a, b) => this.location.data[0].animalTypes.indexOf(a) === b);
+	// 	this.newLocation.animalTypes.filter((a, b) => this.newLocation.animalTypes.indexOf(a) === b);
+	// 	if ((<HTMLInputElement>event.target).checked === true && this.location === undefined) {
+	// 		this.newLocation.animalTypes.push((<HTMLInputElement>event.target).value);
+	// 	} else if ((<HTMLInputElement>event.target).checked === true && this.location !== undefined) {
+	// 		this.location.data[0].animalTypes.push((<HTMLInputElement>event.target).value);
+	// 	} else if ((<HTMLInputElement>event.target).checked === false && this.location === undefined) {
+	// 		this.newLocation.animalTypes.splice(
+	// 			this.newLocation.animalTypes.indexOf((<HTMLInputElement>event.target).value),
+	// 			1
+	// 		);
+	// 		this.newLocation.animalTypes.filter((a, b) => this.newLocation.animalTypes.indexOf(a) === b);
+	// 	} else if ((<HTMLInputElement>event.target).checked === false && this.location !== undefined) {
+	// 		this.location.data[0].animalTypes.splice(
+	// 			this.location.data[0].animalTypes.indexOf((<HTMLInputElement>event.target).value, 1)
+	// 		);
+	// 		this.location.data[0].animalTypes.filter((a, b) => this.location.data[0].animalTypes.indexOf(a) === b);
+	// 		console.log(this.newLocation.services);
+	// 		console.log(this.newLocation.costType);
+	// 	}
+	// }
+
+	// getCheckboxValueAnimalServices(event: Event) {
+	// 	this.location.data[0].services.filter((a, b) => this.location.data[0].services.indexOf(a) === b);
+	// 	this.newLocation.services.filter((a, b) => this.newLocation.services.indexOf(a) === b);
+	// 	if ((<HTMLInputElement>event.target).checked === true && this.location === undefined) {
+	// 		this.newLocation.services.push((<HTMLInputElement>event.target).value);
+	// 	} else if ((<HTMLInputElement>event.target).checked === true && this.location !== undefined) {
+	// 		this.location.data[0].services.push((<HTMLInputElement>event.target).value);
+	// 	} else if ((<HTMLInputElement>event.target).checked === false && this.location === undefined) {
+	// 		this.newLocation.services.splice(
+	// 			this.newLocation.services.indexOf((<HTMLInputElement>event.target).value),
+	// 			1
+	// 		);
+	// 		this.newLocation.services.filter((a, b) => this.newLocation.services.indexOf(a) === b);
+	// 	} else if ((<HTMLInputElement>event.target).checked === false && this.location !== undefined) {
+	// 		this.location.data[0].services.splice(
+	// 			this.location.data[0].services.indexOf((<HTMLInputElement>event.target).value, 1)
+	// 		);
+	// 		this.location.data[0].services.filter((a, b) => this.location.data[0].services.indexOf(a) === b);
+	// 		console.log(this.newLocation.services);
+	// 		console.log(this.newLocation.costType);
+	// 	}
+	// }
 	getCostTypeValue(event: Event) {
 		if ((<HTMLInputElement>event.target).checked === true && this.location === undefined) {
 			this.newLocation.costType = (<HTMLInputElement>event.target).value;
@@ -172,12 +237,14 @@ export class CurrentUserComponent implements OnInit {
 		console.log('cliccked');
 		console.log(this.location.data[0].animalTypes);
 		console.log(this.location.data[0].services);
-		this.inputs.forEach(check => {
+		this.inputsEdit.forEach(check => {
 			if (this.location.data[0].animalTypes.includes(check.nativeElement.value)) {
 				check.nativeElement.checked = true;
+				console.log(1);
 			}
 			if (this.location.data[0].services.includes(check.nativeElement.value)) {
 				check.nativeElement.checked = true;
+				console.log(2);
 			}
 			// if (this.location.data[0].costType.includes(check.nativeElement.value)) {
 			// 	check.nativeElement.checked = true;
@@ -193,7 +260,7 @@ export class CurrentUserComponent implements OnInit {
 	}
 
 	uncheck() {
-		this.inputs.forEach(check => {
+		this.inputsEdit.forEach(check => {
 			check.nativeElement.checked = false;
 		});
 	}
