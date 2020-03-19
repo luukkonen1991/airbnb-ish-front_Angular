@@ -152,11 +152,10 @@ export class CurrentUserComponent implements OnInit {
 			if (this.location.data[0].services.includes(check.nativeElement.value)) {
 				check.nativeElement.checked = true;
 			}
-			if (this.location.data[0].costType.includes(check.nativeElement.value)) {
-				check.nativeElement.checked = true;
-			}
+			// if (this.location.data[0].costType.includes(check.nativeElement.value)) {
+			// 	check.nativeElement.checked = true;
+			// }
 		});
-
 		// this.inputs.forEach(check => {
 		// 	console.log(this.location.data.animalTypes);
 		// 	console.log(check.nativeElement.value, 'tämä');
