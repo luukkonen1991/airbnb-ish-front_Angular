@@ -114,22 +114,24 @@ export class CurrentUserComponent implements OnInit {
 	getCheckboxValueAnimalTypes(event: Event) {
 		if ((<HTMLInputElement>event.target).checked === true && this.location === undefined) {
 			this.newLocation.animalTypes.push((<HTMLInputElement>event.target).value);
-			if ((<HTMLInputElement>event.target).checked === true && this.location !== undefined) {
-				this.location.data[0].services.push((<HTMLInputElement>event.target).value);
-			}
-		} else if ((<HTMLInputElement>event.target).checked === false) {
+		} else if ((<HTMLInputElement>event.target).checked === true && this.location !== undefined) {
+			this.location.data[0].services.push((<HTMLInputElement>event.target).value);
+		} else if ((<HTMLInputElement>event.target).checked === false && this.location === undefined) {
 			this.newLocation.animalTypes.splice(+(<HTMLInputElement>event.target).value, 1);
+		} else if ((<HTMLInputElement>event.target).checked === false && this.location !== undefined) {
+			this.location.data[0].animalTypes.splice(+(<HTMLInputElement>event.target).value, 1);
 		}
 	}
 
 	getCheckboxValueAnimalServices(event: Event) {
 		if ((<HTMLInputElement>event.target).checked === true && this.location === undefined) {
 			this.newLocation.services.push((<HTMLInputElement>event.target).value);
-			if ((<HTMLInputElement>event.target).checked === true && this.location !== undefined) {
-				this.location.data[0].services.push((<HTMLInputElement>event.target).value);
-			}
-		} else if ((<HTMLInputElement>event.target).checked === false) {
+		} else if ((<HTMLInputElement>event.target).checked === true && this.location !== undefined) {
+			this.location.data[0].services.push((<HTMLInputElement>event.target).value);
+		} else if ((<HTMLInputElement>event.target).checked === false && this.location === undefined) {
 			this.newLocation.services.splice(+(<HTMLInputElement>event.target).value, 1);
+		} else if ((<HTMLInputElement>event.target).checked === false && this.location !== undefined) {
+			this.location.data[0].services.splice(+(<HTMLInputElement>event.target).value, 1);
 		}
 	}
 	getCostTypeValue(event: Event) {
