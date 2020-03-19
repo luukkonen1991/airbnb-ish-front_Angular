@@ -6,28 +6,27 @@
 
 <!-- Profile Info Screen -->
 <div *ngIf="userData !== undefined">
-  <h2 *ngIf="userData.data.role === 'user' || userData.data.role === 'publisher'">
-    My Profile
-  </h2>
-  <a class="collapseBtn" data-toggle="collapse" data-target="#collapseProfile"><h2 *ngIf="userData.data.role === 'admin'" class="alert alert-primary">
-    ADMIN / My Profile <span class="text-muted float-right">push to toggle</span>
-  </h2></a>
-  <div class="card collapse" id="collapseProfile">
-    <div class="card-body">
-      <h6>Name</h6>
-      <p>{{userData.data.name}}</p>
-      <hr>
-      <h6>Role</h6>
-      <p>{{userData.data.role}}</p>
-      <hr>
-      <h6>Email</h6>
-      <p>{{userData.data.email}}</p>
-      <hr>
-      <button type="button" class="btn btn-danger mr-1" data-toggle="modal" data-target="#deleteProfileModal">
-        Delete Profile
-      </button>
+  <div *ngIf="userData.data.role === 'user' || userData.data.role === 'publisher'">
+    <h2>
+      My Profile
+    </h2>
+    <div class="card ">
+      <div class="card-body">
+        <h6>Name</h6>
+        <p>{{userData.data.name}}</p>
+        <hr>
+        <h6>Role</h6>
+        <p>{{userData.data.role}}</p>
+        <hr>
+        <h6>Email</h6>
+        <p>{{userData.data.email}}</p>
+        <hr>
+        <button type="button" class="btn btn-danger mr-1" data-toggle="modal" data-target="#deleteProfileModal">
+          Delete Profile
+        </button>
+      </div>
+      <br><br>
     </div>
-    <br><br>
   </div>
 </div>
 
@@ -259,12 +258,41 @@
 
 <!-- START OF ADMIN STUFF -->
 
+<!-- Admin Profile Info Screen -->
+<div *ngIf="userData !== undefined">
+  <a *ngIf="userData.data.role === 'admin'" class="collapseBtn" data-toggle="collapse" data-target="#collapseProfile">
+    <h2 class="alert alert-primary">
+      ADMIN / My Profile
+      <span class="text-muted float-right">push to toggle</span>
+    </h2>
+  </a>
+  <div class="card collapse" id="collapseProfile">
+    <div class="card-body">
+      <h6>Name</h6>
+      <p>{{userData.data.name}}</p>
+      <hr>
+      <h6>Role</h6>
+      <p>{{userData.data.role}}</p>
+      <hr>
+      <h6>Email</h6>
+      <p>{{userData.data.email}}</p>
+      <hr>
+      <button type="button" class="btn btn-danger mr-1" data-toggle="modal" data-target="#deleteProfileModal">
+        Delete Profile
+      </button>
+    </div>
+    <br><br>
+  </div>
+</div>
+
 <!-- Admin / List all Messages -->
 <div class="daddy-div"
   *ngIf="userData !== undefined && userData.data.role === 'admin' && allMessagesData !== undefined">
-  <a class="collapseBtn" data-toggle="collapse" data-target="#collapseMessages"><h2 class="alert alert-primary">
-    ADMIN / Contact Messages<span class="text-muted float-right">push to toggle</span>
-  </h2></a>
+  <a class="collapseBtn" data-toggle="collapse" data-target="#collapseMessages">
+    <h2 class="alert alert-primary">
+      ADMIN / Contact Messages<span class="text-muted float-right">push to toggle</span>
+    </h2>
+  </a>
   <div class="results collapse" id="collapseMessages">
     <div class="card-group" *ngFor="let item of allMessagesData.data">
       <div class="card resize-card m-2">
@@ -291,9 +319,11 @@
 
 <!-- Admin / List all Users -->
 <div class="daddy-div" *ngIf="userData !== undefined && userData.data.role === 'admin' && allUsersData !== undefined">
-  <a class="collapseBtn" data-toggle="collapse" data-target="#collapseUsers"><h2 class="alert alert-primary">
-    ADMIN / Users<span class="text-muted float-right">push to toggle</span>
-  </h2></a>
+  <a class="collapseBtn" data-toggle="collapse" data-target="#collapseUsers">
+    <h2 class="alert alert-primary">
+      ADMIN / Users<span class="text-muted float-right">push to toggle</span>
+    </h2>
+  </a>
   <div class="results collapse" id="collapseUsers">
     <div class="card-group" *ngFor="let item of allUsersData.data">
       <div class="card resize-card m-2">
@@ -354,7 +384,8 @@
 
 <!-- Loading animation -->
 <div class="d-flex justify-content-center">
-  <div class="spinner-border mr-4" role="status" *ngIf="userData === undefined || allUsersData === undefined">
+  <div class="spinner-border mr-4" role="status"
+    *ngIf="userData === undefined || userData.data.role === 'admin' && allUsersData === undefined">
     <h2 class="sr-only">Loading...</h2>
   </div>
 </div>

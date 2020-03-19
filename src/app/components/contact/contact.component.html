@@ -3,7 +3,7 @@
   <form class="justify-content-center" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
 
     <div class="form-group">
-      <label>Name</label>
+      <label>Name *</label>
       <input type="text" [(ngModel)]="contactMessage.data.name" [ngClass]="{
                   'is-invalid': name.errors && name.touched
                 }" class="form-control" name="name" #name="ngModel" required minlength="4" />
@@ -16,7 +16,7 @@
     </div>
 
     <div class="form-group">
-      <label>Email</label>
+      <label>Email *</label>
       <input type="email" [(ngModel)]="contactMessage.data.email" [ngClass]="{
           'is-invalid': email.errors && email.touched
         }" class="form-control" name="email" #email="ngModel" required pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" />
@@ -31,7 +31,7 @@
     </div>
 
     <div class="form-group">
-      <label>Phone</label>
+      <label>Phone <span class="text-muted">/ optional / for a call back</span></label>
       <input type="text" [(ngModel)]="contactMessage.data.phone" [ngClass]="{
                           'is-invalid': phone.errors && phone.touched
                         }" class="form-control" name="phone" #phone="ngModel" minlength="6
@@ -42,7 +42,7 @@
     </div>
 
     <div class="form-group">
-      <label>Message</label>
+      <label>Message *</label>
       <textarea rows="5" cols="50" [(ngModel)]="contactMessage.data.message" [ngClass]="{
                   'is-invalid': message.errors && message.touched
                 }" class="form-control" name="message" #message="ngModel" required minlength="10" maxlength="250">
