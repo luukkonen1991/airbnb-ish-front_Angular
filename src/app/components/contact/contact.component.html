@@ -19,7 +19,7 @@
       <label>Email *</label>
       <input type="email" [(ngModel)]="contactMessage.data.email" [ngClass]="{
           'is-invalid': email.errors && email.touched
-        }" class="form-control" name="email" #email="ngModel" required pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" />
+        }" class="form-control" name="email" #email="ngModel" required pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" />
 
       <div [hidden]="!email.errors?.required" class="invalid-feedback">
         Email required
