@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChildren, ElementRef } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 
 import { User } from '../../models/User';
@@ -19,6 +19,7 @@ import { ContactMessage } from 'src/app/models/ContactMessage';
 	]
 })
 export class CurrentUserComponent implements OnInit {
+	@ViewChildren('inputs') public inputs: ElementRef<HTMLInputElement>[];
 	// currentUser: User;
 	userData: User;
 	allUsersData: User;
@@ -50,6 +51,7 @@ export class CurrentUserComponent implements OnInit {
 			user => {
 				if (user.data.role === 'admin') {
 					this.userService.getAllUsers(100000).subscribe(allUsers => {
+
 						this.allUsersData = allUsers
 						console.log(this.allUsersData)
 					})
@@ -111,10 +113,66 @@ export class CurrentUserComponent implements OnInit {
 	}
 
 	addHotel() {
+		console.log(this.newLocation.animalTypes);
+		console.log(this.newLocation.services);
+		console.log(this.newLocation.costType);
 		this.locationService.createLocation(this.newLocation, this.userData.data._id).subscribe();
 		this.ngOnInit();
 		this.dataService.showNotification('New hotel added succesfully!', true);
 	}
+  
+	getCheckboxValueAnimalTypes(event: Event) {
+		if ((<HTMLInputElement>event.target).checked === true && this.location === undefined) {
+			this.newLocation.animalTypes.push((<HTMLInputElement>event.target).value);
+		} else if ((<HTMLInputElement>event.target).checked === true && this.location !== undefined) {
+			this.location.data[0].services.push((<HTMLInputElement>event.target).value);
+		} else if ((<HTMLInputElement>event.target).checked === false && this.location === undefined) {
+			this.newLocation.animalTypes.splice(+(<HTMLInputElement>event.target).value, 1);
+		} else if ((<HTMLInputElement>event.target).checked === false && this.location !== undefined) {
+			this.location.data[0].animalTypes.splice(+(<HTMLInputElement>event.target).value, 1);
+		}
+	}
+
+	getCheckboxValueAnimalServices(event: Event) {
+		if ((<HTMLInputElement>event.target).checked === true && this.location === undefined) {
+			this.newLocation.services.push((<HTMLInputElement>event.target).value);
+		} else if ((<HTMLInputElement>event.target).checked === true && this.location !== undefined) {
+			this.location.data[0].services.push((<HTMLInputElement>event.target).value);
+		} else if ((<HTMLInputElement>event.target).checked === false && this.location === undefined) {
+			this.newLocation.services.splice(+(<HTMLInputElement>event.target).value, 1);
+		} else if ((<HTMLInputElement>event.target).checked === false && this.location !== undefined) {
+			this.location.data[0].services.splice(+(<HTMLInputElement>event.target).value, 1);
+		}
+	}
+	getCostTypeValue(event: Event) {
+		if ((<HTMLInputElement>event.target).checked === true && this.location === undefined) {
+			this.newLocation.costType = (<HTMLInputElement>event.target).value;
+		}
+		if ((<HTMLInputElement>event.target).checked === true && this.location !== undefined) {
+			this.location.data[0].costType = (<HTMLInputElement>event.target).value;
+		}
+	}
+	oldValues() {
+		console.log('cliccked');
+		console.log(this.location.data[0].animalTypes);
+		this.inputs.forEach(check => {
+			if (this.location.data[0].animalTypes.includes(check.nativeElement.value)) {
+				check.nativeElement.checked = true;
+			}
+			if (this.location.data[0].services.includes(check.nativeElement.value)) {
+				check.nativeElement.checked = true;
+			}
+			// if (this.location.data[0].costType.includes(check.nativeElement.value)) {
+			// 	check.nativeElement.checked = true;
+			// }
+		});
+		// this.inputs.forEach(check => {
+		// 	console.log(this.location.data.animalTypes);
+		// 	console.log(check.nativeElement.value, 'tämä');
+		// if (this.location.data.animalTypes.includes(check.nativeElement.value)) {
+		// 	check.nativeElement.checked = true;
+		// }
+		// });
 
 
 	//admincommands
@@ -148,5 +206,6 @@ export class CurrentUserComponent implements OnInit {
 		console.log(id);
 		document.getElementById('deleteUserModalLabel').innerHTML = 'Are you sure you want to delete user: "<b>' + name + '"</b>?';
 		document.getElementById('deleteUserId').addEventListener("click", () => this.deleteUser(id));
+
 	}
 }
