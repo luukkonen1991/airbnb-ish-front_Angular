@@ -133,8 +133,12 @@ export class CurrentUserComponent implements OnInit {
 				this.newLocation.animalTypes.indexOf((<HTMLInputElement>event.target).value),
 				1
 			);
+			this.newLocation.animalTypes.filter((a, b) => this.newLocation.animalTypes.indexOf(a) === b);
 		} else if ((<HTMLInputElement>event.target).checked === false && this.location !== undefined) {
-			this.location.data[0].animalTypes.splice((<HTMLInputElement>event.target).value, 1);
+			this.location.data[0].animalTypes.splice(
+				this.location.data[0].animalTypes.indexOf((<HTMLInputElement>event.target).value, 1)
+			);
+			this.location.data[0].animalTypes.filter((a, b) => this.location.data[0].animalTypes.indexOf(a) === b);
 		}
 	}
 
@@ -148,8 +152,12 @@ export class CurrentUserComponent implements OnInit {
 				this.newLocation.services.indexOf((<HTMLInputElement>event.target).value),
 				1
 			);
+			this.newLocation.services.filter((a, b) => this.newLocation.services.indexOf(a) === b);
 		} else if ((<HTMLInputElement>event.target).checked === false && this.location !== undefined) {
-			this.location.data[0].services.splice((<HTMLInputElement>event.target).value, 1);
+			this.location.data[0].services.splice(
+				this.location.data[0].services.indexOf((<HTMLInputElement>event.target).value, 1)
+			);
+			this.location.data[0].services.filter((a, b) => this.location.data[0].services.indexOf(a) === b);
 		}
 	}
 	getCostTypeValue(event: Event) {
