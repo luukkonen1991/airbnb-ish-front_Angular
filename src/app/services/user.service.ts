@@ -30,6 +30,13 @@ export class UserService {
         return this.http.get<User>(api, options).pipe(catchError(this.handleError));
     }
 
+    deleteUser(_id: string): Observable<User> {
+        const url = `${this.userUrl}/${_id}`;
+        let token = sessionStorage.getItem('token');
+        httpHeaders.headers = httpHeaders.headers.set('Authorization', `Bearer ${token}`);
+        return this.http.delete<User>(url, httpHeaders).pipe(catchError(this.handleError));
+    }
+
     handleError(error: HttpErrorResponse) {
         return throwError(error);
     }
