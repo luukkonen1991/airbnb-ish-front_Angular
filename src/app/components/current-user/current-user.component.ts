@@ -123,6 +123,11 @@ export class CurrentUserComponent implements OnInit {
 		this.ngOnInit();
 		this.dataService.showNotification('New hotel added succesfully!', true);
 	}
+
+	changePhoto(id, name) {
+		console.log('paska' + name + id)
+	}
+
 	checkAnimalsNew(event: Event) {
 		if ((<HTMLInputElement>event.target).checked === true) {
 			this.newLocation.animalTypes.push((<HTMLInputElement>event.target).value);
@@ -295,7 +300,7 @@ export class CurrentUserComponent implements OnInit {
 	}
 
 	passDeleteUserData(id, name) {
-		console.log(id);
+		console.log(id)
 		document.getElementById('deleteUserModalLabel').innerHTML =
 			'Are you sure you want to delete user: "<b>' + name + '"</b>?';
 		document.getElementById('deleteUserId').addEventListener('click', () => this.deleteUser(id));
