@@ -119,8 +119,9 @@ export class CurrentUserComponent implements OnInit {
 		console.log(this.newLocation.animalTypes);
 		console.log(this.newLocation.services);
 		console.log(this.newLocation.costType);
-		this.locationService.createLocation(this.newLocation, this.userData.data._id).subscribe();
-		this.ngOnInit();
+		this.locationService.createLocation(this.newLocation, this.userData.data._id).subscribe(res => {
+			this.ngOnInit();
+		});
 		this.dataService.showNotification('New hotel added succesfully!', true);
 	}
 
