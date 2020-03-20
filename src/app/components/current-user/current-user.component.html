@@ -315,18 +315,19 @@
 
           <div class="form-check inlineCheckBox">
             <label class="label">Price (Day or Hour)</label><br>
-            <div class="form-row flexbox">
-              <div class="form-check">
+            <div class="form-row">
+              <div class="custom-control custom-radio">
                 <input
                   (click)="getCostTypeValue($event)"
-                  class="form-check-input"
+                  class="custom-control-input"
                   type="radio"
                   name=costTypeRadios
                   id="Day"
                   value="Day"
+                  [(ngModel)]="location.data[0].costType"
                 >
                 <label
-                  class="form-check-label"
+                  class="custom-control-label pr-4"
                   for="Day"
                 >
                   Day
@@ -335,17 +336,18 @@
 
 
 
-              <div class="form-check">
+              <div class="custom-control custom-radio">
                 <input
                   (click)="getCostTypeValue($event)"
-                  class="form-check-input"
+                  class="custom-control-input"
                   type="radio"
                   name=costTypeRadios
                   id="Hour"
                   value="Hour"
+                  [(ngModel)]="location.data[0].costType"
                 >
                 <label
-                  class="form-check-label"
+                  class="custom-control-label"
                   for="Hour"
                 >
                   Hour
@@ -378,7 +380,7 @@
           />
         </div>
       </div>
-      <div class="form-check inlineCheckBox">
+      <div class="form-check editInlineCheckBox">
         <label class="label">Animal Types</label><br>
         <div class="form-row">
           <div class="custom-control custom-checkbox">
@@ -429,7 +431,7 @@
         </div>
       </div>
       <br>
-      <div class="form-check inlineCheckBox">
+      <div class="form-check editInlineCheckBox">
         <!-- <p>infoa {{params.animalTypeDog}} {{params.animalTypeCat}}</p> -->
         <label class="label">Services</label><br>
         <div class="form-row">
@@ -480,6 +482,7 @@
           </div>
         </div>
       </div>
+      <br>
       <div class="modal-footer">
         <button
           type="button"
