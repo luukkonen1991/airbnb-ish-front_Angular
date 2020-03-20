@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
+// import { AgmCoreModule } from '@agm/core';
 
 import { LocationService } from '../../services/location.service';
 import { DataService } from '../../services/data.service';
@@ -16,6 +17,8 @@ import { Location } from '../../models/Location';
 	]
 })
 export class LocationsComponent implements OnInit {
+	latitude: number = 60.1699;
+	lngitude: number = 24.9384;
 	pageNumber: number = 1;
 	lastPage: number = null;
 	tempLocations: Location[];
