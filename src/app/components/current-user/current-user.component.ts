@@ -237,6 +237,7 @@ export class CurrentUserComponent implements OnInit {
 		console.log('cliccked');
 		console.log(this.location.data[0].animalTypes);
 		console.log(this.location.data[0].services);
+		console.log(this.location.data[0].costType);
 		this.inputsEdit.forEach(check => {
 			if (this.location.data[0].animalTypes.includes(check.nativeElement.value)) {
 				check.nativeElement.checked = true;

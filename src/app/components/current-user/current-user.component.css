@@ -48,6 +48,12 @@ label {
 	display: inline-block;
 }
 
+.editInlineCheckBox {
+	padding-left: 20px;
+	width: 50%;
+	display: inline-block;
+}
+
 .form-row {
 	padding-left: 6px;
 }
