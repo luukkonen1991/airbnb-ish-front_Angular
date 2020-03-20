@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AgmCoreModule } from '@agm/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +26,9 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+
+// envs
+import { environment } from './environment/environment';
 
 @NgModule({
 	declarations: [
@@ -50,7 +54,10 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 		AppRoutingModule,
 		HttpClientModule,
 		FormsModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		AgmCoreModule.forRoot({
+			apiKey: environment.GOOGLE_API_KEY
+		})
 	],
 	providers: [
 		LocationService,
