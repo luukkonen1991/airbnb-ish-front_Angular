@@ -29,6 +29,11 @@
               routerLink="/location/{{item.slug}}"
               (click)="passLocationId(item._id)"
             >View locations</a>
+            <a
+              type="button"
+              class="btn btn-secondary ml-2"
+              (click)="focusLocationOnMap(item.location.coordinates[0], item.location.coordinates[1])"
+            >show on map</a>
           </p>
         </div>
       </div>
@@ -55,11 +60,13 @@
   <agm-map
     [latitude]="latitude"
     [longitude]="lngitude"
+    [zoom]="mapZoom"
   >
     <agm-marker
-      *ngFor="let marker of locations"
-      [latitude]="marker.location.coordinates[1]"
-      [longitude]="marker.location.coordinates[0]"
+      *ngFor="let item of locations let i of index"
+      [latitude]="item.location.coordinates[1]"
+      [longitude]="item.location.coordinates[0]"
+      [animation]="markerAnimation"
     >
     </agm-marker>
   </agm-map>
