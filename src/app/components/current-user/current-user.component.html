@@ -132,7 +132,8 @@
     <button (click)="oldValues()" type="button" class="btn btn-warning m-1" data-toggle="modal"
       data-target="#editHotelModal">Edit
       Hotel</button>
-    <button type="button" class="btn btn-warning m-1" routerLink="">Change Hotel Photo</button>
+    <button type="button" class="btn btn-warning m-1" data-toggle="modal" data-target="#changePhotoModal">Change Hotel
+      Photo</button>
     <button type="button" class="btn btn-danger m-1" data-toggle="modal" data-target="#deleteHotelModal">
       Delete Hotel
     </button>
@@ -361,6 +362,27 @@
   </div>
 </div>
 
+
+<!-- Change Hotel Photo Modal -->
+<div *ngIf="location !== undefined" class="modal fade delete p-1" id="changePhotoModal" tabindex="-1" role="dialog"
+  aria-labelledby="changePhotoModalLabel" aria-hidden="true">
+  <div class="modal-dialog m-auto" role="document">
+    <div class="modal-content p-2">
+      <div class="modal-header">
+        <h5 class="modal-title" id="changePhotoModalLabel">Change your hotel photo (png, jpeg)</h5>
+      </div>
+      <br>
+      <input class="m-auto" type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" [(ngModel)]="photoUrl">
+      <br>
+      <div class="modal-footer">
+        <button *ngIf="location.data[0] !== undefined" type="button" class="btn btn-warning" id="changePhotoId" data-dismiss="modal"
+         (click)="changePhoto(location.data[0]._id, photoUrl)"
+        >Save changes</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <!-- START OF ADMIN -->
