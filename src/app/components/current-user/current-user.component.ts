@@ -45,7 +45,7 @@ export class CurrentUserComponent implements OnInit {
 		private dataService: DataService,
 		private userService: UserService,
 		private contactService: ContactService
-	) {}
+	) { }
 
 	ngOnInit() {
 		this.authService.getMe().subscribe(
@@ -98,8 +98,15 @@ export class CurrentUserComponent implements OnInit {
 	}
 
 	deleteHotel() {
-		this.locationService.deleteLocation(this.location.data[0]._id).subscribe((this.location = undefined));
-		this.dataService.showNotification('Hotel deleted successfully!', true);
+		this.locationService.deleteLocation(this.location.data[0]._id).subscribe(res => {
+			console.log(res);
+			this.location = undefined
+			this.dataService.showNotification('Hotel deleted successfully!', true);
+		}, error => {
+			if (error.error.success === false) {
+				this.dataService.showNotification(error.error.error, false);
+			}
+		});
 	}
 
 	editHotel() {
@@ -111,6 +118,10 @@ export class CurrentUserComponent implements OnInit {
 				console.log(location.data.title + 'incoming location logg');
 				this.location.data[0] = location.data;
 				this.dataService.showNotification('Hotel edited successfully!', true);
+			}, error => {
+				if (error.error.success === false) {
+					this.dataService.showNotification(error.error.error, false);
+				}
 			});
 		this.uncheck();
 	}
@@ -119,10 +130,23 @@ export class CurrentUserComponent implements OnInit {
 		console.log(this.newLocation.animalTypes);
 		console.log(this.newLocation.services);
 		console.log(this.newLocation.costType);
-		this.locationService.createLocation(this.newLocation, this.userData.data._id).subscribe();
-		this.ngOnInit();
-		this.dataService.showNotification('New hotel added succesfully!', true);
+		this.locationService.createLocation(this.newLocation, this.userData.data._id).subscribe(res => {
+			if (res.success === true) {
+				this.ngOnInit();
+				this.dataService.showNotification('New hotel added succesfully!', true);
+			}
+		}, error => {
+			if (error.error.success === false) {
+				console.log(error.error.error)
+				this.dataService.showNotification(error.error.error, false);
+			}
+		});
 	}
+
+	changePhoto(id, name) {
+		console.log('paska' + name + id)
+	}
+
 	checkAnimalsNew(event: Event) {
 		if ((<HTMLInputElement>event.target).checked === true) {
 			this.newLocation.animalTypes.push((<HTMLInputElement>event.target).value);
@@ -295,7 +319,7 @@ export class CurrentUserComponent implements OnInit {
 	}
 
 	passDeleteUserData(id, name) {
-		console.log(id);
+		console.log(id)
 		document.getElementById('deleteUserModalLabel').innerHTML =
 			'Are you sure you want to delete user: "<b>' + name + '"</b>?';
 		document.getElementById('deleteUserId').addEventListener('click', () => this.deleteUser(id));
