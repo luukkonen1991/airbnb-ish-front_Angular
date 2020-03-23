@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { Router } from '@angular/router';
-// import { AgmCoreModule } from '@agm/core';
+import { Router, Scroll, NavigationEnd } from '@angular/router';
+import { ViewportScroller } from '@angular/common';
 
 import { LocationService } from '../../services/location.service';
 import { DataService } from '../../services/data.service';
@@ -42,7 +42,12 @@ export class LocationsComponent implements OnInit {
 	markerAnimation: string = 'DROP';
 	@Input() fromHome: Location[];
 
-	constructor(private locationService: LocationService, private dataService: DataService, private router: Router) {}
+	constructor(
+		private locationService: LocationService,
+		private dataService: DataService,
+		private router: Router,
+		private viewPortScroller: ViewportScroller
+	) {}
 
 	ngOnInit() {
 		this.dataService.currentParams.subscribe(params => {
@@ -142,6 +147,10 @@ export class LocationsComponent implements OnInit {
 			this.pageNumber++;
 			this.dataService.changePage(this.pageNumber);
 			// console.log(this.pageNumber);
+			this.viewPortScroller.scrollToPosition([
+				0,
+				0
+			]);
 		}
 	}
 	changePagePrev(e: any) {
@@ -165,6 +174,10 @@ export class LocationsComponent implements OnInit {
 				});
 			this.pageNumber--;
 			this.dataService.changePage(this.pageNumber);
+			this.viewPortScroller.scrollToPosition([
+				0,
+				0
+			]);
 		}
 	}
 
