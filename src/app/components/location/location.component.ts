@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { LocationService } from '../../services/location.service';
 
 import { LocationById } from '../../models/LocationById';
+
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -16,6 +17,8 @@ export class LocationComponent implements OnInit {
 	location: LocationById;
 	_id: string;
 	showMe: boolean;
+	latitude: number;
+	lngitude: number;
 
 	params: any = {
 		minPrice: null,
@@ -39,7 +42,7 @@ export class LocationComponent implements OnInit {
 		// console.log(_id);
 		// console.log(window.history.state);
 		// console.log(_id);
-		this.locationService.getLocation(this._id).subscribe(location => (this.location = location));
+		this.locationService.getLocation(this._id).subscribe(location => (this.location = location, console.log(this.location)));
 
 		//check if signed in
 		let token = sessionStorage.getItem('token');

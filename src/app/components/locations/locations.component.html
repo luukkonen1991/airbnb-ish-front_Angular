@@ -28,7 +28,7 @@
               class="btn btn-secondary ml-2"
               routerLink="/location/{{item.slug}}"
               (click)="passLocationId(item._id)"
-            >View locations</a>
+            >View Details</a>
           </p>
         </div>
       </div>
@@ -53,6 +53,7 @@
 
   <!-- Map -->
   <agm-map
+  class="m-2"
     [latitude]="latitude"
     [longitude]="lngitude"
   >

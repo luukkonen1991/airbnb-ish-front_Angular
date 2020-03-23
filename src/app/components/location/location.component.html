@@ -4,12 +4,24 @@
   *ngIf="location !== undefined"
   class="card"
 >
-  <img
-    class="card-img-top resize-img"
-    src="http://localhost:5000/uploads/{{location.data.photo}}"
-    alt="Card image cap"
-  />
+
+
   <div class="card-body">
+    <div class="container">
+      <div class="content">
+        <img class="card-img-top resize-img" src="http://localhost:5000/uploads/{{location.data.photo}}"
+          alt="Card image cap" />
+      </div>
+      <!-- Map -->
+      <div class="content">
+        <agm-map class="resize-img" [latitude]="location.data.location.coordinates[1]"
+          [longitude]="location.data.location.coordinates[0]">
+          <agm-marker [latitude]="location.data.location.coordinates[1]"
+            [longitude]="location.data.location.coordinates[0]">
+          </agm-marker>
+        </agm-map>
+      </div>
+    </div>
     <h1 class="card-title">{{location.data.title}}</h1>
     <h5>
       {{ location.data.description }}
