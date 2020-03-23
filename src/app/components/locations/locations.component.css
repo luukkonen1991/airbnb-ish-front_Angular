@@ -9,6 +9,7 @@
 		min-width: 350px;
 		max-width: 33vw;
 		display: inline-block;
+		box-shadow: 10px 5px 5px gray;
 	}
 
 	.map-img {
@@ -24,6 +25,7 @@
 		width: 500px;
 		display: inline-block;
 		margin-left: 2rem;
+		box-shadow: 10px 5px 5px gray;
 	}
 	.map-div {
 		position: -webkit-sticky; /* Safari */

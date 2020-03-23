@@ -7,6 +7,7 @@ import { DataService } from '../../services/data.service';
 
 import { Locations } from '../../models/Locations';
 import { Location } from '../../models/Location';
+import { Marker } from '@agm/core';
 // import { Pagination } from '../../models/Pagination';
 
 @Component({
@@ -35,7 +36,10 @@ export class LocationsComponent implements OnInit {
 		services: []
 	};
 	_id: string;
-
+	hoverEvent: boolean;
+	iconUrl: string;
+	mapZoom: number = 8;
+	markerAnimation: string = 'DROP';
 	@Input() fromHome: Location[];
 
 	constructor(private locationService: LocationService, private dataService: DataService, private router: Router) {}
@@ -162,6 +166,11 @@ export class LocationsComponent implements OnInit {
 			this.pageNumber--;
 			this.dataService.changePage(this.pageNumber);
 		}
+	}
+
+	focusLocationOnMap(lgn: number, lat: number) {
+		(this.latitude = lat), (this.lngitude = lgn);
+		this.mapZoom = 14;
 	}
 
 	countLastPage(x: number, y: number) {
