@@ -42,7 +42,9 @@ export class LocationComponent implements OnInit {
 		// console.log(_id);
 		// console.log(window.history.state);
 		// console.log(_id);
-		this.locationService.getLocation(this._id).subscribe(location => (this.location = location, console.log(this.location)));
+		this.locationService
+			.getLocation(this._id)
+			.subscribe(location => ((this.location = location), console.log(this.location)));
 
 		//check if signed in
 		let token = sessionStorage.getItem('token');
