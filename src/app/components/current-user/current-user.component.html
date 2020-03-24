@@ -372,11 +372,11 @@
         <h5 class="modal-title" id="changePhotoModalLabel">Change your hotel photo (png, jpeg)</h5>
       </div>
       <br>
-      <input class="m-auto" type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" [(ngModel)]="photoUrl">
+      <input class="m-auto" type="file" id="file" (change)="onFileSelected(location.data[0]._id, $event)">
       <br>
       <div class="modal-footer">
-        <button *ngIf="location.data[0] !== undefined" type="button" class="btn btn-warning" id="changePhotoId" data-dismiss="modal"
-         (click)="changePhoto(location.data[0]._id, photoUrl)"
+        <button *ngIf="location.data[0] !== undefined" type="button" class="btn btn-warning" data-dismiss="modal"
+         (click)="onUpload()"
         >Save changes</button>
         <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
       </div>
