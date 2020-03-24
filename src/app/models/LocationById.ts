@@ -1,7 +1,10 @@
+import { Coordinates } from './Coordinates';
+
 export interface LocationById {
 	success: boolean;
 	count: number;
 	data: {
+		location: Coordinates;
 		_id: string;
 		slug: string;
 		title: string;

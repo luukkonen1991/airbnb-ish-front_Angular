@@ -1,0 +1,20 @@
+<div
+  *ngFor="let review of reviews"
+  class="row"
+  style="border: 1px solid black;"
+>
+  <div class="userPicDiv col-4">
+    <div><i
+        class="fa fa-user fa-lg"
+        aria-hidden="true"
+      ></i></div>
+  </div>
+
+  <div class="userTextDiv col-8">
+    <h4>{{review.title}}</h4>
+    <hr>
+    <p>{{review.text}}</p>
+    <small>{{review.createdAt}}</small>
+  </div>
+  <hr>
+</div>

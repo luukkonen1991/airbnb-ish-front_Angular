@@ -3,8 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { LocationService } from '../../services/location.service';
 
 import { LocationById } from '../../models/LocationById';
+import { Reviews } from '../../models/Reviews';
 
 import { DataService } from 'src/app/services/data.service';
+import { ReviewService } from 'src/app/services/review.service';
 
 @Component({
 	selector: 'app-location',
@@ -14,9 +16,11 @@ import { DataService } from 'src/app/services/data.service';
 	]
 })
 export class LocationComponent implements OnInit {
+	reviews: Reviews['data'];
 	location: LocationById;
 	_id: string;
 	showMe: boolean;
+	showReviews: boolean;
 	latitude: number;
 	lngitude: number;
 
@@ -31,8 +35,11 @@ export class LocationComponent implements OnInit {
 	constructor(
 		private route: ActivatedRoute,
 		private locationService: LocationService,
+		private reviewService: ReviewService,
 		private dataService: DataService
-	) {}
+	) {
+		this.showReviews = false;
+	}
 
 	ngOnInit() {
 		this.dataService.currentId.subscribe(_id => (this._id = _id));
@@ -42,7 +49,20 @@ export class LocationComponent implements OnInit {
 		// console.log(_id);
 		// console.log(window.history.state);
 		// console.log(_id);
-		this.locationService.getLocation(this._id).subscribe(location => (this.location = location, console.log(this.location)));
+		this.locationService.getLocation(this._id).subscribe(
+			location => (
+				(this.location = location),
+				this.reviewService.getLocationReviews(this._id).subscribe(
+					reviews => {
+						this.reviews = reviews.data;
+						console.log(this.reviews);
+					},
+					error => {
+						console.log(error);
+					}
+				)
+			)
+		);
 
 		//check if signed in
 		let token = sessionStorage.getItem('token');
@@ -53,5 +73,8 @@ export class LocationComponent implements OnInit {
 
 	backToLocations() {
 		this.dataService.changeParams(this.params);
+	}
+	showReviewsToggle() {
+		this.showReviews = !this.showReviews;
 	}
 }
