@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
+import { Reviews } from '../models/Reviews';
 import { Review } from '../models/Review';
 
 const httpHeaders = {
@@ -17,12 +18,12 @@ const httpHeaders = {
 export class ReviewService {
 	reviewUrl: string = 'http://localhost:5000/api/v1/reviews';
 	review: Review;
-	reviews: Review[];
+	reviews: Reviews;
 	constructor(private http: HttpClient) {}
 
 	getLocationReviews(locationId: string) {
-		let api = `http://localhost:5000/locations/${locationId}/reviews`;
-		return this.http.get<Review[]>(api).pipe(catchError(this.handleError));
+		let api = `http://localhost:5000/api/v1/locations/${locationId}/reviews`;
+		return this.http.get<Reviews>(api).pipe(catchError(this.handleError));
 	}
 
 	handleError(error: HttpErrorResponse) {

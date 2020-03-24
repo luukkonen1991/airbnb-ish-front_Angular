@@ -18,7 +18,7 @@
       <!-- Map -->
       <div class="content">
         <agm-map
-          class="resize-img col-lg-6"
+          class="resize-img"
           [latitude]="location.data.location.coordinates[1]"
           [longitude]="location.data.location.coordinates[0]"
         >
@@ -84,16 +84,17 @@
             <button
               type="button"
               class="btn btn-primary mr-1"
-              routerLink=""
+              (click)="showReviewsToggle()"
             >Show Reviews</button>
           </p>
         </div>
       </div>
       <div
+        *ngIf="this.showReviews === true"
         class="col-lg-6"
         style="border: 1px solid black;"
       >
-        hello
+        <app-location-reviews [reviews]="this.reviews"></app-location-reviews>
       </div>
     </div>
   </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Review } from '../../models/Review';
+import { Reviews } from '../../models/Reviews';
+import { Review } from 'src/app/models/Review';
 
 @Component({
 	selector: 'app-reviews-modal',
@@ -9,7 +10,7 @@ import { Review } from '../../models/Review';
 	]
 })
 export class ReviewsModalComponent implements OnInit {
-	reviews: Review[];
+	reviews: Reviews;
 	review: Review;
 
 	constructor() {
