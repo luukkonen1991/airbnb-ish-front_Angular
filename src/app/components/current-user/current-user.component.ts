@@ -7,7 +7,7 @@ import { LocationById } from 'src/app/models/LocationById';
 import { UpdateLocation } from '../../models/UpdateLocation';
 import { DataService } from 'src/app/services/data.service';
 import { UserService } from 'src/app/services/user.service';
-import { HttpParams } from '@angular/common/http';
+import { HttpParams, HttpClient } from '@angular/common/http';
 import { ContactService } from 'src/app/services/contact.service';
 import { ContactMessage } from 'src/app/models/ContactMessage';
 
@@ -26,6 +26,8 @@ export class CurrentUserComponent implements OnInit {
 	allUsersData: User;
 	allMessagesData: ContactMessage;
 	location: LocationById = undefined;
+	selectedFile: File = null;
+	selectedId: string = null;
 	newLocation: UpdateLocation = {
 		title: '',
 		description: '',
@@ -38,13 +40,15 @@ export class CurrentUserComponent implements OnInit {
 		email: '',
 		user: ''
 	};
+	photoUrl: '';
 
 	constructor(
 		private authService: AuthService,
 		private locationService: LocationService,
 		private dataService: DataService,
 		private userService: UserService,
-		private contactService: ContactService
+		private contactService: ContactService,
+		private http: HttpClient
 	) { }
 
 	ngOnInit() {
@@ -143,8 +147,22 @@ export class CurrentUserComponent implements OnInit {
 		});
 	}
 
-	changePhoto(id, name) {
-		console.log('paska' + name + id)
+	onFileSelected(id, photoUrl) {
+		this.selectedId = id;
+		console.log(photoUrl)
+		this.selectedFile = <File>photoUrl.target.files[0];
+	}
+
+	onUpload() {
+		this.locationService.uploadPhoto(this.selectedId, this.selectedFile).subscribe(photo => {
+			console.log(photo);
+			this.dataService.showNotification('Photo changed successfully!', true);
+		}, error => {
+			console.log(error)
+			if (error.error.success === false) {
+				this.dataService.showNotification(error.error.error, false);
+			}
+		});
 	}
 
 	checkAnimalsNew(event: Event) {
