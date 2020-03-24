@@ -1,6 +1,113 @@
 <!-- Hotel info screen -->
 
 <div
+  class="row"
+  *ngIf="location !== undefined"
+>
+  <div class="col-lg-6">
+    <div class="card">
+      <img
+        class="card-img-top resize-img"
+        src="http://localhost:5000/uploads/{{location.data.photo}}"
+        alt="Card image cap"
+      />
+      <div class="card-body">
+        <h1 class="card-title">{{location.data.title}}</h1>
+        <h5>
+          {{ location.data.description }}
+        </h5>
+        <br>
+        <h6>
+          What kind of animals are allowed
+        </h6>
+        <p>
+          {{ location.data.animalTypes }}
+        </p>
+        <hr>
+        <h6>
+          What's included
+        </h6>
+        <p>
+          {{ location.data.services }}
+        </p>
+        <hr>
+        <h6>
+          Where your pet will stay
+        </h6>
+        <p>
+          {{ location.data.address }}
+        </p>
+        <hr>
+        <h6>
+          How much you'll pay
+        </h6>
+        <p>
+          {{location.data.costAmount}}€ / {{location.data.costType}}
+        </p>
+        <hr>
+        <p class="card-text">
+          <small class="text-muted">Posted: {{location.data.createdAt | date}}</small>
+          <br><br>
+          <button
+            type="button"
+            class="btn btn-secondary mr-1"
+            routerLink=""
+          >Back</button>
+          <button
+            [disabled]="this.showMe !== true"
+            type="button"
+            class="btn btn-primary mr-1"
+            data-toggle="modal"
+            data-target="#contactHostModal"
+          >Contact Host</button>
+          <button
+            type="button"
+            class="btn btn-primary mr-1"
+            (click)="showReviewsToggle()"
+          >Show Reviews</button>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+
+
+    <div class="card">
+      <!-- Map -->
+      <div class="card-img-top resize-img">
+        <agm-map
+          class="map"
+          [latitude]="location.data.location.coordinates[1]"
+          [longitude]="location.data.location.coordinates[0]"
+        >
+          <agm-marker
+            [latitude]="location.data.location.coordinates[1]"
+            [longitude]="location.data.location.coordinates[0]"
+          >
+          </agm-marker>
+        </agm-map>
+      </div>
+
+
+      <div
+        *ngIf="this.showReviews === true"
+        class="card-body"
+      >
+        <app-location-reviews [reviews]="this.reviews"></app-location-reviews>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+<!-- <div class="row">
+  <div class="col-6"></div>
+  <div class="col-6"></div>
+</div> -->
+
+
+
+<!-- <div
   *ngIf="location !== undefined"
   class="card"
 >
@@ -8,17 +115,17 @@
 
   <div class="card-body">
     <div class="container">
-      <div class="content col-lg-6">
+      <div class="content col-6">
         <img
           class="card-img-top resize-img"
           src="http://localhost:5000/uploads/{{location.data.photo}}"
           alt="Card image cap"
         />
-      </div>
-      <!-- Map -->
-      <div class="content">
+      </div> -->
+<!-- Map -->
+<!-- <div class="content col-6">
         <agm-map
-          class="resize-img"
+          class="map"
           [latitude]="location.data.location.coordinates[1]"
           [longitude]="location.data.location.coordinates[0]"
         >
@@ -98,7 +205,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- Contact Host Modal -->
 <div
