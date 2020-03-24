@@ -105,10 +105,11 @@ export class LocationsComponent implements OnInit {
 			this.locations = this.fromHome;
 			this.dataService.changeParams(this.params);
 			this.dataService.changePage(this.pageNumber);
-			console.log(this.params);
-			console.log(this.pageNumber);
-			console.log('ngDoCheckRan!!!');
+			// console.log(this.params);
 			// console.log(this.pageNumber);
+			// console.log('ngDoCheckRan!!!');
+			// console.log(this.pageNumber);
+			console.log(this.locations[0].averageRating);
 			this.fromHome = undefined;
 		}
 	}

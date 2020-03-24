@@ -34,6 +34,12 @@
               class="btn btn-secondary ml-2"
               (click)="focusLocationOnMap(item.location.coordinates[0], item.location.coordinates[1])"
             >show on map</a>
+            <small
+              class="rating"
+              *ngIf="item.averageRating !== undefined"
+            >
+              <app-star-rating [rating]="item.averageRating"></app-star-rating>
+            </small>
           </p>
         </div>
       </div>

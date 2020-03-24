@@ -29,6 +29,7 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 
 // envs
 import { environment } from './environment/environment';
+import { StarRatingComponent } from './components/star-rating/star-rating.component';
 
 @NgModule({
 	declarations: [
@@ -47,7 +48,8 @@ import { environment } from './environment/environment';
 		LoginComponent,
 		RegisterComponent,
 		ForgotPasswordComponent,
-		ResetPasswordComponent
+		ResetPasswordComponent,
+		StarRatingComponent
 	],
 	imports: [
 		BrowserModule,
