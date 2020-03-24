@@ -8,7 +8,7 @@
 
   <div class="card-body">
     <div class="container">
-      <div class="content">
+      <div class="content col-lg-6">
         <img
           class="card-img-top resize-img"
           src="http://localhost:5000/uploads/{{location.data.photo}}"
@@ -18,7 +18,7 @@
       <!-- Map -->
       <div class="content">
         <agm-map
-          class="resize-img"
+          class="resize-img col-lg-6"
           [latitude]="location.data.location.coordinates[1]"
           [longitude]="location.data.location.coordinates[0]"
         >
@@ -30,60 +30,72 @@
         </agm-map>
       </div>
     </div>
-    <h1 class="card-title">{{location.data.title}}</h1>
-    <h5>
-      {{ location.data.description }}
-    </h5>
-    <br>
-    <h6>
-      What kind of animals are allowed
-    </h6>
-    <p>
-      {{ location.data.animalTypes }}
-    </p>
-    <hr>
-    <h6>
-      What's included
-    </h6>
-    <p>
-      {{ location.data.services }}
-    </p>
-    <hr>
-    <h6>
-      Where your pet will stay
-    </h6>
-    <p>
-      {{ location.data.address }}
-    </p>
-    <hr>
-    <h6>
-      How much you'll pay
-    </h6>
-    <p>
-      {{location.data.costAmount}}€ / {{location.data.costType}}
-    </p>
-    <hr>
-    <p class="card-text">
-      <small class="text-muted">Posted: {{location.data.createdAt | date}}</small>
-      <br><br>
-      <button
-        type="button"
-        class="btn btn-secondary mr-1"
-        routerLink=""
-      >Back</button>
-      <button
-        [disabled]="this.showMe !== true"
-        type="button"
-        class="btn btn-primary mr-1"
-        data-toggle="modal"
-        data-target="#contactHostModal"
-      >Contact Host</button>
-      <button
-        type="button"
-        class="btn btn-primary mr-1"
-        routerLink=""
-      >Show Reviews</button>
-    </p>
+    <div class="row">
+      <div class="col-lg-6">
+        <div>
+          <h1 class="card-title">{{location.data.title}}</h1>
+          <h5>
+            {{ location.data.description }}
+          </h5>
+          <br>
+          <h6>
+            What kind of animals are allowed
+          </h6>
+          <p>
+            {{ location.data.animalTypes }}
+          </p>
+          <hr>
+          <h6>
+            What's included
+          </h6>
+          <p>
+            {{ location.data.services }}
+          </p>
+          <hr>
+          <h6>
+            Where your pet will stay
+          </h6>
+          <p>
+            {{ location.data.address }}
+          </p>
+          <hr>
+          <h6>
+            How much you'll pay
+          </h6>
+          <p>
+            {{location.data.costAmount}}€ / {{location.data.costType}}
+          </p>
+          <hr>
+          <p class="card-text">
+            <small class="text-muted">Posted: {{location.data.createdAt | date}}</small>
+            <br><br>
+            <button
+              type="button"
+              class="btn btn-secondary mr-1"
+              routerLink=""
+            >Back</button>
+            <button
+              [disabled]="this.showMe !== true"
+              type="button"
+              class="btn btn-primary mr-1"
+              data-toggle="modal"
+              data-target="#contactHostModal"
+            >Contact Host</button>
+            <button
+              type="button"
+              class="btn btn-primary mr-1"
+              routerLink=""
+            >Show Reviews</button>
+          </p>
+        </div>
+      </div>
+      <div
+        class="col-lg-6"
+        style="border: 1px solid black;"
+      >
+        hello
+      </div>
+    </div>
   </div>
 </div>
 

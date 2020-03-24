@@ -3,8 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { LocationService } from '../../services/location.service';
 
 import { LocationById } from '../../models/LocationById';
+import { Review } from '../../models/Review';
 
 import { DataService } from 'src/app/services/data.service';
+import { ReviewService } from 'src/app/services/review.service';
 
 @Component({
 	selector: 'app-location',
@@ -14,6 +16,7 @@ import { DataService } from 'src/app/services/data.service';
 	]
 })
 export class LocationComponent implements OnInit {
+	reviews: Review[];
 	location: LocationById;
 	_id: string;
 	showMe: boolean;
@@ -31,6 +34,7 @@ export class LocationComponent implements OnInit {
 	constructor(
 		private route: ActivatedRoute,
 		private locationService: LocationService,
+		private reviewService: ReviewService,
 		private dataService: DataService
 	) {}
 
@@ -45,7 +49,14 @@ export class LocationComponent implements OnInit {
 		this.locationService
 			.getLocation(this._id)
 			.subscribe(location => ((this.location = location), console.log(this.location)));
-
+		this.reviewService.getLocationReviews(this._id).subscribe(
+			reviews => {
+				this.reviews = reviews;
+			},
+			error => {
+				console.log(error);
+			}
+		);
 		//check if signed in
 		let token = sessionStorage.getItem('token');
 		if (token) {

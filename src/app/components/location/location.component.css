@@ -1,5 +1,6 @@
 .resize-img {
 	height: 400px;
+	justify-content: center;
 }
 
 .card {

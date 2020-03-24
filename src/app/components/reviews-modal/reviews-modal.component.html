@@ -1,0 +1,160 @@
+<!-- Add review Modal-->
+<div
+  class="modal fade bd-example-modal-lg"
+  id="editHotelModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="editHotelModalLabel"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog m-auto"
+    role="document"
+  >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4
+          class="modal-title"
+          id="editHotelModalLabel"
+        >Add review</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Title</label>
+          <input
+            [(ngModel)]="this.review.title"
+            type="text"
+            class="form-control"
+            name="title"
+            value="{{this.review.title}}"
+            #title
+          /><br>
+          <label>Text</label>
+          <input
+            [(ngModel)]="this.review.text"
+            type="text"
+            class="form-control"
+            name="text"
+            value="{{ this.review.text }}"
+            #description
+          /><br>
+          <div class="form-check inlineCheckBox">
+            <label class="label">Rating</label><br>
+            <div class="form-row">
+              <div class="custom-control custom-radio">
+                <input
+                  (click)="getRating($event)"
+                  class="custom-control-input"
+                  type="radio"
+                  name=costTypeRadios
+                  id="1"
+                  value="1"
+                  [(ngModel)]="this.review.rating"
+                >
+                <label
+                  class="custom-control-label pr-4"
+                  for="1"
+                >
+                  1
+                </label>
+                <label class="label">Rating</label><br>
+                <div class="form-row">
+                  <div class="custom-control custom-radio">
+                    <input
+                      (click)="getRating($event)"
+                      class="custom-control-input"
+                      type="radio"
+                      name=costTypeRadios
+                      id="2"
+                      value="2"
+                      [(ngModel)]="this.review.rating"
+                    >
+                    <label
+                      class="custom-control-label pr-4"
+                      for="2"
+                    >
+                      2
+                    </label>
+                    <label class="label">Rating</label><br>
+                    <div class="form-row">
+                      <div class="custom-control custom-radio">
+                        <input
+                          (click)="getRating($event)"
+                          class="custom-control-input"
+                          type="radio"
+                          name=costTypeRadios
+                          id="3"
+                          value="3"
+                          [(ngModel)]="this.review.rating"
+                        >
+                        <label
+                          class="custom-control-label pr-4"
+                          for="3"
+                        >
+                          3
+                        </label>
+                        <label class="label">Rating</label><br>
+                        <div class="form-row">
+                          <div class="custom-control custom-radio">
+                            <input
+                              (click)="getRating($event)"
+                              class="custom-control-input"
+                              type="radio"
+                              name=costTypeRadios
+                              id="4"
+                              value="4"
+                              [(ngModel)]="this.review.rating"
+                            >
+                            <label
+                              class="custom-control-label pr-4"
+                              for="4"
+                            >
+                              4
+                            </label>
+                            <label class="label">Rating</label><br>
+                            <div class="form-row">
+                              <div class="custom-control custom-radio">
+                                <input
+                                  (click)="getRating($event)"
+                                  class="custom-control-input"
+                                  type="radio"
+                                  name=costTypeRadios
+                                  id="5"
+                                  value="5"
+                                  [(ngModel)]="this.review.rating"
+                                >
+                                <label
+                                  class="custom-control-label pr-4"
+                                  for="5"
+                                >
+                                  5
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          <br>
+                          <br>
+                          <div class="modal-footer">
+                            <button
+                              type="button"
+                              class="btn btn-warning"
+                              (click)="addReview()"
+                              data-dismiss="modal"
+                            >Add review</button>
+                            <button
+                              type="button"
+                              class="btn btn-secondary"
+                              data-dismiss="modal"
+                            >Cancel</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
