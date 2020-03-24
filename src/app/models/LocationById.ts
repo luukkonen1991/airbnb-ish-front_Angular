@@ -16,5 +16,6 @@ export interface LocationById {
 		user: string;
 		phone: string;
 		email: string;
+		averageRating?: number;
 	};
 }

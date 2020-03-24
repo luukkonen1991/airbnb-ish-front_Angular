@@ -13,4 +13,5 @@ export interface Location {
 	services: string[];
 	photo?: string;
 	createdAt: string;
+	averageRating?: number;
 }
