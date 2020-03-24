@@ -13,9 +13,9 @@ import { Form } from '@angular/forms';
 
 const httpHeadersPhoto = {
 	headers: new HttpHeaders({
-            'Accept': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application'
+		Accept: 'application/json',
+		'Access-Control-Allow-Origin': '*',
+		'Content-Type': 'application'
 	})
 };
 
@@ -24,7 +24,6 @@ const httpHeaders = {
 		'Content-type': 'application/json'
 	})
 };
-
 
 @Injectable({
 	providedIn: 'root'
@@ -118,13 +117,20 @@ export class LocationService {
 		return this.http.put<UpdateLocation>(url, data, httpHeaders).pipe(catchError(this.handleError));
 	}
 
-	uploadPhoto(_id: string, file: File): Observable<any> {
-		const url = `${this.locationUrl}/${_id}/photo`;
+	uploadPhoto(_id: string, file: any, fileName: any): Observable<any> {
+		let url = `${this.locationUrl}/${_id}/photo`;
 		let token = sessionStorage.getItem('token');
-		const formData = new FormData()
-		formData.append('file', file);
-		httpHeadersPhoto.headers =  httpHeadersPhoto.headers.set('Authorization', `Bearer ${token}`)
-		return this.http.put<any>(url, file, httpHeadersPhoto).pipe(catchError(this.handleError));
+		httpHeaders.headers = httpHeaders.headers.set('Authorization', `Bearer ${token}`);
+		const fd = new FormData();
+		fd.append('file', file, fileName);
+		return this.http.put<any>(url, fd, httpHeaders).pipe(catchError(this.handleError));
+
+		// const url = `${this.locationUrl}/${_id}/photo`;
+		// let token = sessionStorage.getItem('token');
+		// const formData = new FormData()
+		// formData.append('file', file);
+		// httpHeadersPhoto.headers =  httpHeadersPhoto.headers.set('Authorization', `Bearer ${token}`)
+		// return this.http.put<any>(url, file, httpHeadersPhoto).pipe(catchError(this.handleError));
 	}
 
 	createLocation(newLocationData: UpdateLocation, userId: string): Observable<any> {
