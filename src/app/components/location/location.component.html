@@ -13,8 +13,8 @@
           alt="Card image cap" />
       </div>
       <!-- Map -->
-      <div class="content">
-        <agm-map class="resize-img" [latitude]="location.data.location.coordinates[1]"
+      <div class="content" *ngIf="location.data.location.coordinates !== undefined">
+        <agm-map [zoom]=16 class="resize-img" [latitude]="location.data.location.coordinates[1]"
           [longitude]="location.data.location.coordinates[0]">
           <agm-marker [latitude]="location.data.location.coordinates[1]"
             [longitude]="location.data.location.coordinates[0]">
