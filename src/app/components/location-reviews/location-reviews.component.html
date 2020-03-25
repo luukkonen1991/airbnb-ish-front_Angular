@@ -12,7 +12,10 @@
         <div><i
             class="fa fa-user fa-lg"
             aria-hidden="true"
+            style="font-size: 50px; padding: 0.25em;"
           ></i></div>
+        <!-- <p>Rating: {{review.rating}}</p> -->
+        <app-star-rating [rating]="review.rating"></app-star-rating>
       </div>
 
       <div class="userTextDiv col-lg-8">
