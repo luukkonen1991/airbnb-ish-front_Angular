@@ -10,3 +10,16 @@
 	width: 450px;
 	height: 600px;
 }
+
+.reviewsContainer {
+	height: 500px;
+	width: 525px;
+	overflow: auto;
+	padding: 1rem;
+	box-shadow: 10px 5px 5px gray;
+	border: 1px solid gray;
+}
+
+.reviewCard {
+	margin: 0.5em;
+}

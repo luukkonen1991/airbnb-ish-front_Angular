@@ -4,19 +4,24 @@
     class="row"
     style="padding: 0; margin: 0;"
   >
-    <div class="userPicDiv col-lg-3">
-      <div><i
-          class="fa fa-user fa-lg"
-          aria-hidden="true"
-        ></i></div>
-    </div>
+    <div
+      class="row reviewCard"
+      style="border: 1px solid black;"
+    >
+      <div class="userPicDiv col-lg-3">
+        <div><i
+            class="fa fa-user fa-lg"
+            aria-hidden="true"
+          ></i></div>
+      </div>
 
-    <div class="userTextDiv col-lg-6">
-      <h4>{{review.title}}</h4>
+      <div class="userTextDiv col-lg-8">
+        <h4>{{review.title}}</h4>
+        <hr>
+        <p>{{review.text}}</p>
+        <small>{{review.createdAt}}</small>
+      </div>
       <hr>
-      <p>{{review.text}}</p>
-      <small>{{review.createdAt}}</small>
     </div>
-    <hr>
   </div>
 </div>
