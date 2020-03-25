@@ -3,16 +3,9 @@
 <div class="daddy-div">
   <h2 class="text-center mt-5">Most recent locations</h2>
   <div class="results">
-    <div
-      class="card-group"
-      *ngFor="let item of locations"
-    >
+    <div class="card-group" *ngFor="let item of locations">
       <div class="card resize-card m-2">
-        <img
-          class="card-img-top resize-img"
-          src="http://localhost:5000/uploads/{{item.photo}}"
-          alt="Card image cap"
-        />
+        <img class="card-img-top resize-img" src="http://localhost:5000/uploads/{{item.photo}}" alt="Card image cap" />
         <div class="card-body">
           <h3 class="card-title">{{item.title}}</h3>
           <p class="card-text">
@@ -21,70 +14,44 @@
           <p>
             price: {{item.costAmount}}€ / {{item.costType}}
           </p>
-          <p class="card-text">
-            <small class="text-muted">Posted: {{item.createdAt | date}}</small>
-            <a
-              type="button"
-              class="btn btn-secondary ml-2"
-              routerLink="/location/{{item.slug}}"
-              (click)="passLocationId(item._id)"
-            >View location</a>
-            <a
-              type="button"
-              class="btn btn-secondary ml-2"
-              (click)="focusLocationOnMap(item.location.coordinates[0], item.location.coordinates[1])"
-            >show on map</a>
-
+          <p>
+            <a type="button" class="btn btn-primary m-1" data-toggle="tooltip" title="View pet hotel details"
+              routerLink="/location/{{item.slug}}" (click)="passLocationId(item._id)">
+              <i class="fa fa-info-circle"></i>
+            </a>
+            <button class="btn btn-danger m-1" data-toggle="tooltip" title="View location on map"
+              (click)="focusLocationOnMap(item.location.coordinates[0], item.location.coordinates[1])">
+              <i class="fa fa-map-marker"></i>
+          </button>
           </p>
-          <div
-            class="rating"
-            *ngIf="item.averageRating !== undefined"
-          >
-            <app-star-rating [rating]="item.averageRating"></app-star-rating>
+          <div class="rating" *ngIf="item.averageRating !== undefined">
+            <p><app-star-rating [rating]="item.averageRating"></app-star-rating></p>
           </div>
           <div *ngIf="item.averageRating === undefined">
             <p>No ratings</p>
           </div>
+          <p class="card-text">
+            <small class="text-muted">Posted: {{item.createdAt | date}}</small>
+          </p>
         </div>
       </div>
     </div>
-    <div
-      class="pagination"
-      *ngIf="locations !== undefined"
-    >
-      <button
-        [disabled]="this.pagination.prev === undefined"
-        (click)="changePagePrev('prev')"
-        class="btn btn-info"
-      ><i class="fa fa-chevron-left"></i></button>
+    <div class="pagination" *ngIf="locations !== undefined">
+      <button [disabled]="this.pagination.prev === undefined" (click)="changePagePrev('prev')" class="btn btn-info"><i
+          class="fa fa-chevron-left"></i></button>
       <h2 class="pageNumber">{{this.pageNumber}}/{{this.lastPage}}</h2>
-      <button
-        [disabled]="this.pagination.next === undefined"
-        (click)="changePageNext('next')"
-        class="btn btn-info"
-      ><i class="fa fa-chevron-right"></i></button>
+      <button [disabled]="this.pagination.next === undefined" (click)="changePageNext('next')" class="btn btn-info"><i
+          class="fa fa-chevron-right"></i></button>
     </div>
   </div>
 
   <!-- Map -->
-  <agm-map
-    class="m-2"
-    [latitude]="latitude"
-    [longitude]="lngitude"
-    [zoom]="mapZoom"
-  >
-    <agm-marker
-      *ngFor="let item of locations let i of index"
-      [latitude]="item.location.coordinates[1]"
-      [longitude]="item.location.coordinates[0]"
-      [animation]="markerAnimation"
-    >
+  <agm-map class="m-2" [latitude]="latitude" [longitude]="lngitude" [zoom]="mapZoom">
+    <agm-marker *ngFor="let item of locations let i of index" [latitude]="item.location.coordinates[1]"
+      [longitude]="item.location.coordinates[0]" [animation]="markerAnimation">
     </agm-marker>
   </agm-map>
-  <div
-    class="map-div m-2"
-    *ngIf="locations !== undefined"
-  >
+  <div class="map-div m-2" *ngIf="locations !== undefined">
     <!-- <img class="map-img" src="../../../assets/coming_soon_map.png" alt="" /> -->
 
   </div>
@@ -94,11 +61,7 @@
   <!-- Loading Screen -->
 
   <div class="d-flex justify-content-center">
-    <div
-      class="spinner-border m-4"
-      role="status"
-      *ngIf="locations === undefined"
-    >
+    <div class="spinner-border m-4" role="status" *ngIf="locations === undefined">
       <h2 class="sr-only">Loading...</h2>
     </div>
   </div>
