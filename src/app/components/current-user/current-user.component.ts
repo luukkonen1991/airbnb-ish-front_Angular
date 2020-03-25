@@ -161,30 +161,25 @@ export class CurrentUserComponent implements OnInit {
 	}
 
 	onUpload() {
-		const httpHeaders = {
-			headers: new HttpHeaders()
-		};
-		let url = `http://localhost:5000/api/v1/locations/${this.location.data[0]._id}/photo`;
-		let token = sessionStorage.getItem('token');
-		httpHeaders.headers = httpHeaders.headers.set('Authorization', `Bearer ${token}`);
 		const fd = new FormData();
 		fd.append('file', this.selectedFile);
-		this.http.put(url, fd, httpHeaders).subscribe(res => {
-			console.log(res);
-		});
-		// this.locationService.uploadPhoto(this.selectedId, this.selectedFile).subscribe(
-		// 	photo => {
-		// 		console.log(photo);
-		// 		this.dataService.showNotification('Photo changed successfully!', true);
-		// 	},
-		// 	error => {
-		// 		console.log(error);
-		// 		if (error.error.success === false) {
-		// 			this.dataService.showNotification(error.error.error, false);
-		// 		}
-		// 	}
-		// );
+		this.locationService.uploadPhoto(this.location.data[0]._id, fd).subscribe(
+			photo => {
+				if (photo.success === true) {
+					console.log(this.location.data[0]);
+					this.location.data[0].photo = photo.data;
+					this.dataService.showNotification('Photo changed succesfully!', true);
+				}
+			},
+			error => {
+				console.log(error);
+				if (error.error.success === false) {
+					this.dataService.showNotification(error.error.error, false);
+				}
+			}
+		);
 	}
+	
 
 	checkAnimalsNew(event: Event) {
 		if ((<HTMLInputElement>event.target).checked === true) {
