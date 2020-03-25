@@ -13,8 +13,13 @@ agm-map {
 	height: 400px;
 	width: 500px;
 }
-
+/*
 .map {
+} */
+
+.reviews {
+	width: 450px;
+	height: 600px;
 }
 
 .container {
