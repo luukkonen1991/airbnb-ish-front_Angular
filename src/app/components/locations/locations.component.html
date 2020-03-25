@@ -40,7 +40,10 @@
             class="rating"
             *ngIf="item.averageRating !== undefined"
           >
-            <app-star-rating [rating]="item.averageRating"></app-star-rating>
+            <app-star-rating
+              style="font-size: 25px;"
+              [rating]="item.averageRating"
+            ></app-star-rating>
           </div>
           <div *ngIf="item.averageRating === undefined">
             <p>No ratings</p>
