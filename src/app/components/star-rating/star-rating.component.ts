@@ -20,11 +20,6 @@ export class StarRatingComponent implements OnInit {
 		0,
 		0,
 		0,
-		0,
-		0,
-		0,
-		0,
-		0,
 		0
 	];
 	constructor() {}
