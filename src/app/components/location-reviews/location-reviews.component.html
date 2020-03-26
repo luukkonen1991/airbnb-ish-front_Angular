@@ -1,20 +1,26 @@
-<div
-  *ngFor="let review of reviews"
-  class="row"
-  style="border: 1px solid black;"
->
-  <div class="userPicDiv col-4">
-    <div><i
-        class="fa fa-user fa-lg"
-        aria-hidden="true"
-      ></i></div>
-  </div>
+<div class="reviewsContainer">
+  <div
+    *ngFor="let review of reviews"
+    class="row"
+  >
+    <div class="row reviewCard">
+      <div class="userPicDiv col-lg-3">
+        <div><i
+            class="fa fa-user fa-lg"
+            aria-hidden="true"
+            style="font-size: 50px; padding: 0.25em;"
+          ></i></div>
+        <!-- <p>Rating: {{review.rating}}</p> -->
+        <app-star-rating [rating]="review.rating"></app-star-rating>
+      </div>
 
-  <div class="userTextDiv col-8">
-    <h4>{{review.title}}</h4>
-    <hr>
-    <p>{{review.text}}</p>
-    <small>{{review.createdAt}}</small>
+      <div class="userTextDiv col-lg-8">
+        <h4>{{review.title}}</h4>
+        <hr>
+        <p>{{review.text}}</p>
+        <small>Posted: {{review.createdAt | date}}</small>
+      </div>
+      <hr>
+    </div>
   </div>
-  <hr>
 </div>
