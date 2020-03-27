@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -63,7 +64,8 @@ import { LocationReviewsComponent } from './components/location-reviews/location
 		ReactiveFormsModule,
 		AgmCoreModule.forRoot({
 			apiKey: environment.GOOGLE_API_KEY
-		})
+		}),
+		GooglePlaceModule
 	],
 	providers: [
 		LocationService,
