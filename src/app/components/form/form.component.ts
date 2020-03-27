@@ -17,10 +17,10 @@ export class FormComponent implements OnInit {
 	@ViewChildren('inputs') public inputs: ElementRef<HTMLInputElement>[];
 
 	locations: Location[];
-	formattedAddress = '';
+	formattedAddressInput = '';
 	options = {
 		types: [
-			'(cities)'
+			'(regions)'
 		],
 		componentRestrictions: {
 			country: [
@@ -51,6 +51,9 @@ export class FormComponent implements OnInit {
 		// this.dataService.currentLocations.subscribe((locations) => (this.locations = locations));
 	}
 
+	ngDoCheck() {
+		console.log(this.formattedAddressInput);
+	}
 	onSubmit() {
 		this.getCheckboxValueAnimalTypes(event);
 		this.getCheckboxValueAnimalServices(event);
@@ -85,7 +88,7 @@ export class FormComponent implements OnInit {
 	}
 
 	handleAddressChange(address: any) {
-		this.formattedAddress = address.formatted_address;
+		this.formattedAddressInput = address.formatted_address;
 	}
 
 	clearState() {
