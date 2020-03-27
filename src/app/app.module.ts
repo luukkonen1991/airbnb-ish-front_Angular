@@ -63,7 +63,10 @@ import { LocationReviewsComponent } from './components/location-reviews/location
 		FormsModule,
 		ReactiveFormsModule,
 		AgmCoreModule.forRoot({
-			apiKey: environment.GOOGLE_API_KEY
+			apiKey: environment.GOOGLE_API_KEY,
+			libraries: [
+				'places'
+			]
 		}),
 		GooglePlaceModule
 	],

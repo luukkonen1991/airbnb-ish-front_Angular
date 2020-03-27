@@ -19,6 +19,9 @@ export class FormComponent implements OnInit {
 	locations: Location[];
 	formattedAddress = '';
 	options = {
+		types: [
+			'(cities)'
+		],
 		componentRestrictions: {
 			country: [
 				'FI'
