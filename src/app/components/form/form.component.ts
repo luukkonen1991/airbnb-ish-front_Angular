@@ -17,6 +17,14 @@ export class FormComponent implements OnInit {
 	@ViewChildren('inputs') public inputs: ElementRef<HTMLInputElement>[];
 
 	locations: Location[];
+	formattedAddress = '';
+	options = {
+		componentRestrictions: {
+			country: [
+				'FI'
+			]
+		}
+	};
 
 	formShow: boolean = false;
 
@@ -71,6 +79,10 @@ export class FormComponent implements OnInit {
 		// });
 
 		// this.clearState();
+	}
+
+	handleAddressChange(address: any) {
+		this.formattedAddress = address.formatted_address;
 	}
 
 	clearState() {
