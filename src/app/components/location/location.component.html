@@ -45,6 +45,14 @@
           {{location.data.costAmount}}€ / {{location.data.costType}}
         </p>
         <hr>
+        <div class="rating" *ngIf="location.data.averageRating !== undefined">
+          <p>
+            <app-star-rating [rating]="location.data.averageRating"></app-star-rating>
+          </p>
+        </div>
+        <div *ngIf="location.data.averageRating === undefined">
+          <p>No ratings</p>
+        </div>
         <p class="card-text">
           <small class="text-muted">Posted: {{location.data.createdAt | date}}</small>
           <br><br>
