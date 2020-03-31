@@ -36,6 +36,8 @@ export class LocationService {
 		sortInput?: any,
 		animalTypes?: any,
 		services?: any,
+		autoCityAndZip?: any,
+		autoCity?: any,
 		page?: any
 	): Observable<Locations> {
 		let params = new HttpParams()
@@ -47,22 +49,45 @@ export class LocationService {
 			Object.keys(animalTypes).forEach(function(key) {
 				params = params.append('animalTypes[in]', animalTypes[key]);
 			});
-			if (services !== []) {
-				Object.keys(services).forEach(function(key) {
-					params = params.append('services[in]', services[key]);
-				});
-			}
-
-			// for (let i: number; i < animalTypes.length; i++) {
-			// 	console.log(1);
-			// 	params = params.append('animalTypes[in]', animalTypes[i]);
-			// 	console.log(2);
-			// }
-			// params = params.append('animalTypes[in]', animalTypes);
-			// params = params.append(animalTypes.forEach(animal => {
-			//   return 'animalTypes[in]' animal
-			// }););
 		}
+		if (services !== []) {
+			Object.keys(services).forEach(function(key) {
+				params = params.append('services[in]', services[key]);
+			});
+		}
+		if (autoCityAndZip !== '' && typeof autoCityAndZip === 'string') {
+			params = params.append('autocomplete', autoCityAndZip);
+		}
+		if (autoCity !== '' && typeof autoCity === 'string') {
+			params = params.append('autocomplete', autoCity);
+		}
+		// if (location !== []) {
+		// 	if (location.length === 3) {
+		// 		// params = params.append('location.zipcode', location[0]);
+		// 		params = params.append('location.city', location[1]);
+		// 	}
+		// 	if (location.length === 2) {
+		// 		params = params.append('location.city', location[0]);
+		// 	}
+		// }
+		// if (location !== []) {
+		// 	params = params.append('location.zipcode[in]', location[0]);
+		// 	params = params.append('location.city[in]', location[1]);
+		// 	// params = params.append('location.city[in]', location[0])
+		// 	// Object.keys(location).forEach(function(key, index) {
+		// 	// 	params = params.append('location.city[in]', location[key]);
+		// 	// });
+		// }
+
+		// for (let i: number; i < animalTypes.length; i++) {
+		// 	console.log(1);
+		// 	params = params.append('animalTypes[in]', animalTypes[i]);
+		// 	console.log(2);
+		// }
+		// params = params.append('animalTypes[in]', animalTypes);
+		// params = params.append(animalTypes.forEach(animal => {
+		//   return 'animalTypes[in]' animal
+		// }););
 		console.log(params);
 		return this.http.get<Locations>(this.locationUrl, { params }).pipe(catchError(this.handleError));
 	}
@@ -109,7 +134,6 @@ export class LocationService {
 		return this.http.put<UpdateLocation>(url, data, httpHeaders).pipe(catchError(this.handleError));
 	}
 
-
 	// uploadPhoto(_id: string, file: any, fileName: any): Observable<any> {
 	// 	let url = `${this.locationUrl}/${_id}/photo`;
 	// 	let token = sessionStorage.getItem('token');
@@ -118,12 +142,12 @@ export class LocationService {
 	// 	fd.append('file', file, fileName);
 	// 	return this.http.put<any>(url, fd, httpHeaders).pipe(catchError(this.handleError));
 
-		// const url = `${this.locationUrl}/${_id}/photo`;
-		// let token = sessionStorage.getItem('token');
-		// const formData = new FormData()
-		// formData.append('file', file);
-		// httpHeadersPhoto.headers =  httpHeadersPhoto.headers.set('Authorization', `Bearer ${token}`)
-		// return this.http.put<any>(url, file, httpHeadersPhoto).pipe(catchError(this.handleError));
+	// const url = `${this.locationUrl}/${_id}/photo`;
+	// let token = sessionStorage.getItem('token');
+	// const formData = new FormData()
+	// formData.append('file', file);
+	// httpHeadersPhoto.headers =  httpHeadersPhoto.headers.set('Authorization', `Bearer ${token}`)
+	// return this.http.put<any>(url, file, httpHeadersPhoto).pipe(catchError(this.handleError));
 	// }
 
 	uploadPhoto(_id: string, formData: FormData): Observable<any> {
@@ -131,12 +155,11 @@ export class LocationService {
 		let token = sessionStorage.getItem('token');
 		const httpHeadersPhoto = {
 			headers: new HttpHeaders({
-				'Authorization': `Bearer ${token}`
+				Authorization: `Bearer ${token}`
 			})
 		};
 		return this.http.put<UpdateLocation>(url, formData, httpHeadersPhoto).pipe(catchError(this.handleError));
 	}
-
 
 	createLocation(newLocationData: UpdateLocation, userId: string): Observable<any> {
 		let data = {

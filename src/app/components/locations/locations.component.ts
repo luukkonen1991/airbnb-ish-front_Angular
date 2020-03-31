@@ -33,6 +33,8 @@ export class LocationsComponent implements OnInit {
 		maxPrice: null,
 		sortInput: '',
 		animalTypes: [],
+		autoCityAndZip: '',
+		autoCity: '',
 		services: []
 	};
 	_id: string;
@@ -72,6 +74,8 @@ export class LocationsComponent implements OnInit {
 				this.params.sortInput || '',
 				this.params.animalTypes || [],
 				this.params.services || [],
+				this.params.autoCityAndZip || '',
+				this.params.autoCity || '',
 				this.params.page || 1
 			)
 			.subscribe(locationArray => {
@@ -95,6 +99,8 @@ export class LocationsComponent implements OnInit {
 					this.params.sortInput || '',
 					this.params.animalTypes || [],
 					this.params.services || [],
+					this.params.autoCityAndZip || '',
+					this.params.autoCity || '',
 					(this.params.page = 1)
 				)
 				.subscribe(locationArray => {
@@ -109,7 +115,7 @@ export class LocationsComponent implements OnInit {
 			// console.log(this.pageNumber);
 			// console.log('ngDoCheckRan!!!');
 			// console.log(this.pageNumber);
-			console.log(this.locations[0].averageRating);
+			// console.log(this.locations[0].averageRating);
 			this.fromHome = undefined;
 		}
 	}
@@ -137,6 +143,8 @@ export class LocationsComponent implements OnInit {
 					this.params.sortInput || '',
 					this.params.animalTypes || [],
 					this.params.services || [],
+					this.params.autoCityAndZip || '',
+					this.params.autoCity || '',
 					this.pagination.next.page
 				)
 				.subscribe(locationArray => {
@@ -166,6 +174,9 @@ export class LocationsComponent implements OnInit {
 					this.params.maxPrice || 1000000,
 					this.params.sortInput || '',
 					this.params.animalTypes || [],
+					this.params.services || [],
+					this.params.autoCityAndZip || '',
+					this.params.autoCity || '',
 					this.pagination.prev.page
 				)
 				.subscribe(locationArray => {
