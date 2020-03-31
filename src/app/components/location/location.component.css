@@ -7,6 +7,14 @@
 	margin: 0.5rem;
 }
 
+.tooltipShow {
+	position: absolute;
+	transform: translate(-10%, -80%);
+	width: 120px;
+	height: 40px;
+	display: block;
+}
+
 .card {
 	justify-content: center;
 	margin: 0.5rem;
