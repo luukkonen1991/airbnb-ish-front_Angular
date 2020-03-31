@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChildren, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChildren, ViewChild, ElementRef } from '@angular/core';
 // import { FormBuilder } from '@angular/forms';
 
 import { LocationService } from '../../services/location.service';
@@ -20,7 +20,7 @@ export class FormComponent implements OnInit {
 	formattedAddressInput = '';
 	options = {
 		types: [
-			'(regions)'
+			'(cities)'
 		],
 		componentRestrictions: {
 			country: [
@@ -37,6 +37,8 @@ export class FormComponent implements OnInit {
 		sortInput: '',
 		animalTypes: [],
 		services: [],
+		autoCityAndZip: '',
+		autoCity: '',
 		page: 1
 	};
 
@@ -57,6 +59,7 @@ export class FormComponent implements OnInit {
 	onSubmit() {
 		this.getCheckboxValueAnimalTypes(event);
 		this.getCheckboxValueAnimalServices(event);
+		this.addressInputToParams();
 		this.dataService.changeParams(this.params);
 		console.log(this.params.animalTypes + ' Log of this.params');
 		console.log(this.params.page);
@@ -67,6 +70,8 @@ export class FormComponent implements OnInit {
 				this.params.sortInput || '',
 				this.params.animalTypes || [],
 				this.params.services || [],
+				this.params.autoCityAndZip || '',
+				this.params.autoCity || '',
 				this.params.page || 1
 			)
 			.subscribe(locationArray => {
@@ -89,6 +94,17 @@ export class FormComponent implements OnInit {
 
 	handleAddressChange(address: any) {
 		this.formattedAddressInput = address.formatted_address;
+	}
+
+	addressInputToParams() {
+		let addressArr = this.formattedAddressInput.split(/[\s,]+/);
+		console.log(addressArr);
+		if (addressArr.length === 3) {
+			this.params.autoCityAndZip = this.formattedAddressInput;
+		}
+		if (addressArr.length === 2) {
+			this.params.autoCity = this.formattedAddressInput;
+		}
 	}
 
 	clearState() {
