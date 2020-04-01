@@ -42,13 +42,10 @@ export class LocationComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.dataService.currentId.subscribe(_id => (this._id = _id));
-
-		// const _id = this.route.snapshot.paramMap.get('_id');
-		// const _id = this.route.params;
-		// console.log(_id);
-		// console.log(window.history.state);
-		// console.log(_id);
+		this.dataService.currentId.subscribe(_id => {
+			console.log(_id), (this._id = _id);
+		});
+		console.log(this._id);
 		this.locationService.getLocation(this._id).subscribe(
 			location => (
 				(this.location = location),
