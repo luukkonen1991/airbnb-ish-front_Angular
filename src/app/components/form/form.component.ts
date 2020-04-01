@@ -42,6 +42,8 @@ export class FormComponent implements OnInit {
 		page: 1
 	};
 
+	addressInputField: string = '';
+
 	@Output() locationsEvent = new EventEmitter<Location[]>();
 
 	constructor(private dataService: DataService, private locationService: LocationService) {}
@@ -53,10 +55,15 @@ export class FormComponent implements OnInit {
 		// this.dataService.currentLocations.subscribe((locations) => (this.locations = locations));
 	}
 
-	ngDoCheck() {
-		console.log(this.formattedAddressInput);
-	}
+	// ngDoCheck() {
+	// 	console.log(this.formattedAddressInput);
+	// }
 	onSubmit() {
+		if (this.addressInputField === '') {
+			this.formattedAddressInput = '';
+			this.params.autoCity = '';
+			this.params.autoCityAndZip = '';
+		}
 		this.getCheckboxValueAnimalTypes(event);
 		this.getCheckboxValueAnimalServices(event);
 		this.addressInputToParams();
@@ -93,7 +100,13 @@ export class FormComponent implements OnInit {
 	}
 
 	handleAddressChange(address: any) {
+		console.log(address)
 		this.formattedAddressInput = address.formatted_address;
+		if (address.formatted_address === '') {
+			this.formattedAddressInput = '';
+			this.params.autoCity = '';
+			this.params.autoCityAndZip = '';
+		}
 	}
 
 	addressInputToParams() {
@@ -115,6 +128,9 @@ export class FormComponent implements OnInit {
 			(this.params.animalTypes = []);
 		this.params.services = [];
 		this.uncheck();
+		this.formattedAddressInput = '';
+		this.params.autoCity = '';
+		this.params.autoCityAndZip = '';
 		// console.log(this.input.nativeElement);
 		// console.log(document.querySelectorAll('Dog'));
 	}

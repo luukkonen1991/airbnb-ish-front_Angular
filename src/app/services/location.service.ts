@@ -57,9 +57,13 @@ export class LocationService {
 		}
 		if (autoCityAndZip !== '' && typeof autoCityAndZip === 'string') {
 			params = params.append('autocomplete', autoCityAndZip);
+		} else {
+			params = params.delete('autocomplete');
 		}
 		if (autoCity !== '' && typeof autoCity === 'string') {
 			params = params.append('autocomplete', autoCity);
+		} else {
+			params = params.delete('autocomplete');
 		}
 		// if (location !== []) {
 		// 	if (location.length === 3) {
