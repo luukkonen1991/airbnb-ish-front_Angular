@@ -141,6 +141,7 @@ export class FormComponent implements OnInit {
 		this.formattedAddressInput = '';
 		this.params.autoCity = '';
 		this.params.autoCityAndZip = '';
+		this.addressInputField = '';
 		// console.log(this.input.nativeElement);
 		// console.log(document.querySelectorAll('Dog'));
 	}
