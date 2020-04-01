@@ -43,7 +43,12 @@ export class LocationComponent implements OnInit {
 
 	ngOnInit() {
 		this.dataService.currentId.subscribe(_id => {
-			console.log(_id), (this._id = _id);
+			if (_id !== undefined) {
+				this._id = _id;
+				this.idToSessionStorage(_id);
+			} else if (_id === undefined) {
+				this._id = sessionStorage.getItem('id');
+			}
 		});
 		console.log(this._id);
 		this.locationService.getLocation(this._id).subscribe(
@@ -73,5 +78,9 @@ export class LocationComponent implements OnInit {
 	}
 	showReviewsToggle() {
 		this.showReviews = !this.showReviews;
+	}
+
+	idToSessionStorage(_id: string) {
+		sessionStorage.setItem('id', _id);
 	}
 }
