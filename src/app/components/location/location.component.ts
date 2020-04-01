@@ -42,13 +42,15 @@ export class LocationComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.dataService.currentId.subscribe(_id => (this._id = _id));
-
-		// const _id = this.route.snapshot.paramMap.get('_id');
-		// const _id = this.route.params;
-		// console.log(_id);
-		// console.log(window.history.state);
-		// console.log(_id);
+		this.dataService.currentId.subscribe(_id => {
+			if (_id !== undefined) {
+				this._id = _id;
+				this.idToSessionStorage(_id);
+			} else if (_id === undefined) {
+				this._id = sessionStorage.getItem('id');
+			}
+		});
+		console.log(this._id);
 		this.locationService.getLocation(this._id).subscribe(
 			location => (
 				(this.location = location),
@@ -76,5 +78,9 @@ export class LocationComponent implements OnInit {
 	}
 	showReviewsToggle() {
 		this.showReviews = !this.showReviews;
+	}
+
+	idToSessionStorage(_id: string) {
+		sessionStorage.setItem('id', _id);
 	}
 }
