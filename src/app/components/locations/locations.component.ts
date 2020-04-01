@@ -1,4 +1,13 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import {
+	Component,
+	OnInit,
+	AfterViewInit,
+	AfterContentInit,
+	AfterContentChecked,
+	Input,
+	ViewChild,
+	ElementRef
+} from '@angular/core';
 import { Router, Scroll, NavigationEnd } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
 
@@ -7,7 +16,7 @@ import { DataService } from '../../services/data.service';
 
 import { Locations } from '../../models/Locations';
 import { Location } from '../../models/Location';
-import { Marker } from '@agm/core';
+// import { Marker } from '@agm/core';
 // import { Pagination } from '../../models/Pagination';
 
 @Component({
@@ -89,6 +98,16 @@ export class LocationsComponent implements OnInit {
 	}
 
 	ngDoCheck() {
+		if (sessionStorage.getItem('locationPosition')) {
+			console.log('i ran');
+			let val = sessionStorage.getItem('locationPosition');
+			let numVal = parseInt(val);
+			this.viewPortScroller.scrollToPosition([
+				0,
+				numVal
+			]);
+			setTimeout(this.removeLocationPostion, 1000);
+		}
 		if (this.fromHome === undefined) {
 			return;
 		} else {
@@ -121,14 +140,13 @@ export class LocationsComponent implements OnInit {
 		}
 	}
 
-	ngAfterViewInit() {
-		console.log(this.params, 'NgAfterViewInit');
+	ngAfterViewChecked() {
 		console.log(this.pageNumber, 'NgAfterViewInit');
 	}
 
 	passLocationId(_id: string) {
 		this.dataService.changeLocationId(_id);
-		sessionStorage.setItem('locationPostion', this.viewPortScroller.getScrollPosition()[1].toString());
+		sessionStorage.setItem('locationPosition', JSON.stringify(this.viewPortScroller.getScrollPosition()[1]));
 	}
 
 	changePageNext(e: any) {
@@ -206,5 +224,9 @@ export class LocationsComponent implements OnInit {
 	countLastPage(x: number, y: number) {
 		let val = x / y;
 		return Math.ceil(val);
+	}
+
+	removeLocationPostion() {
+		sessionStorage.removeItem('locationPosition');
 	}
 }
