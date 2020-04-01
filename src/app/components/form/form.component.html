@@ -33,6 +33,8 @@
           [options]='options'
           #placesRef="ngx-places"
           (onAddressChange)="handleAddressChange($event)"
+          name="addressInputField"
+          [(ngModel)]="addressInputField"
         />
         <!-- <p>{{formattedAddress}}</p> -->
       </div>
