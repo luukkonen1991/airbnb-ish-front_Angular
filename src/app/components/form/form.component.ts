@@ -101,11 +101,21 @@ export class FormComponent implements OnInit {
 
 	handleAddressChange(address: any) {
 		console.log(address)
+		this.addressInputField = address.formatted_address;
 		this.formattedAddressInput = address.formatted_address;
-		if (address.formatted_address === '') {
+	}
+
+	checkAddress(address: any) {
+		console.log(address.srcElement.value)
+		if (address.srcElement.value.toLowerCase().indexOf("finland") === -1) {
+			this.addressInputField = '';
 			this.formattedAddressInput = '';
 			this.params.autoCity = '';
 			this.params.autoCityAndZip = '';
+		} 
+		if (address.srcElement.value.toLowerCase().indexOf("finland") !== -1){
+			this.addressInputField = address.srcElement.value;
+			this.formattedAddressInput = address.srcElement.value;
 		}
 	}
 
