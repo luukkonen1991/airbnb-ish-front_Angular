@@ -26,6 +26,8 @@ export class ReviewService {
 		return this.http.get<Reviews>(api).pipe(catchError(this.handleError));
 	}
 
+	createLocationReview() {}
+
 	handleError(error: HttpErrorResponse) {
 		return throwError(error);
 	}
