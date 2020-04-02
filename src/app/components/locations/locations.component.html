@@ -2,7 +2,6 @@
 
 <div
   class="daddy-div"
-  fragment="allLocationsDiv"
   id="allLocationsDiv"
 >
   <h2 class="text-center mt-5">Most recent locations</h2>
@@ -11,7 +10,10 @@
       class="card-group"
       *ngFor="let item of locations"
     >
-      <div class="card resize-card m-2">
+      <div
+        class="card resize-card m-2"
+        id={{item._id}}
+      >
         <img
           class="card-img-top resize-img"
           src="http://localhost:5000/uploads/{{item.photo}}"
@@ -82,7 +84,7 @@
   </div>
 
   <!-- Map -->
-  <agm-map
+  <!-- <agm-map
     class="m-2"
     [latitude]="latitude"
     [longitude]="lngitude"
@@ -95,7 +97,7 @@
       [animation]="markerAnimation"
     >
     </agm-marker>
-  </agm-map>
+  </agm-map> -->
   <div
     class="map-div m-2"
     *ngIf="locations !== undefined"

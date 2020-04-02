@@ -4,6 +4,7 @@ import {
 	AfterViewInit,
 	AfterContentInit,
 	AfterContentChecked,
+	OnChanges,
 	Input,
 	ViewChild,
 	ElementRef
@@ -98,16 +99,6 @@ export class LocationsComponent implements OnInit {
 	}
 
 	ngDoCheck() {
-		if (sessionStorage.getItem('locationPosition')) {
-			console.log('i ran');
-			let val = sessionStorage.getItem('locationPosition');
-			let numVal = parseInt(val);
-			this.viewPortScroller.scrollToPosition([
-				0,
-				numVal
-			]);
-			setTimeout(this.removeLocationPostion, 1000);
-		}
 		if (this.fromHome === undefined) {
 			return;
 		} else {
@@ -146,7 +137,7 @@ export class LocationsComponent implements OnInit {
 
 	passLocationId(_id: string) {
 		this.dataService.changeLocationId(_id);
-		sessionStorage.setItem('locationPosition', JSON.stringify(this.viewPortScroller.getScrollPosition()[1]));
+		// sessionStorage.setItem('locationPosition', JSON.stringify(this.viewPortScroller.getScrollPosition()[1]));
 	}
 
 	changePageNext(e: any) {
@@ -226,7 +217,7 @@ export class LocationsComponent implements OnInit {
 		return Math.ceil(val);
 	}
 
-	removeLocationPostion() {
-		sessionStorage.removeItem('locationPosition');
-	}
+	// removeLocationPostion() {
+	// 	sessionStorage.removeItem('locationPosition');
+	// }
 }
