@@ -30,6 +30,7 @@ export class CreateReviewModalComponent implements OnInit {
 	}
 
 	addReview() {
+		this.getReviewRating(event);
 		this.reviewService.createLocationReview(this.locationId, this.newReview).subscribe(
 			res => {
 				if (res.success === true) {
