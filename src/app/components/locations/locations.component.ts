@@ -1,4 +1,14 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import {
+	Component,
+	OnInit,
+	AfterViewInit,
+	AfterContentInit,
+	AfterContentChecked,
+	OnChanges,
+	Input,
+	ViewChild,
+	ElementRef
+} from '@angular/core';
 import { Router, Scroll, NavigationEnd } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
 
@@ -7,7 +17,7 @@ import { DataService } from '../../services/data.service';
 
 import { Locations } from '../../models/Locations';
 import { Location } from '../../models/Location';
-import { Marker } from '@agm/core';
+// import { Marker } from '@agm/core';
 // import { Pagination } from '../../models/Pagination';
 
 @Component({
@@ -117,16 +127,17 @@ export class LocationsComponent implements OnInit {
 			// console.log(this.pageNumber);
 			// console.log(this.locations[0].averageRating);
 			this.fromHome = undefined;
+			this.viewPortScroller.scrollToAnchor('allLocationsDiv');
 		}
 	}
 
-	ngAfterViewInit() {
-		console.log(this.params, 'NgAfterViewInit');
+	ngAfterViewChecked() {
 		console.log(this.pageNumber, 'NgAfterViewInit');
 	}
 
 	passLocationId(_id: string) {
 		this.dataService.changeLocationId(_id);
+		// sessionStorage.setItem('locationPosition', JSON.stringify(this.viewPortScroller.getScrollPosition()[1]));
 	}
 
 	changePageNext(e: any) {
@@ -156,10 +167,12 @@ export class LocationsComponent implements OnInit {
 			this.pageNumber++;
 			this.dataService.changePage(this.pageNumber);
 			// console.log(this.pageNumber);
-			this.viewPortScroller.scrollToPosition([
-				0,
-				0
-			]);
+			// this.router.navigate({fragment: 'allLocationsDiv'})
+			this.viewPortScroller.scrollToAnchor('allLocationsDiv');
+			// this.viewPortScroller.scrollToPosition([
+			// 	0,
+			// 	0
+			// ]);
 		}
 	}
 	changePagePrev(e: any) {
@@ -186,10 +199,11 @@ export class LocationsComponent implements OnInit {
 				});
 			this.pageNumber--;
 			this.dataService.changePage(this.pageNumber);
-			this.viewPortScroller.scrollToPosition([
-				0,
-				0
-			]);
+			// this.viewPortScroller.scrollToPosition([
+			// 	0,
+			// 	0
+			// ]);
+			this.viewPortScroller.scrollToAnchor('allLocationsDiv');
 		}
 	}
 
@@ -202,4 +216,8 @@ export class LocationsComponent implements OnInit {
 		let val = x / y;
 		return Math.ceil(val);
 	}
+
+	// removeLocationPostion() {
+	// 	sessionStorage.removeItem('locationPosition');
+	// }
 }

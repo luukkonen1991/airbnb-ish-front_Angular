@@ -42,8 +42,6 @@ export class FormComponent implements OnInit {
 		page: 1
 	};
 
-	addressInputField: string = '';
-
 	@Output() locationsEvent = new EventEmitter<Location[]>();
 
 	constructor(private dataService: DataService, private locationService: LocationService) {}
@@ -55,15 +53,10 @@ export class FormComponent implements OnInit {
 		// this.dataService.currentLocations.subscribe((locations) => (this.locations = locations));
 	}
 
-	// ngDoCheck() {
-	// 	console.log(this.formattedAddressInput);
-	// }
+	ngDoCheck() {
+		console.log(this.formattedAddressInput);
+	}
 	onSubmit() {
-		if (this.addressInputField === '') {
-			this.formattedAddressInput = '';
-			this.params.autoCity = '';
-			this.params.autoCityAndZip = '';
-		}
 		this.getCheckboxValueAnimalTypes(event);
 		this.getCheckboxValueAnimalServices(event);
 		this.addressInputToParams();
@@ -100,23 +93,7 @@ export class FormComponent implements OnInit {
 	}
 
 	handleAddressChange(address: any) {
-		console.log(address)
-		this.addressInputField = address.formatted_address;
 		this.formattedAddressInput = address.formatted_address;
-	}
-
-	checkAddress(address: any) {
-		console.log(address.srcElement.value)
-		if (address.srcElement.value.toLowerCase().indexOf("finland") === -1) {
-			this.addressInputField = '';
-			this.formattedAddressInput = '';
-			this.params.autoCity = '';
-			this.params.autoCityAndZip = '';
-		} 
-		if (address.srcElement.value.toLowerCase().indexOf("finland") !== -1){
-			this.addressInputField = address.srcElement.value;
-			this.formattedAddressInput = address.srcElement.value;
-		}
 	}
 
 	addressInputToParams() {
@@ -138,10 +115,6 @@ export class FormComponent implements OnInit {
 			(this.params.animalTypes = []);
 		this.params.services = [];
 		this.uncheck();
-		this.formattedAddressInput = '';
-		this.params.autoCity = '';
-		this.params.autoCityAndZip = '';
-		this.addressInputField = '';
 		// console.log(this.input.nativeElement);
 		// console.log(document.querySelectorAll('Dog'));
 	}
