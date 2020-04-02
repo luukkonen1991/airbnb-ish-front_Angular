@@ -186,7 +186,7 @@
   aria-labelledby="addReviewModalLabel"
   aria-hidden="true"
 >
-  <app-create-review-modal></app-create-review-modal>
+  <app-create-review-modal (addReviewInput)="receiveReviewInput($event)"></app-create-review-modal>
 </div>
 
 
