@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Review } from 'src/app/models/Review';
 import { ReviewService } from 'src/app/services/review.service';
 import { DataService } from 'src/app/services/data.service';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
 	selector: 'app-create-review-modal',
@@ -17,7 +18,11 @@ export class CreateReviewModalComponent implements OnInit {
 		text: '',
 		rating: null
 	};
-	constructor(private reviewService: ReviewService, private dataService: DataService) {
+	constructor(
+		private reviewService: ReviewService,
+		private dataService: DataService,
+		private viewPortScroller: ViewportScroller
+	) {
 		this.locationId = sessionStorage.getItem('id');
 	}
 
@@ -40,8 +45,11 @@ export class CreateReviewModalComponent implements OnInit {
 			},
 			error => {
 				if (error.error.success === false) {
-					console.log(error.error.error);
-					this.dataService.showNotification(error.error.error, false);
+					this.viewPortScroller.scrollToPosition([
+						0,
+						0
+					]);
+					this.dataService.showNotification('User can add only one review per PetHotel', false);
 				}
 			}
 		);
