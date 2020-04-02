@@ -26,7 +26,12 @@ export class ReviewService {
 		return this.http.get<Reviews>(api).pipe(catchError(this.handleError));
 	}
 
-	createLocationReview() {}
+	createLocationReview(locationId: string, review: Review) {
+		// let data =
+		let api = `http://localhost:5000/api/v1/locations/${locationId}/reviews`;
+		let token = sessionStorage.getItem('token');
+		httpHeaders.headers = httpHeaders.headers.set('Authorization', `Bearer ${token}`);
+	}
 
 	handleError(error: HttpErrorResponse) {
 		return throwError(error);

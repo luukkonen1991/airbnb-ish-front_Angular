@@ -88,10 +88,11 @@
             (click)="showReviewsToggle()"
           >Show Reviews</button>
           <button
-            [disabled]="this.showMe !== true"
             type="button"
-            class="btn btn-primary mr-1"
             (click)="addReviewToggle()"
+            class="btn btn-warning m-1"
+            data-toggle="modal"
+            data-target="#addReview"
           >Add Review</button>
           <button
             *ngIf="this.showReviews === true"
@@ -127,11 +128,7 @@
     >
       <app-location-reviews [reviews]="this.reviews"></app-location-reviews>
     </div>
-
-
   </div>
-
-
 </div>
 
 
@@ -178,6 +175,21 @@
     </div>
   </div>
 </div>
+
+
+<!-- Add Review Modal -->
+<div
+  class="modal fade bd-example-modal-lg"
+  id="addReview"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="addReviewModalLabel"
+  aria-hidden="true"
+>
+  <app-create-review-modal></app-create-review-modal>
+</div>
+
+
 
 <!-- Loading Screen -->
 
