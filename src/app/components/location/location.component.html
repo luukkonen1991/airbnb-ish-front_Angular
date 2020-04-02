@@ -88,18 +88,18 @@
             (click)="showReviewsToggle()"
           >Show Reviews</button>
           <button
+            *ngIf="this.showReviews === true"
+            type="button"
+            class="btn btn-primary mr-1"
+            (click)="showReviewsToggle()"
+          >Hide Reviews</button>
+          <button
             type="button"
             (click)="addReviewToggle()"
             class="btn btn-warning m-1"
             data-toggle="modal"
             data-target="#addReview"
           >Add Review</button>
-          <button
-            *ngIf="this.showReviews === true"
-            type="button"
-            class="btn btn-primary mr-1"
-            (click)="showReviewsToggle()"
-          >Hide Reviews</button>
         </p>
       </div>
     </div>

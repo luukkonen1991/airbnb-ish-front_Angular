@@ -39,8 +39,13 @@ export class CreateReviewModalComponent implements OnInit {
 		this.reviewService.createLocationReview(this.locationId, this.newReview).subscribe(
 			res => {
 				if (res.success === true) {
+					this.viewPortScroller.scrollToPosition([
+						0,
+						0
+					]);
 					this.ngOnInit();
-					this.dataService.showNotification('New hotel added succesfully!', true);
+					this.dataService.showNotification('New review added succesfully!', true);
+					this.resetValues();
 				}
 			},
 			error => {
@@ -50,8 +55,15 @@ export class CreateReviewModalComponent implements OnInit {
 						0
 					]);
 					this.dataService.showNotification('User can add only one review per PetHotel', false);
+					this.resetValues();
 				}
 			}
 		);
+	}
+
+	resetValues() {
+		this.newReview.title = '';
+		this.newReview.text = '';
+		this.newReview.rating = null;
 	}
 }
