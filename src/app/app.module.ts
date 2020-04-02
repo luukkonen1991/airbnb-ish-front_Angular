@@ -33,6 +33,7 @@ import { environment } from './environment/environment';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
 import { ReviewsModalComponent } from './components/reviews-modal/reviews-modal.component';
 import { LocationReviewsComponent } from './components/location-reviews/location-reviews.component';
+import { CreateReviewModalComponent } from './components/create-review-modal/create-review-modal.component';
 
 @NgModule({
 	declarations: [
@@ -54,7 +55,8 @@ import { LocationReviewsComponent } from './components/location-reviews/location
 		ResetPasswordComponent,
 		StarRatingComponent,
 		ReviewsModalComponent,
-		LocationReviewsComponent
+		LocationReviewsComponent,
+		CreateReviewModalComponent
 	],
 	imports: [
 		BrowserModule,
