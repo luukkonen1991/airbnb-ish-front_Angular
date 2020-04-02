@@ -21,6 +21,7 @@ export class LocationComponent implements OnInit {
 	_id: string;
 	showMe: boolean;
 	showReviews: boolean;
+	toggleReviewsBtn: boolean;
 	latitude: number;
 	lngitude: number;
 
@@ -39,6 +40,7 @@ export class LocationComponent implements OnInit {
 		private dataService: DataService
 	) {
 		this.showReviews = false;
+		this.toggleReviewsBtn = false;
 	}
 
 	ngOnInit() {
@@ -56,7 +58,11 @@ export class LocationComponent implements OnInit {
 				(this.location = location),
 				this.reviewService.getLocationReviews(this._id).subscribe(
 					reviews => {
+						console.log(reviews + 'REviewsLOGGG');
 						this.reviews = reviews.data;
+						if (this.reviews.length !== 0) {
+							this.toggleReviewsBtn = true;
+						}
 						console.log(this.reviews);
 					},
 					error => {
@@ -79,6 +85,8 @@ export class LocationComponent implements OnInit {
 	showReviewsToggle() {
 		this.showReviews = !this.showReviews;
 	}
+
+	addReviewToggle() {}
 
 	idToSessionStorage(_id: string) {
 		sessionStorage.setItem('id', _id);

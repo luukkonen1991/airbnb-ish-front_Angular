@@ -46,9 +46,12 @@
           {{location.data.costAmount}}€ / {{location.data.costType}}
         </p>
         <hr>
-        <div class="rating" *ngIf="location.data.averageRating !== undefined">
+        <div
+          class="rating"
+          *ngIf="location.data.averageRating !== undefined"
+        >
           <p>
-            Hotel Rating: 
+            Hotel Rating:
             <app-star-rating [rating]="location.data.averageRating"></app-star-rating>
           </p>
         </div>
@@ -70,19 +73,32 @@
             data-toggle="modal"
             data-target="#contactHostModal"
           >Contact Host
-        <span class="tooltipShow" *ngIf="this.showMe !== true" data-toggle="tooltip" title="Contact host available only for registered users"></span>
-        </button>
+            <span
+              class="tooltipShow"
+              *ngIf="this.showMe !== true"
+              data-toggle="tooltip"
+              title="Contact host available only for registered users"
+            ></span>
+          </button>
           <button
             *ngIf="this.showReviews === false"
+            [disabled]="this.toggleReviewsBtn === false"
             type="button"
             class="btn btn-primary mr-1"
             (click)="showReviewsToggle()"
           >Show Reviews</button>
-          <button 
-          *ngIf="this.showReviews === true"
-          type="button" 
-          class="btn btn-primary mr-1" 
-          (click)="showReviewsToggle()"
+          <button
+            type="button"
+            (click)="addReviewToggle()"
+            class="btn btn-warning m-1"
+            data-toggle="modal"
+            data-target="#addReview"
+          >Add Review</button>
+          <button
+            *ngIf="this.showReviews === true"
+            type="button"
+            class="btn btn-primary mr-1"
+            (click)="showReviewsToggle()"
           >Hide Reviews</button>
         </p>
       </div>
@@ -91,7 +107,7 @@
   <div class="col-lg-6">
 
 
-      <!-- Map -->
+    <!-- Map -->
     <div class="card">
       <agm-map
         class="map"
@@ -112,11 +128,7 @@
     >
       <app-location-reviews [reviews]="this.reviews"></app-location-reviews>
     </div>
-
-
   </div>
-
-
 </div>
 
 
@@ -163,6 +175,21 @@
     </div>
   </div>
 </div>
+
+
+<!-- Add Review Modal -->
+<div
+  class="modal fade bd-example-modal-lg"
+  id="addReview"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="addReviewModalLabel"
+  aria-hidden="true"
+>
+  <app-create-review-modal></app-create-review-modal>
+</div>
+
+
 
 <!-- Loading Screen -->
 
