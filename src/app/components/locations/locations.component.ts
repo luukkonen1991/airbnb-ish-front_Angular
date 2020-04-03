@@ -52,6 +52,8 @@ export class LocationsComponent implements OnInit {
 	iconUrl: string;
 	mapZoom: number = 8;
 	markerAnimation: string = 'DROP';
+	showMap: boolean = false;
+	showMapId: string;
 	@Input() fromHome: Location[];
 
 	constructor(
@@ -215,6 +217,15 @@ export class LocationsComponent implements OnInit {
 	countLastPage(x: number, y: number) {
 		let val = x / y;
 		return Math.ceil(val);
+	}
+
+	showMapFunction(id) {
+		if (this.showMap === false){
+			this.showMapId = id
+			 this.showMap = true
+			} else {
+			 this.showMap = false
+			}
 	}
 
 	// removeLocationPostion() {
