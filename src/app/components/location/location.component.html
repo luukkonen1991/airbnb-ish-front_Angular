@@ -77,7 +77,7 @@
               class="tooltipShow"
               *ngIf="this.showMe !== true"
               data-toggle="tooltip"
-              title="Contact host available only for registered users"
+              title="Contact Host is available only for registered users"
             ></span>
           </button>
           <button
@@ -94,18 +94,16 @@
           (click)="showReviewsToggle()"
           >Hide Reviews</button>
           <button
-            *ngIf="this.showReviews === true"
             type="button"
-            class="btn btn-primary mr-1"
-            (click)="showReviewsToggle()"
-          >Hide Reviews</button>
-          <button
-            type="button"
+            [disabled]="this.showMe !== true"
             (click)="addReviewToggle()"
             class="btn btn-warning m-1"
             data-toggle="modal"
             data-target="#addReview"
-          >Add Review</button>
+          >Add Review
+                    <span class="tooltipShow" *ngIf="this.showMe !== true" data-toggle="tooltip"
+                      title="Add Review is available only for registered users"></span>
+        </button>
         </p>
       </div>
     </div>
