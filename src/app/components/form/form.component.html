@@ -298,13 +298,8 @@
         >Other</label>
       </div>
     </div> -->
-    <button class="btn btn-block mt-3 btn-primary">Search</button>
+    <button class="btn btn-primary mt-3 searchBtn">Search</button>
+      <button *ngIf="this.formShow === true" class="btn btn-warning mt-3 clearBtn" (click)="clearState()">Reset
+      </button>
   </form>
-  <button
-    *ngIf="this.formShow === true"
-    class="btn btn-block mt-3 btn-warning"
-    (click)="clearState()"
-  >Reset
-    form
-  </button>
 </div>
