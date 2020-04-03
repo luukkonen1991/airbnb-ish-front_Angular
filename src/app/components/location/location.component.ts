@@ -4,9 +4,11 @@ import { LocationService } from '../../services/location.service';
 
 import { LocationById } from '../../models/LocationById';
 import { Reviews } from '../../models/Reviews';
+import { Review } from '../../models/Review';
 
 import { DataService } from 'src/app/services/data.service';
 import { ReviewService } from 'src/app/services/review.service';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
 	selector: 'app-location',
@@ -16,6 +18,7 @@ import { ReviewService } from 'src/app/services/review.service';
 	]
 })
 export class LocationComponent implements OnInit {
+	newReviewData: Review;
 	reviews: Reviews['data'];
 	location: LocationById;
 	_id: string;
@@ -37,7 +40,8 @@ export class LocationComponent implements OnInit {
 		private route: ActivatedRoute,
 		private locationService: LocationService,
 		private reviewService: ReviewService,
-		private dataService: DataService
+		private dataService: DataService,
+		private viewPortScroller: ViewportScroller
 	) {
 		this.showReviews = false;
 		this.toggleReviewsBtn = false;
@@ -90,5 +94,30 @@ export class LocationComponent implements OnInit {
 
 	idToSessionStorage(_id: string) {
 		sessionStorage.setItem('id', _id);
+	}
+
+	receiveReviewInput($event) {
+		this.newReviewData = $event;
+		this.reviewService.createLocationReview(this._id, this.newReviewData).subscribe(
+			res => {
+				if (res.success === true) {
+					this.viewPortScroller.scrollToPosition([
+						0,
+						0
+					]);
+					this.ngOnInit();
+					this.dataService.showNotification('New review added succesfully!', true);
+				}
+			},
+			error => {
+				if (error.error.success === false) {
+					this.viewPortScroller.scrollToPosition([
+						0,
+						0
+					]);
+					this.dataService.showNotification('User can add only one review per PetHotel', false);
+				}
+			}
+		);
 	}
 }
