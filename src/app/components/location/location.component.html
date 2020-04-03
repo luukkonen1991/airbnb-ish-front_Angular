@@ -87,6 +87,12 @@
             class="btn btn-primary mr-1"
             (click)="showReviewsToggle()"
           >Show Reviews</button>
+          <button 
+          *ngIf="this.showReviews === true" 
+          type="button" 
+          class="btn btn-primary mr-1" 
+          (click)="showReviewsToggle()"
+          >Hide Reviews</button>
           <button
             *ngIf="this.showReviews === true"
             type="button"
