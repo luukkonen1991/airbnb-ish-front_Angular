@@ -5,7 +5,7 @@
 ## Usage
 - Add new "enviroments" folder to "src/app
 - Create new "environments.ts" file in the folder
-- In the environments.ts file create variable called "environment" and assign it an object with a name "GOOGLE_API_KEY" and value "your api key"
+- In the environments.ts file create variable called "environment" and assign it an object with a name "GOOGLE_API_KEY" and value `<YOUR-API-KEY-HERE>`
 - Remember to export newly created variable to access it
 
 ## Install Dependencies
