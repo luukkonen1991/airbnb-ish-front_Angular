@@ -75,3 +75,12 @@ h3 {
 .form-check-input {
 	display: inline-block;
 }
+
+.searchBtn {
+	width: 77%;
+}
+
+.clearBtn {
+	float: right;
+	width: 20%;
+}
