@@ -7,9 +7,11 @@ import { LocationById } from 'src/app/models/LocationById';
 import { UpdateLocation } from '../../models/UpdateLocation';
 import { DataService } from 'src/app/services/data.service';
 import { UserService } from 'src/app/services/user.service';
+import { ReviewService } from 'src/app/services/review.service';
 import { HttpParams, HttpHeaders, HttpClient } from '@angular/common/http';
 import { ContactService } from 'src/app/services/contact.service';
 import { ContactMessage } from 'src/app/models/ContactMessage';
+import { Reviews } from 'src/app/models/Reviews';
 
 @Component({
 	selector: 'app-current-user',
@@ -25,6 +27,7 @@ export class CurrentUserComponent implements OnInit {
 	userData: User;
 	allUsersData: User;
 	allMessagesData: ContactMessage;
+	allReviewsData: Reviews;
 	location: LocationById = undefined;
 	selectedFile: File = null;
 	selectedId: string = null;
@@ -48,6 +51,7 @@ export class CurrentUserComponent implements OnInit {
 		private dataService: DataService,
 		private userService: UserService,
 		private contactService: ContactService,
+		private reviewService: ReviewService,
 		private http: HttpClient
 	) {}
 
@@ -62,6 +66,10 @@ export class CurrentUserComponent implements OnInit {
 					this.contactService.getAllMessages(100000).subscribe(allMessages => {
 						this.allMessagesData = allMessages;
 						console.log(this.allMessagesData);
+					});
+					this.reviewService.getAllReviews(100000).subscribe(allReviews => {
+						this.allReviewsData = allReviews;
+						console.log(this.allReviewsData);
 					});
 				}
 				if (user.data.role !== 'publisher') {
@@ -345,6 +353,16 @@ export class CurrentUserComponent implements OnInit {
 		this.dataService.showNotification('Message deleted successfully!', true);
 	}
 
+	deleteReview(deleteId) {
+		console.log(deleteId);
+		this.reviewService.deleteReview(deleteId).subscribe();
+		this.reviewService.getAllReviews(100000).subscribe(allReviews => {
+			this.allReviewsData = allReviews;
+			console.log(this.allReviewsData);
+		});
+		this.dataService.showNotification('Review deleted successfully!', true);
+	}
+
 	passDeleteMessageData(id, msg) {
 		console.log(id);
 		document.getElementById('deleteMessageModalLabel').innerHTML =
@@ -357,5 +375,11 @@ export class CurrentUserComponent implements OnInit {
 		document.getElementById('deleteUserModalLabel').innerHTML =
 			'Are you sure you want to delete user: "<b>' + name + '"</b>?';
 		document.getElementById('deleteUserId').addEventListener('click', () => this.deleteUser(id));
+	}
+	passDeleteReviewData(id, title) {
+		console.log(id);
+		document.getElementById('deleteReviewModalLabel').innerHTML =
+			'Are you sure you want to delete review: "<b>' + title + '"</b>?';
+		document.getElementById('deleteReviewId').addEventListener('click', () => this.deleteReview(id));
 	}
 }
