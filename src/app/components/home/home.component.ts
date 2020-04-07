@@ -17,5 +17,7 @@ export class HomeComponent implements OnInit {
 		this.locations = $event;
 	}
 
-	ngOnInit() {}
+	ngOnInit() {
+		console.log('homeOnInit');
+	}
 }
