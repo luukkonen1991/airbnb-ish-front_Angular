@@ -34,6 +34,8 @@ import { StarRatingComponent } from './components/star-rating/star-rating.compon
 import { ReviewsModalComponent } from './components/reviews-modal/reviews-modal.component';
 import { LocationReviewsComponent } from './components/location-reviews/location-reviews.component';
 import { CreateReviewModalComponent } from './components/create-review-modal/create-review-modal.component';
+import { DeleteProfileModalComponent } from './components/current-user/delete-profile-modal/delete-profile-modal.component';
+import { EditProfileModalComponent } from './components/current-user/edit-profile-modal/edit-profile-modal.component';
 
 @NgModule({
 	declarations: [
@@ -56,7 +58,9 @@ import { CreateReviewModalComponent } from './components/create-review-modal/cre
 		StarRatingComponent,
 		ReviewsModalComponent,
 		LocationReviewsComponent,
-		CreateReviewModalComponent
+		CreateReviewModalComponent,
+		DeleteProfileModalComponent,
+		EditProfileModalComponent
 	],
 	imports: [
 		BrowserModule,
