@@ -7,120 +7,175 @@
       <h4 class="modal-title"><b>Add your review</b></h4><br>
       <hr>
       <div class="modal-body">
-        <label>Title</label>
-        <input
-          [(ngModel)]="this.newReview.title"
-          type="text"
-          class="form-control"
-          name="title"
-          #title
-        /><br>
-        <br>
-        <div class="form-group purple-border">
-          <label>Review</label>
-          <br>
-          <textarea
-            [(ngModel)]="this.newReview.text"
-            type="text"
-            class="form-control"
-            name="text"
-            #text
-          >
-        </textarea>
-        </div>
-        <br>
-        <label>Rating</label>
-        <br>
-        <div class="form-row">
-          <div class="col-12 d-flex justify-content-center">
-            <div class="custom-control custom-radio divInline">
-              <input
-                (click)="getReviewRating($event)"
-                class="custom-control-input"
-                type="radio"
-                name=costTypeRadios
-                id="1"
-                value="1"
-              >
-              <label
-                class="custom-control-label pr-4"
-                for="1"
-              >
-                1
-              </label>
+        <form #authForm="ngForm">
+          <div class="from-group">
+            <label>Title</label>
+            <input
+              [(ngModel)]="this.newReview.title"
+              [ngClass]="{
+              'is-invalid': title.errors && title.touched
+            }"
+              type="text"
+              class="form-control"
+              name="title"
+              #title="ngModel"
+              required
+              minlength="2"
+              maxlength="50"
+            />
+            <div
+              [hidden]="!title.errors?.required"
+              class="invalid-feedback"
+            >
+              Title required
             </div>
-            <div class="custom-control custom-radio divInline">
-              <input
-                (click)="getReviewRating($event)"
-                class="custom-control-input"
-                type="radio"
-                name=costTypeRadios
-                id="2"
-                value="2"
-              >
-              <label
-                class="custom-control-label pr-4"
-                for="2"
-              >
-                2
-              </label>
-            </div>
-            <div class="custom-control custom-radio divInline">
-              <input
-                (click)="getReviewRating($event)"
-                class="custom-control-input"
-                type="radio"
-                name=costTypeRadios
-                id="3"
-                value="3"
-              >
-              <label
-                class="custom-control-label pr-4"
-                for="3"
-              >
-                3
-              </label>
-            </div>
-            <div class="custom-control custom-radio divInline">
-              <input
-                (click)="getReviewRating($event)"
-                class="custom-control-input"
-                type="radio"
-                name=costTypeRadios
-                id="4"
-                value="4"
-              >
-              <label
-                class="custom-control-label pr-4"
-                for="4"
-              >
-                4
-              </label>
-            </div>
-            <div class="custom-control custom-radio divInline">
-              <input
-                (click)="getReviewRating($event)"
-                class="custom-control-input"
-                type="radio"
-                name=costTypeRadios
-                id="5"
-                value="5"
-              >
-              <label
-                class="custom-control-label pr-4"
-                for="5"
-              >
-                5
-              </label>
+            <div
+              [hidden]="!text.errors?.minlength"
+              class="invalid-feedback"
+            >
+              Title must be between 2 - 50 characters.
             </div>
           </div>
-        </div>
+          <br>
+          <div class="form-group purple-border">
+            <label>Review</label>
+            <br>
+            <textarea
+              [(ngModel)]="this.newReview.text"
+              [ngClass]="{
+                'is-invalid': text.errors && text.touched
+              }"
+              type="text"
+              class="form-control"
+              name="text"
+              #text="ngModel"
+              required
+              minlength="5"
+              maxlength="200"
+            >
+            </textarea>
+
+
+            <div
+              [hidden]="!text.errors?.required"
+              class="invalid-feedback"
+            >
+              Text required
+            </div>
+            <div
+              [hidden]="!text.errors?.minlength"
+              class="invalid-feedback"
+            >
+              Review text must be between 5 - 200 characters.
+            </div>
+
+
+          </div>
+          <br>
+          <label>Rating</label>
+          <br>
+          <div class="form-row">
+            <div class="col-12 d-flex justify-content-center">
+              <div class="custom-control custom-radio divInline">
+                <input
+                  (click)="getReviewRating($event)"
+                  class="custom-control-input"
+                  type="radio"
+                  name=costTypeRadios
+                  id="1"
+                  value="1"
+                  [(ngModel)]="ratingValidation"
+                  required
+                >
+                <label
+                  class="custom-control-label pr-4"
+                  for="1"
+                >
+                  1
+                </label>
+              </div>
+              <div class="custom-control custom-radio divInline">
+                <input
+                  (click)="getReviewRating($event)"
+                  class="custom-control-input"
+                  type="radio"
+                  name=costTypeRadios
+                  id="2"
+                  value="2"
+                  [(ngModel)]="ratingValidation"
+                  required
+                >
+                <label
+                  class="custom-control-label pr-4"
+                  for="2"
+                >
+                  2
+                </label>
+              </div>
+              <div class="custom-control custom-radio divInline">
+                <input
+                  (click)="getReviewRating($event)"
+                  class="custom-control-input"
+                  type="radio"
+                  name=costTypeRadios
+                  id="3"
+                  value="3"
+                  [(ngModel)]="ratingValidation"
+                  required
+                >
+                <label
+                  class="custom-control-label pr-4"
+                  for="3"
+                >
+                  3
+                </label>
+              </div>
+              <div class="custom-control custom-radio divInline">
+                <input
+                  (click)="getReviewRating($event)"
+                  class="custom-control-input"
+                  type="radio"
+                  name=costTypeRadios
+                  id="4"
+                  value="4"
+                  [(ngModel)]="ratingValidation"
+                  required
+                >
+                <label
+                  class="custom-control-label pr-4"
+                  for="4"
+                >
+                  4
+                </label>
+              </div>
+              <div class="custom-control custom-radio divInline">
+                <input
+                  (click)="getReviewRating($event)"
+                  class="custom-control-input"
+                  type="radio"
+                  name=costTypeRadios
+                  id="5"
+                  value="5"
+                  [(ngModel)]="ratingValidation"
+                  required
+                >
+                <label
+                  class="custom-control-label pr-4"
+                  for="5"
+                >
+                  5
+                </label>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
       <button
         type="button"
         class="btn btn-primary"
         (click)="addReview()"
         data-dismiss="modal"
+        [disabled]="!authForm.form.valid"
       >Add Review</button>
       <button
         type="button"
@@ -128,5 +183,6 @@
         data-dismiss="modal"
       >Close</button>
     </div>
+
   </div>
 </div>

@@ -17,3 +17,8 @@
 .divInline {
 	display: inline-block;
 }
+
+.errorState {
+	color: rgb(220, 53, 69);
+	font-size: 0.8em;
+}
