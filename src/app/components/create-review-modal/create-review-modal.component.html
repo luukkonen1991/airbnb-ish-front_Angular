@@ -82,9 +82,13 @@
                   class="custom-control-input"
                   type="radio"
                   name=costTypeRadios
+                  #costTypeRadios="ngModel"
                   id="1"
                   value="1"
                   [(ngModel)]="ratingValidation"
+                  [ngClass]="{
+                  'is-invalid': costTypeRadios.errors
+                }"
                   required
                 >
                 <label
@@ -100,9 +104,13 @@
                   class="custom-control-input"
                   type="radio"
                   name=costTypeRadios
+                  #costTypeRadios="ngModel"
                   id="2"
                   value="2"
                   [(ngModel)]="ratingValidation"
+                  [ngClass]="{
+                  'is-invalid': costTypeRadios.errors
+                }"
                   required
                 >
                 <label
@@ -118,9 +126,13 @@
                   class="custom-control-input"
                   type="radio"
                   name=costTypeRadios
+                  #costTypeRadios="ngModel"
                   id="3"
                   value="3"
                   [(ngModel)]="ratingValidation"
+                  [ngClass]="{
+                  'is-invalid': costTypeRadios.errors
+                }"
                   required
                 >
                 <label
@@ -129,6 +141,12 @@
                 >
                   3
                 </label>
+                <div
+                  [hidden]="!costTypeRadios.errors?.required"
+                  class="invalid-feedback"
+                >
+                  Rating required
+                </div>
               </div>
               <div class="custom-control custom-radio divInline">
                 <input
@@ -136,9 +154,13 @@
                   class="custom-control-input"
                   type="radio"
                   name=costTypeRadios
+                  #costTypeRadios="ngModel"
                   id="4"
                   value="4"
                   [(ngModel)]="ratingValidation"
+                  [ngClass]="{
+                  'is-invalid': costTypeRadios.errors
+                }"
                   required
                 >
                 <label
@@ -154,9 +176,13 @@
                   class="custom-control-input"
                   type="radio"
                   name=costTypeRadios
+                  #costTypeRadios="ngModel"
                   id="5"
                   value="5"
                   [(ngModel)]="ratingValidation"
+                  [ngClass]="{
+                  'is-invalid': costTypeRadios.errors
+                }"
                   required
                 >
                 <label
