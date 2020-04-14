@@ -8,7 +8,6 @@ import { UpdateLocation } from '../../models/UpdateLocation';
 import { DataService } from 'src/app/services/data.service';
 import { UserService } from 'src/app/services/user.service';
 import { ReviewService } from 'src/app/services/review.service';
-import { HttpClient } from '@angular/common/http';
 import { ContactService } from 'src/app/services/contact.service';
 import { ContactMessage } from 'src/app/models/ContactMessage';
 import { Reviews } from 'src/app/models/Reviews';
@@ -52,8 +51,7 @@ export class CurrentUserComponent implements OnInit {
 		private dataService: DataService,
 		private userService: UserService,
 		private contactService: ContactService,
-		private reviewService: ReviewService,
-		private http: HttpClient
+		private reviewService: ReviewService
 	) { }
 
 	ngOnInit() {
@@ -306,19 +304,28 @@ export class CurrentUserComponent implements OnInit {
 		console.log(id);
 		document.getElementById('deleteMessageModalLabel').innerHTML =
 			'Are you sure you want to delete message: "<b>' + msg + '"</b>?';
-		document.getElementById('deleteMessageId').addEventListener('click', () => this.deleteMessage(id));
+		document.getElementById('deleteMessageId').addEventListener('click', () => {
+			this.deleteMessage(id)
+			this.ngOnInit();
+		});
 	}
 
 	passDeleteUserData(id, name) {
 		console.log(id);
 		document.getElementById('deleteUserModalLabel').innerHTML =
 			'Are you sure you want to delete user: "<b>' + name + '"</b>?';
-		document.getElementById('deleteUserId').addEventListener('click', () => this.deleteUser(id));
+		document.getElementById('deleteUserId').addEventListener('click', () =>  {
+			this.deleteUser(id)
+			this.ngOnInit();
+		});
 	}
 	passDeleteReviewData(id, title) {
 		console.log(id);
 		document.getElementById('deleteReviewModalLabel').innerHTML =
 			'Are you sure you want to delete review: "<b>' + title + '"</b>?';
-		document.getElementById('deleteReviewId').addEventListener('click', () => this.deleteReview(id));
+		document.getElementById('deleteReviewId').addEventListener('click', () =>  {
+			this.deleteReview(id);
+			this.ngOnInit();
+		});
 	}
 }
