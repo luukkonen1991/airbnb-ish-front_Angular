@@ -87,6 +87,35 @@
   </button>
 </div>
 
+<!-- Show my reviews -->
+<div *ngIf="userData !== undefined && reviews !== undefined">
+  <div *ngIf="userData.data.role === 'user' || userData.data.role === 'publisher'">
+    <h2 *ngIf="reviews.length > 0">
+      My Reviews
+    </h2>
+    <div class="card" *ngFor="let review of reviews">
+      <div class="card-body">
+        <h6>Title</h6>
+        <p>{{review.title}}</p>
+        <hr>
+        <h6>Text</h6>
+        <p>{{review.text}}</p>
+        <hr>
+        <h6>Rating</h6>
+        <p>{{review.rating}}</p>
+        <h6>Created At</h6>
+        <p>{{review.createdAt}}</p>
+        <hr>
+        <button type="button" class="btn btn-danger mr-1" data-toggle="modal" data-target="#deleteReviewModal"
+          (click)="passDeleteReviewData(review._id, review.title)">
+          Delete Review
+        </button>
+      </div>
+      <br><br>
+    </div>
+  </div>
+</div>
+
 
 
 <!-- START OF HOTEL -->
@@ -780,6 +809,8 @@
     </div>
   </div>
 </div>
+
+
 
 
 <!-- START OF ADMIN -->
