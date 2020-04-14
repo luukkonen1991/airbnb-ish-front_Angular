@@ -31,6 +31,7 @@ export class CurrentUserComponent implements OnInit {
 	location: LocationById = undefined;
 	selectedFile: File = null;
 	selectedId: string = null;
+	reviews: Reviews['data'];
 	newLocation: UpdateLocation = {
 		title: '',
 		description: '',
@@ -53,7 +54,7 @@ export class CurrentUserComponent implements OnInit {
 		private contactService: ContactService,
 		private reviewService: ReviewService,
 		private http: HttpClient
-	) {}
+	) { }
 
 	ngOnInit() {
 		this.authService.getMe().subscribe(
@@ -72,6 +73,16 @@ export class CurrentUserComponent implements OnInit {
 						console.log(this.allReviewsData);
 					});
 				}
+				this.reviewService.getUserReviews(user.data._id).subscribe(
+					reviews => {
+						console.log(reviews + 'REviewsLOGGG');
+						this.reviews = reviews.data;
+						console.log(this.reviews);
+					},
+					error => {
+						console.log(error);
+					}
+				)
 				if (user.data.role !== 'publisher') {
 					return;
 				}

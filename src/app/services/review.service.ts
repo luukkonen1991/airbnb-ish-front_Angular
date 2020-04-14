@@ -30,6 +30,11 @@ export class ReviewService {
 		return this.http.get<Reviews>(this.reviewUrl, options).pipe(catchError(this.handleError));
 	}
 
+	getUserReviews(userId: string) {
+		let api = `http://localhost:5000/api/v1/users/${userId}/reviews`;
+		return this.http.get<Reviews>(api).pipe(catchError(this.handleError));
+	}
+
 	getLocationReviews(locationId: string) {
 		let api = `http://localhost:5000/api/v1/locations/${locationId}/reviews`;
 		return this.http.get<Reviews>(api).pipe(catchError(this.handleError));
