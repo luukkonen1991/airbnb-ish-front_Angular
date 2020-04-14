@@ -1,0 +1,107 @@
+<div class="modal-dialog m-auto text-center" role="document">
+    <div class="modal-content p-2">
+        <div class="card-body">
+            <h4 class="modal-title"><b>Edit your review</b></h4><br>
+            <hr>
+            <div class="modal-body">
+                <form #authForm="ngForm">
+                    <div class="from-group">
+                        <label>Title</label>
+                        <input [(ngModel)]="this.newReview.title" [ngClass]="{
+              'is-invalid': title.errors && title.touched
+            }" type="text" class="form-control" name="title" #title="ngModel" required minlength="2" maxlength="50" />
+                        <div [hidden]="!title.errors?.required" class="invalid-feedback">
+                            Title required
+                        </div>
+                        <div [hidden]="!text.errors?.minlength" class="invalid-feedback">
+                            Title must be between 2 - 50 characters.
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group purple-border">
+                        <label>Review</label>
+                        <br>
+                        <textarea [(ngModel)]="this.newReview.text" [ngClass]="{
+                'is-invalid': text.errors && text.touched
+              }" type="text" class="form-control" name="text" #text="ngModel" required minlength="5" maxlength="200">
+            </textarea>
+
+
+                        <div [hidden]="!text.errors?.required" class="invalid-feedback">
+                            Text required
+                        </div>
+                        <div [hidden]="!text.errors?.minlength" class="invalid-feedback">
+                            Review text must be between 5 - 200 characters.
+                        </div>
+
+
+                    </div>
+                    <br>
+                    <label>Rating</label>
+                    <br>
+                    <div class="form-row">
+                        <div class="col-12 d-flex justify-content-center">
+                            <div class="custom-control custom-radio divInline">
+                                <input (click)="getReviewRating($event)" class="custom-control-input" type="radio"
+                                    name=costTypeRadios #costTypeRadios="ngModel" id="1" value="1"
+                                    [(ngModel)]="ratingValidation" [ngClass]="{
+                  'is-invalid': costTypeRadios.errors
+                }" required>
+                                <label class="custom-control-label pr-4" for="1">
+                                    1
+                                </label>
+                            </div>
+                            <div class="custom-control custom-radio divInline">
+                                <input (click)="getReviewRating($event)" class="custom-control-input" type="radio"
+                                    name=costTypeRadios #costTypeRadios="ngModel" id="2" value="2"
+                                    [(ngModel)]="ratingValidation" [ngClass]="{
+                  'is-invalid': costTypeRadios.errors
+                }" required>
+                                <label class="custom-control-label pr-4" for="2">
+                                    2
+                                </label>
+                            </div>
+                            <div class="custom-control custom-radio divInline">
+                                <input (click)="getReviewRating($event)" class="custom-control-input" type="radio"
+                                    name=costTypeRadios #costTypeRadios="ngModel" id="3" value="3"
+                                    [(ngModel)]="ratingValidation" [ngClass]="{
+                  'is-invalid': costTypeRadios.errors
+                }" required>
+                                <label class="custom-control-label pr-4" for="3">
+                                    3
+                                </label>
+                                <div [hidden]="!costTypeRadios.errors?.required" class="invalid-feedback">
+                                    Rating required
+                                </div>
+                            </div>
+                            <div class="custom-control custom-radio divInline">
+                                <input (click)="getReviewRating($event)" class="custom-control-input" type="radio"
+                                    name=costTypeRadios #costTypeRadios="ngModel" id="4" value="4"
+                                    [(ngModel)]="ratingValidation" [ngClass]="{
+                  'is-invalid': costTypeRadios.errors
+                }" required>
+                                <label class="custom-control-label pr-4" for="4">
+                                    4
+                                </label>
+                            </div>
+                            <div class="custom-control custom-radio divInline">
+                                <input (click)="getReviewRating($event)" class="custom-control-input" type="radio"
+                                    name=costTypeRadios #costTypeRadios="ngModel" id="5" value="5"
+                                    [(ngModel)]="ratingValidation" [ngClass]="{
+                  'is-invalid': costTypeRadios.errors
+                }" required>
+                                <label class="custom-control-label pr-4" for="5">
+                                    5
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <button type="button" class="btn btn-warning" (click)="addReview()" data-dismiss="modal"
+                [disabled]="!authForm.form.valid">Edit Review</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+
+    </div>
+</div>

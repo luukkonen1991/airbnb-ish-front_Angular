@@ -93,7 +93,7 @@
     <h2 *ngIf="reviews.length > 0">
       My Reviews
     </h2>
-    <div class="card" *ngFor="let review of reviews">
+    <div class="card" *ngFor="let review of reviews; let i = index">
       <div class="card-body">
         <h6>Title</h6>
         <p>{{review.title}}</p>
@@ -106,6 +106,8 @@
         <h6>Created At</h6>
         <p>{{review.createdAt}}</p>
         <hr>
+        <button type="button" class="btn btn-warning m-1"
+          data-toggle="modal" data-target="#editReviewModal">Edit Review</button>
         <button type="button" class="btn btn-danger mr-1" data-toggle="modal" data-target="#deleteReviewModal"
           (click)="passDeleteReviewData(review._id, review.title)">
           Delete Review
@@ -115,6 +117,14 @@
     </div>
   </div>
 </div>
+
+<!-- Edit Review Modal -->
+<div class="modal fade bd-example-modal-lg" id="editReviewModal" tabindex="-1" role="dialog"
+  aria-labelledby="editReviewModalLabel" aria-hidden="true">
+  <app-edit-review-modal (addReviewInput)="receiveReviewInput($event)" [reviewData]="reviews">
+  </app-edit-review-modal>
+</div>
+
 
 
 
