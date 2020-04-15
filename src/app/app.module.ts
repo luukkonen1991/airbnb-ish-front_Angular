@@ -36,6 +36,7 @@ import { LocationReviewsComponent } from './components/location-reviews/location
 import { CreateReviewModalComponent } from './components/create-review-modal/create-review-modal.component';
 import { DeleteProfileModalComponent } from './components/current-user/delete-profile-modal/delete-profile-modal.component';
 import { EditProfileModalComponent } from './components/current-user/edit-profile-modal/edit-profile-modal.component';
+import { EditReviewModalComponent } from './components/edit-review-modal/edit-review-modal.component';
 
 @NgModule({
 	declarations: [
@@ -60,7 +61,8 @@ import { EditProfileModalComponent } from './components/current-user/edit-profil
 		LocationReviewsComponent,
 		CreateReviewModalComponent,
 		DeleteProfileModalComponent,
-		EditProfileModalComponent
+		EditProfileModalComponent,
+		EditReviewModalComponent
 	],
 	imports: [
 		BrowserModule,

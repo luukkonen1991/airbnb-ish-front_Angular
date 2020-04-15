@@ -11,6 +11,8 @@ import { ReviewService } from 'src/app/services/review.service';
 import { ContactService } from 'src/app/services/contact.service';
 import { ContactMessage } from 'src/app/models/ContactMessage';
 import { Reviews } from 'src/app/models/Reviews';
+import { Review } from 'src/app/models/Review';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
 	selector: 'app-current-user',
@@ -25,6 +27,8 @@ export class CurrentUserComponent implements OnInit {
 	// currentUser: User;
 	userData: User;
 	allUsersData: User;
+	newReviewData: Review;
+	infoData: Review;
 	allMessagesData: ContactMessage;
 	allReviewsData: Reviews;
 	location: LocationById = undefined;
@@ -51,7 +55,8 @@ export class CurrentUserComponent implements OnInit {
 		private dataService: DataService,
 		private userService: UserService,
 		private contactService: ContactService,
-		private reviewService: ReviewService
+		private reviewService: ReviewService,
+		private viewPortScroller: ViewportScroller
 	) { }
 
 	ngOnInit() {
@@ -327,5 +332,36 @@ export class CurrentUserComponent implements OnInit {
 			this.deleteReview(id);
 			this.ngOnInit();
 		});
+	}
+
+	info(info) {
+		this.infoData = info;
+		console.log(info);
+	}
+
+	receiveReviewInput($event) {
+		this.newReviewData = $event;
+		console.log(this.newReviewData);
+		this.reviewService.editLocationReview(this.infoData._id, this.newReviewData).subscribe(
+			res => {
+				if (res.success === true) {
+					this.viewPortScroller.scrollToPosition([
+						0,
+						0
+					]);
+					this.ngOnInit();
+					this.dataService.showNotification('New review added succesfully!', true);
+				}
+			},
+			error => {
+				if (error.error.success === false) {
+					this.viewPortScroller.scrollToPosition([
+						0,
+						0
+					]);
+					this.dataService.showNotification('User can add only one review per PetHotel', false);
+				}
+			}
+		);
 	}
 }
