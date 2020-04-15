@@ -25,16 +25,23 @@ export class EditReviewModalComponent implements OnInit {
   form: any;
   msg: any;
   errorState: string = '';
-  constructor( ) {  }
+  constructor() { }
 
-  ngOnInit() { }
-
-  ngOnChanges() {
+  ngOnInit() {
+    this.ratingValidation = this.infoData.rating;
     this.newReview._id = this.infoData._id;
     this.newReview.title = this.infoData.title;
     this.newReview.text = this.infoData.text;
     this.newReview.rating = this.infoData.rating;
-   }
+  }
+
+  // ngDoCheck() {
+  //     for (let i = 0; i <= 5; i++) {
+  //       if (this.infoData.rating === i) {
+  //         document.getElementById('' + i + '').checked = true;
+  //       }
+  //     }
+  // }
 
   getReviewRating(event: Event) {
     if ((<HTMLInputElement>event.target).checked === true) {

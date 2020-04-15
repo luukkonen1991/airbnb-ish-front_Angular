@@ -350,7 +350,7 @@ export class CurrentUserComponent implements OnInit {
 						0
 					]);
 					this.ngOnInit();
-					this.dataService.showNotification('New review added succesfully!', true);
+					this.dataService.showNotification('Review edited succesfully!', true);
 				}
 			},
 			error => {
@@ -359,7 +359,7 @@ export class CurrentUserComponent implements OnInit {
 						0,
 						0
 					]);
-					this.dataService.showNotification('User can add only one review per PetHotel', false);
+					this.dataService.showNotification('Review edit failed, please try again or contact support', false);
 				}
 			}
 		);
