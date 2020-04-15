@@ -52,6 +52,20 @@ export class ReviewService {
 		return this.http.post<Review>(api, data, httpHeaders).pipe(catchError(this.handleError));
 	}
 
+	editLocationReview(reviewId: string, review: Review) {
+		let data = {
+			title: review.title,
+			text: review.text,
+			rating: review.rating
+		};
+		let api = `http://localhost:5000/api/v1/reviews/${reviewId}`;
+		let token = sessionStorage.getItem('token');
+		httpHeaders.headers = httpHeaders.headers.set('Authorization', `Bearer ${token}`);
+		return this.http.put<Review>(api, data, httpHeaders).pipe(catchError(this.handleError));
+	}
+
+
+
 	deleteReview(_id: string): Observable<Review> {
 		const url = `${this.reviewUrl}/${_id}`;
 		let token = sessionStorage.getItem('token');

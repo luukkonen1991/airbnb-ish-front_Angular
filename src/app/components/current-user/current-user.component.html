@@ -107,7 +107,7 @@
         <p>{{review.createdAt}}</p>
         <hr>
         <button type="button" class="btn btn-warning m-1"
-          data-toggle="modal" data-target="#editReviewModal">Edit Review</button>
+          data-toggle="modal" data-target="#editReviewModal" (click)="info(review)">Edit Review</button>
         <button type="button" class="btn btn-danger mr-1" data-toggle="modal" data-target="#deleteReviewModal"
           (click)="passDeleteReviewData(review._id, review.title)">
           Delete Review
@@ -119,9 +119,9 @@
 </div>
 
 <!-- Edit Review Modal -->
-<div class="modal fade bd-example-modal-lg" id="editReviewModal" tabindex="-1" role="dialog"
+<div *ngIf="infoData !== undefined" class="modal fade bd-example-modal-lg" id="editReviewModal" tabindex="-1" role="dialog"
   aria-labelledby="editReviewModalLabel" aria-hidden="true">
-  <app-edit-review-modal (addReviewInput)="receiveReviewInput($event)" [reviewData]="reviews">
+  <app-edit-review-modal (addReviewInput)="receiveReviewInput($event)" [infoData]="infoData">
   </app-edit-review-modal>
 </div>
 

@@ -13,7 +13,7 @@ import { ViewportScroller } from '@angular/common';
   ]
 })
 export class EditReviewModalComponent implements OnInit {
-  @Input() reviewData: Review;
+  @Input() infoData: Review;
   @Output() addReviewInput = new EventEmitter<Review>();
   locationId: string;
   newReview: Review = {
@@ -25,18 +25,16 @@ export class EditReviewModalComponent implements OnInit {
   form: any;
   msg: any;
   errorState: string = '';
-  constructor(
-    private reviewService: ReviewService,
-    private dataService: DataService,
-    private viewPortScroller: ViewportScroller
-  ) {
-    this.locationId = sessionStorage.getItem('id');
-  }
+  constructor( ) {  }
 
-  ngOnInit() { 
-    console.log('poaska');
-    console.log(this.reviewData);
-  }
+  ngOnInit() { }
+
+  ngOnChanges() {
+    this.newReview._id = this.infoData._id;
+    this.newReview.title = this.infoData.title;
+    this.newReview.text = this.infoData.text;
+    this.newReview.rating = this.infoData.rating;
+   }
 
   getReviewRating(event: Event) {
     if ((<HTMLInputElement>event.target).checked === true) {
