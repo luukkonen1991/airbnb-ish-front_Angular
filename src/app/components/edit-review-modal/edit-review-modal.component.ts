@@ -16,6 +16,7 @@ export class EditReviewModalComponent implements OnInit {
   @Input() infoData: Review;
   @Output() addReviewInput = new EventEmitter<Review>();
   locationId: string;
+  used: boolean = false;
   newReview: Review = {
     title: '',
     text: '',
@@ -32,18 +33,31 @@ export class EditReviewModalComponent implements OnInit {
     this.newReview._id = this.infoData._id;
     this.newReview.title = this.infoData.title;
     this.newReview.text = this.infoData.text;
-    this.newReview.rating = this.infoData.rating;
+    // this.newReview.rating = this.infoData.rating;
   }
 
-  // ngDoCheck() {
-  //     for (let i = 0; i <= 5; i++) {
-  //       if (this.infoData.rating === i) {
-  //         document.getElementById('' + i + '').checked = true;
-  //       }
-  //     }
-  // }
+  ngDoCheck() {
+    if (this.used === false) {
+      this.checkOldValues();
+    }
+  }
+
+  ngOnChanges() {
+    this.checkOldValues();
+  }
+
+  checkOldValues() {
+    for (let i = 0; i <= 5; i++) {
+      if (this.infoData.rating === i) {
+        const paska = document.getElementById(`${i}`) as HTMLInputElement
+        paska.checked = true;
+      }
+    }
+  }
+
 
   getReviewRating(event: Event) {
+    this.used = true;
     if ((<HTMLInputElement>event.target).checked === true) {
       this.newReview.rating = parseInt((<HTMLInputElement>event.target).value);
     }

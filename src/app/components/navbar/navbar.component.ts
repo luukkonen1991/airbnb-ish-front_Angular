@@ -17,10 +17,8 @@ export class NavbarComponent implements OnInit {
 	ngOnInit() {}
 
 	ngDoCheck() {
-		console.log('NAVI');
 		// let token = this.cookieService.get('token');
 		let token = sessionStorage.getItem('token');
-		console.log(token + 'NAVITOKEN');
 		if (token !== null) {
 			this.showMe = true;
 		}
