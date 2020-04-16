@@ -291,6 +291,7 @@ export class CurrentUserComponent implements OnInit {
 		this.contactService.getAllMessages(100000).subscribe(allMessages => {
 			this.allMessagesData = allMessages;
 			console.log(this.allMessagesData);
+			this.ngOnInit();
 		});
 		this.dataService.showNotification('Message deleted successfully!', true);
 	}
@@ -301,6 +302,7 @@ export class CurrentUserComponent implements OnInit {
 		this.reviewService.getAllReviews(100000).subscribe(allReviews => {
 			this.allReviewsData = allReviews;
 			console.log(this.allReviewsData);
+			this.ngOnInit();
 		});
 		this.dataService.showNotification('Review deleted successfully!', true);
 	}
