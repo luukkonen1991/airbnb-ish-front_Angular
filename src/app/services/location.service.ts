@@ -21,7 +21,7 @@ const httpHeaders = {
 	providedIn: 'root'
 })
 export class LocationService {
-	locationUrl: string = 'http://localhost:5000/api/v1/locations';
+	locationUrl: string = 'https://www.pethotelapi.com/api/v1/locations';
 	updateLocationData: UpdateLocation;
 
 	constructor(private http: HttpClient) {}

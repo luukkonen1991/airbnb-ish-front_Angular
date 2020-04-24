@@ -16,7 +16,7 @@ const httpHeaders = {
 	providedIn: 'root'
 })
 export class ReviewService {
-	reviewUrl: string = 'http://localhost:5000/api/v1/reviews';
+	reviewUrl: string = 'https://www.pethotelapi.com/api/v1/reviews';
 	review: Review;
 	reviews: Reviews;
 	constructor(private http: HttpClient) {}
@@ -31,12 +31,12 @@ export class ReviewService {
 	}
 
 	getUserReviews(userId: string) {
-		let api = `http://localhost:5000/api/v1/users/${userId}/reviews`;
+		let api = `https://www.pethotelapi.com/api/v1/users/${userId}/reviews`;
 		return this.http.get<Reviews>(api).pipe(catchError(this.handleError));
 	}
 
 	getLocationReviews(locationId: string) {
-		let api = `http://localhost:5000/api/v1/locations/${locationId}/reviews`;
+		let api = `https://www.pethotelapi.com/api/v1/locations/${locationId}/reviews`;
 		return this.http.get<Reviews>(api).pipe(catchError(this.handleError));
 	}
 
@@ -46,7 +46,7 @@ export class ReviewService {
 			text: review.text,
 			rating: review.rating
 		};
-		let api = `http://localhost:5000/api/v1/locations/${locationId}/reviews`;
+		let api = `https://www.pethotelapi.com/api/v1/locations/${locationId}/reviews`;
 		let token = sessionStorage.getItem('token');
 		httpHeaders.headers = httpHeaders.headers.set('Authorization', `Bearer ${token}`);
 		return this.http.post<Review>(api, data, httpHeaders).pipe(catchError(this.handleError));
@@ -58,13 +58,11 @@ export class ReviewService {
 			text: review.text,
 			rating: review.rating
 		};
-		let api = `http://localhost:5000/api/v1/reviews/${reviewId}`;
+		let api = `https://www.pethotelapi.com/api/v1/reviews/${reviewId}`;
 		let token = sessionStorage.getItem('token');
 		httpHeaders.headers = httpHeaders.headers.set('Authorization', `Bearer ${token}`);
 		return this.http.put<Review>(api, data, httpHeaders).pipe(catchError(this.handleError));
 	}
-
-
 
 	deleteReview(_id: string): Observable<Review> {
 		const url = `${this.reviewUrl}/${_id}`;

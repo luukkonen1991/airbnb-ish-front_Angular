@@ -26,7 +26,7 @@ export class ForgotPasswordComponent implements OnInit {
 
 	ngOnInit() {}
 
-	onSubmit() {
+	onSubmit($event: any) {
 		this.authService.forgotPassword(this.resetPassword.email).subscribe(msg => {
 			if (msg.success === true) {
 				this.msg = msg;

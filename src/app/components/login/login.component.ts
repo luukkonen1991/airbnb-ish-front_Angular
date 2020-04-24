@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
 
 	ngOnInit() {}
 
-	onSubmit() {
+	onSubmit($event: any) {
 		this.authService.loginUser(this.authLogin.email, this.authLogin.password).subscribe(
 			res => {
 				if (res.success === true) {

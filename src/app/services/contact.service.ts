@@ -15,12 +15,9 @@ let httpHeaders = {
 	providedIn: 'root'
 })
 export class ContactService {
-	messageUrl: string = 'http://localhost:5000/api/v1/messages';
+	messageUrl: string = 'https://www.pethotelapi.com/api/v1/messages';
 
-	constructor(
-		private http: HttpClient,
-		public router: Router,
-	) {}
+	constructor(private http: HttpClient, public router: Router) {}
 
 	getAllMessages(limit?: any): Observable<any> {
 		let api = this.messageUrl;

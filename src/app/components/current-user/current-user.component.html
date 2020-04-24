@@ -93,7 +93,10 @@
     <h2 *ngIf="reviews.length > 0">
       My Reviews
     </h2>
-    <div class="card" *ngFor="let review of reviews; let i = index">
+    <div
+      class="card"
+      *ngFor="let review of reviews; let i = index"
+    >
       <div class="card-body">
         <h6>Title</h6>
         <p>{{review.title}}</p>
@@ -106,10 +109,20 @@
         <h6>Created At</h6>
         <p>{{review.createdAt}}</p>
         <hr>
-        <button type="button" class="btn btn-warning m-1"
-          data-toggle="modal" data-target="#editReviewModal" (click)="info(review)">Edit Review</button>
-        <button type="button" class="btn btn-danger mr-1" data-toggle="modal" data-target="#deleteReviewModal"
-          (click)="passDeleteReviewData(review._id, review.title)">
+        <button
+          type="button"
+          class="btn btn-warning m-1"
+          data-toggle="modal"
+          data-target="#editReviewModal"
+          (click)="info(review)"
+        >Edit Review</button>
+        <button
+          type="button"
+          class="btn btn-danger mr-1"
+          data-toggle="modal"
+          data-target="#deleteReviewModal"
+          (click)="passDeleteReviewData(review._id, review.title)"
+        >
           Delete Review
         </button>
       </div>
@@ -119,9 +132,19 @@
 </div>
 
 <!-- Edit Review Modal -->
-<div *ngIf="infoData !== undefined" class="modal fade bd-example-modal-lg" id="editReviewModal" tabindex="-1" role="dialog"
-  aria-labelledby="editReviewModalLabel" aria-hidden="true">
-  <app-edit-review-modal (addReviewInput)="receiveReviewInput($event)" [infoData]="infoData">
+<div
+  *ngIf="infoData !== undefined"
+  class="modal fade bd-example-modal-lg"
+  id="editReviewModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="editReviewModalLabel"
+  aria-hidden="true"
+>
+  <app-edit-review-modal
+    (addReviewInput)="receiveReviewInput($event)"
+    [infoData]="infoData"
+  >
   </app-edit-review-modal>
 </div>
 
@@ -142,7 +165,7 @@
 >
   <img
     class="card-img-top resize-img"
-    src="http://localhost:5000/uploads/{{location.data[0].photo}}"
+    src="https://www.pethotelapi.com/uploads/{{location.data[0].photo}}"
     alt="photo_5d713995b721c3bb38c1f5d0.jpg"
   />
   <div class="card-body">

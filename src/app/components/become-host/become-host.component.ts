@@ -27,7 +27,7 @@ export class BecomeHostComponent implements OnInit {
 
 	ngOnInit() {}
 
-	onSubmit() {
+	onSubmit($event: any) {
 		this.authService.registerUser(this.authRegister).subscribe(
 			res => {
 				if (res.success === true) {
