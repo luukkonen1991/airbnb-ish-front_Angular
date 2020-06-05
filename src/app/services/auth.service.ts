@@ -26,7 +26,7 @@ let httpHeadersPost = {
 	providedIn: 'root'
 })
 export class AuthService {
-	authUrl: string = 'http://localhost:5000/api/v1/auth';
+	authUrl: string = 'https://www.pethotelapi.com/api/v1/auth';
 	token: string;
 	authRegister: AuthRegister;
 
